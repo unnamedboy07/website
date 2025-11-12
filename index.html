@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>UnnamedThings — About</title>
-  <meta name="description" content="About UnnamedThings — case studies and awareness-driven coverage of traumatic crimes, approached respectfully." />
+  <title>Unnamed Things — About</title>
+  <meta name="description" content="About Unnamed Things — case studies and awareness-driven coverage of traumatic crimes, approached respectfully." />
   <style>
     :root{
       --bg:#0f1115;
@@ -19,17 +19,17 @@
     body{
       margin:0;
       background:
-        radial-gradient(1200px 500px at 10% 10%, rgba(217,78,78,0.06), transparent 6%),
-        radial-gradient(800px 400px at 95% 90%, rgba(0,120,255,0.03), transparent 6%),
-        var(--bg);
+        linear-gradient(180deg, rgba(15,17,21,0.85), rgba(15,17,21,0.85)),
+        url('https://images.unsplash.com/photo-1508385082359-f1b6d2c4c7f1?auto=format&fit=crop&w=1700&q=80') center/cover no-repeat;
       color:#e9eef2;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
       line-height:1.45;
       padding:32px;
+      background-attachment: fixed;
     }
     .container{
-      max-width:1000px;
+      max-width:1100px;
       margin:0 auto;
     }
 
@@ -44,26 +44,31 @@
       height:84px;
       border-radius:18px;
       overflow:hidden;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.6), inset 0 -6px 12px rgba(0,0,0,0.25);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7), inset 0 -6px 12px rgba(0,0,0,0.25);
       background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.15));
       display:flex;
       align-items:center;
       justify-content:center;
+      flex-shrink:0;
+      border:1px solid rgba(255,255,255,0.03);
     }
     .site-title{
       display:flex;
       flex-direction:column;
+      gap:6px;
     }
     .site-title h1{
       margin:0;
-      font-size:20px;
-      letter-spacing:0.2px;
+      font-size:26px;
+      letter-spacing:4px;
+      text-transform:lowercase;
     }
-    .site-title p{margin:2px 0 0 0; color:var(--muted); font-size:13px;}
+    .site-title h1 .brand-space{letter-spacing:8px}
+    .site-title p{margin:0; color:var(--muted); font-size:14px;}
 
     .hero{
       display:grid;
-      grid-template-columns: 1fr 360px;
+      grid-template-columns: 1fr 340px;
       gap:22px;
       align-items:start;
     }
@@ -72,11 +77,12 @@
       background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
       border-radius:var(--radius);
       padding:18px;
-      box-shadow: 0 6px 30px rgba(3,6,12,0.6);
+      box-shadow: 0 8px 40px rgba(3,6,12,0.6);
       border:1px solid rgba(255,255,255,0.03);
+      backdrop-filter: blur(4px);
     }
 
-    .about h2{margin-top:0}
+    .section-title{margin:0 0 10px 0; font-size:18px}
     .cw{
       background:linear-gradient(90deg, rgba(217,78,78,0.06), rgba(255,255,255,0.01));
       color:#ffdede;
@@ -107,59 +113,34 @@
     .meta a:hover{transform:translateY(-3px); transition:all 160ms ease}
     .social-icon{width:18px;height:18px;display:inline-block;vertical-align:middle}
 
-    /* Right column: thumbnail + gallery */
-    .thumb-col{display:flex;flex-direction:column; gap:14px}
-    .thumb{
+    /* Right column simplified */
+    .side-card{display:flex;flex-direction:column; gap:12px}
+    .side-hero{
+      height:220px;
       border-radius:12px;
       overflow:hidden;
-      background:#0a0a0a;
-      position:relative;
-      height:210px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .thumb img{width:100%; height:100%; object-fit:cover; display:block; filter:contrast(0.95) saturate(0.9)}
-    .badge{
-      position:absolute;
-      left:12px; top:12px;
-      background:rgba(0,0,0,0.5);
-      padding:6px 10px;
-      border-radius:999px;
-      font-size:13px;
+      display:flex;align-items:center;justify-content:center;flex-direction:column;padding:18px;
+      background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.25));
       color:var(--muted);
-      backdrop-filter: blur(6px);
     }
-    .thumb .cta{
-      position:absolute;
-      right:12px; bottom:12px;
-      background:linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-      padding:8px 12px;
-      border-radius:10px;
-      font-weight:700;
-      cursor:pointer;
-      color:#fff;
-      text-decoration:none;
-      font-size:13px;
-    }
+    .side-hero img{width:84px;height:84px;border-radius:12px;object-fit:cover;border:1px solid rgba(255,255,255,0.04)}
+    .side-hero .note{font-size:13px;margin-top:10px}
 
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(2,1fr);
-      gap:10px;
-      margin-top:6px;
+    .upcoming{
+      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.06));
+      padding:18px;
+      border-radius:var(--radius);
+      margin-top:18px;
+      border:1px solid rgba(255,255,255,0.04);
     }
-    .tile{
-      border-radius:10px;
-      overflow:hidden;
-      height:100px;
-      background:#0b0b0b;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:13px;
-      color:var(--muted);
+    .upcoming h3{margin-top:0;font-size:18px;}
+    .thumb-preview{
+      display:flex;align-items:center;gap:14px;margin-top:10px;
     }
+    .thumb-preview img{
+      width:120px;height:68px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,0.05);
+    }
+    .thumb-preview .desc{font-size:14px;color:var(--muted);}
 
     footer{
       margin-top:28px;
@@ -170,7 +151,8 @@
 
     @media (max-width:960px){
       .hero{grid-template-columns:1fr; }
-      .thumb{height:170px}
+      .side-hero{height:150px}
+      .site-title h1{font-size:22px}
     }
 
   </style>
@@ -179,99 +161,71 @@
   <div class="container">
     <header>
       <div class="logo">
-        <!-- User-provided logo -->
-        <img src="https://ibb.co/d0RqxzQ8" alt="UnnamedThings logo" style="width:100%;height:100%;object-fit:cover" />
+        <img src="https://i.ibb.co/0jxSvdfH/channels4-profile.jpg" alt="Unnamed Things logo" style="width:100%;height:100%;object-fit:cover" />
       </div>
       <div class="site-title">
-        <h1>UnnamedThings</h1>
-        <p>Case studies • Awareness-driven discussions • Respectful reporting</p>
+        <h1><span class="brand-space">unnamed</span> things</h1>
+        <p>Case studies • Unnamed truths</p>
       </div>
     </header>
 
     <main class="hero">
-      <section class="card about">
-        <div class="cw">Content warning: sensitive topics (crime, sexual violence, murder)</div>
+      <div>
+        <section class="card" aria-labelledby="about-title">
+          <div class="cw">Content warning: sensitive topics (crime, sexual violence, murder)</div>
+          <h2 id="about-title" class="section-title">About this channel</h2>
+          <p>
+            <strong>Unnamed Things</strong> examines real criminal cases with the intention of raising awareness, understanding investigative processes, and highlighting systemic issues.
+            The channel is educational and focused on prevention and context — <em>never</em> to sensationalize or glorify violent acts.
+          </p>
+          <p style="margin-top:10px; font-style:italic; color:var(--muted);">
+            Mission: I create videos to raise awareness and educate about traumatic crimes — never to sensationalize or glorify violence.
+          </p>
+        </section>
 
-        <h2>About this channel</h2>
-        <p>
-          <strong>UnnamedThings</strong> explores real criminal cases with the goal of increasing public awareness, understanding criminal investigation techniques,
-          and respectfully examining systemic issues that contribute to violent crime. The purpose of this channel is educational and preventative — <em>not</em> to sensationalize or glorify violence.
-        </p>
+        <section class="card" style="margin-top:18px;" aria-labelledby="topics-title">
+          <h2 id="topics-title" class="section-title">How topics are handled</h2>
+          <ul style="color:var(--muted); padding-left:18px;margin-top:6px;">
+            <li>Research is based on public records and verified reporting; sources are cited where available.</li>
+            <li>Victims and families are treated with respect; identifying details that could cause harm are omitted.</li>
+            <li>No graphic images or gratuitous detail — content focuses on facts, analysis, and lessons for prevention.</li>
+            <li>Disclaimers and resources (hotlines, support organisations) will be provided where appropriate.</li>
+          </ul>
+          <div style="margin-top:12px;color:var(--muted);font-size:13px"><strong>Note:</strong> There are currently no public uploads. This page is an introduction and home for future content.</div>
+        </section>
 
-        <p style="margin-top:10px; font-style:italic; color:var(--muted);">
-          Rewritten mission statement: I create videos to raise awareness and educate about traumatic crimes — never to sensationalize or glorify violence.
-        </p>
-
-        <div class="meta" style="margin-top:18px;">
-          <a href="https://www.instagram.com/ub.things07?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer">
-            <!-- Instagram SVG icon -->
-            <svg class="social-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.4"/></svg>
-            Instagram
-          </a>
-
-          <a href="https://www.youtube.com/@unnamedthings07" target="_blank" rel="noopener noreferrer">
-            <svg class="social-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 7.2c0-1.2-.96-2.16-2.16-2.16H4.16C2.96 5.04 2 6 2 7.2v9.6C2 18.96 2.96 19.92 4.16 19.92h15.68c1.2 0 2.16-.96 2.16-2.16V7.2z" stroke="currentColor" stroke-width="1.2" /></svg>
-            YouTube Channel
-          </a>
-
-          <a href="#contact" style="cursor:default">
-            <svg class="social-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 12h20" stroke="currentColor" stroke-width="1.2"/></svg>
-            Contact / Inquiries
-          </a>
-        </div>
-
-        <hr style="margin:18px 0; border:0; border-top:1px solid rgba(255,255,255,0.03)">
-
-        <h3 style="margin-bottom:8px">How topics are handled</h3>
-        <ul style="color:var(--muted); padding-left:18px;">
-          <li>Cases are researched with public sources, and covered with sensitivity to victims and families.</li>
-          <li>No explicit or graphic imagery is used. Content focuses on facts, context, and prevention.</li>
-          <li>Sources and disclaimers will be listed in each video description when available.</li>
-        </ul>
-
-        <div style="margin-top:14px; color:var(--muted); font-size:13px">
-          <strong>Note:</strong> Currently there are no public uploads. This page shows what the channel is about and serves as an information hub for viewers.
-        </div>
-      </section>
-
-      <aside class="thumb-col">
-        <div class="card thumb">
-          <span class="badge">Channel thumbnail</span>
-          <!-- Sample non-graphic thumbnail image (symbolic, awareness oriented) -->
-          <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=1200&q=70" alt="Candle vigil / awareness thumbnail" />
-          <a class="cta" href="https://www.youtube.com/@unnamedthings07" target="_blank" rel="noopener noreferrer">Visit channel</a>
-        </div>
-
-        <div class="card" style="padding:12px">
-          <h4 style="margin:6px 0 10px 0">Sample thumbnails</h4>
-          <div class="grid">
-            <div class="tile">
-              <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=600&q=60" alt="investigative notes" style="width:100%;height:100%;object-fit:cover" />
-            </div>
-            <div class="tile">
-              <img src="https://images.unsplash.com/photo-1508385082359-f1b6d2c4c7f1?auto=format&fit=crop&w=600&q=60" alt="candle vigil" style="width:100%;height:100%;object-fit:cover" />
-            </div>
-            <div class="tile">
-              <div style="padding:8px;color:var(--muted);font-size:13px;text-align:center">
-                No uploads yet
-                <div style="font-size:11px;color:#8f969a;margin-top:6px">This placeholder shows how thumbnails will appear.</div>
-              </div>
-            </div>
-            <div class="tile">
-              <div style="padding:8px;color:var(--muted);font-size:13px;text-align:center">
-                Awareness-focused
-                <div style="font-size:11px;color:#8f969a;margin-top:6px">Designed to inform, not sensationalize.</div>
-              </div>
+        <section class="upcoming">
+          <h3>Currently in Production</h3>
+          <div class="thumb-preview">
+            <img src="https://images.unsplash.com/photo-1600369671882-8b49f2b3b7c2?auto=format&fit=crop&w=800&q=80" alt="First video thumbnail" />
+            <div class="desc">
+              <strong>Title:</strong> The Unheard Confession<br>
+              <em>Exploring a chilling unsolved case that reveals how silence can shape justice.</em>
             </div>
           </div>
+        </section>
+      </div>
+
+      <aside class="side-card">
+        <div class="card side-hero">
+          <img src="https://i.ibb.co/0jxSvdfH/channels4-profile.jpg" alt="logo" />
+          <div style="font-weight:700;margin-top:8px">unnamed things</div>
+          <div class="note">No uploads yet — channel for awareness & case studies</div>
         </div>
 
-        <div class="card" id="contact" style="text-align:center;">
+        <div class="card" style="text-align:center;">
           <h4 style="margin:6px 0">Stay connected</h4>
           <p style="color:var(--muted);margin:6px 0 12px 0">Follow for updates and publication notices</p>
-          <div style="display:flex;gap:8px;justify-content:center">
-            <a href="https://www.instagram.com/ub.things07?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" style="padding:10px 14px;border-radius:10px;background:var(--glass);text-decoration:none;color:inherit;font-weight:700">Instagram</a>
-            <a href="https://www.youtube.com/@unnamedthings07" target="_blank" rel="noopener noreferrer" style="padding:10px 14px;border-radius:10px;background:var(--glass);text-decoration:none;color:inherit;font-weight:700">YouTube</a>
+          <div class="meta" style="justify-content:center">
+            <a href="https://www.instagram.com/ub.things07?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.4"/></svg>
+              Instagram
+            </a>
+
+            <a href="https://www.youtube.com/@unnamedthings07" target="_blank" rel="noopener noreferrer">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 7.2c0-1.2-.96-2.16-2.16-2.16H4.16C2.96 5.04 2 6 2 7.2v9.6C2 18.96 2.96 19.92 4.16 19.92h15.68c1.2 0 2.16-.96 2.16-2.16V7.2z" stroke="currentColor" stroke-width="1.2" /></svg>
+              YouTube
+            </a>
           </div>
         </div>
       </aside>
@@ -279,19 +233,13 @@
 
     <footer>
       <div style="max-width:720px;margin:14px auto 0 auto">
-        <div style="color:var(--muted)">&copy; <span id="year"></span> UnnamedThings — Content for awareness and education. If you are a victim, contact local support services and authorities. For questions or to request removal of specific content, reach out via Instagram.</div>
+        <div style="color:var(--muted)">&copy; <span id="year"></span> Unnamed Things — Content for awareness and education. If you are a victim, contact local support services and authorities. For questions or to request removal of specific content, reach out via Instagram.</div>
       </div>
     </footer>
   </div>
 
   <script>
-    // Set year dynamically
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Gentle accessibility helper: keyboard focus ring
-    document.addEventListener('keyup', (e) => {
-      if (e.key === 'Tab') document.documentElement.style.scrollBehavior = 'smooth';
-    });
   </script>
 </body>
 </html>
