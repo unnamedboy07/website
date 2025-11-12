@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unnamed Things - True Crime Investigations</title>
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Load new fonts: Playfair Display (for headings) and Roboto (for body) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;600&display=swap">
+    
+    <!-- Custom styles -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #111827; /* Dark fallback */
+            /* New, high-quality, and thematic background from Unsplash */
+            background-image: url('https://images.unsplash.com/photo-153237697-3676160b32de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        /* Style for headings to use the new font */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        /* Style for the content overlay */
+        #content-wrapper.blurred {
+            filter: blur(10px);
+            pointer-events: none;
+            user-select: none;
+        }
+        /* Added a transition for the filter property to make it fade-in */
+        #content-wrapper {
+            transition: filter 0.4s ease-out;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Content Warning Modal -->
+    <div id="warning-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4">
+        <div class="w-full max-w-lg rounded-lg bg-gray-800 p-6 text-center shadow-xl">
+            <!-- Icon -->
+            <svg class="mx-auto h-12 w-12 text-yellow-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+            </svg>
+            <h2 class="mt-4 text-2xl font-bold text-white">Sensitive Content Warning</h2>
+            <p class="mt-2 text-gray-300">
+                This website and its associated YouTube channel discuss true crime cases that involve disturbing topics, including violence, murder, and assault. Viewer discretion is strongly advised.
+            </p>
+            <p class="mt-4 font-semibold text-gray-200">
+                Are you 18 or older and do you wish to proceed?
+            </p>
+            <div class="mt-6 flex justify-center gap-4">
+                <button id="proceed-btn" class="rounded-md bg-red-700 px-6 py-2 font-semibold text-white transition hover:bg-red-800">
+                    I am 18+ and wish to proceed
+                </button>
+                <a href="https://www.google.com" class="rounded-md bg-gray-600 px-6 py-2 font-semibold text-white transition hover:bg-gray-700">
+                    Leave
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Wrapper (gets blurred) -->
+    <div id="content-wrapper" class="blurred">
+        
+        <!-- New Hero Section -->
+        <header class="relative flex h-[50vh] min-h-[300px] items-center justify-center text-center text-white md:h-[60vh]">
+            <!-- Semi-transparent overlay for readability -->
+            <div class="absolute inset-0 z-0 bg-black bg-opacity-50"></div>
+            <!-- Content -->
+            <div class="container relative z-10 mx-auto max-w-4xl px-6">
+                <h1 class="text-5xl font-bold tracking-wider text-white md:text-7xl">unnamed things</h1>
+                <p class="mt-4 text-lg text-gray-300 md:text-xl">not for ordinary people</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto max-w-4xl p-6 text-gray-300 space-y-12">
+
+            <!-- About Section -->
+            <section class="overflow-hidden rounded-xl border border-gray-700 bg-gray-900 bg-opacity-90 shadow-2xl">
+                <div class="flex flex-col md:flex-row">
+                    <!-- New Thematic Image: Question Mark -->
+                    <img src="https://images.unsplash.com/photo-1580757468163-d343411a681f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                         alt="Channel Profile Image" 
+                         class="h-64 w-full object-cover md:h-auto md:w-1/3">
+                    
+                    <div class="p-6 md:p-8">
+                        <h2 class="text-3xl font-semibold text-white">About This Project</h2>
+                        <p class="mt-4 text-gray-300 leading-relaxed">
+                            Welcome. This channel is a dedicated project focused on in-depth case studies of serious crimes. My goal is to provide a comprehensive and respectful analysis of these difficult events.
+                        </p>
+                        <h3 class="mt-6 text-2xl font-semibold text-white">Our Mission</h3>
+                        <p class="mt-2 text-gray-300 leading-relaxed">
+                            The mission of this channel is to raise awareness and explore the complex details of these cases with a victim-centered approach. 
+                            <strong class="text-red-400">My content is created for educational and awareness purposes only, not to glorify tragic events.</strong>
+                        </p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Featured Investigation Section -->
+            <section>
+                <h2 class="mb-4 border-b-2 border-gray-700 pb-2 text-3xl font-semibold text-white">Featured Investigation (Coming Soon)</h2>
+                <div class="overflow-hidden rounded-xl border border-gray-700 bg-gray-900 bg-opacity-90 shadow-2xl">
+                    <div class="block">
+                        <!-- New Thematic Image: Investigation Board -->
+                        <img src="https://images.unsplash.com/photo-1554101037-9d5f306d50f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Featured Case Study Thumbnail" 
+                             class="w-full h-auto object-cover">
+                    </div>
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-2xl font-bold text-red-500">My First Case File</h3>
+                        <p class="mt-2 text-gray-300 leading-relaxed">
+                            The first full-length video investigation is currently in production. This space will showcase the deep-dive analyses you can expect from this channel. Stay tuned for the first upload.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-12 border-t border-gray-700 bg-gray-900 bg-opacity-95">
+            <div class="container mx-auto max-w-4xl p-6 py-10 text-center text-gray-500">
+                
+                <!-- Social Links Section -->
+                <section class="mb-8 text-center">
+                    <h2 class="mb-6 text-3xl font-semibold text-white">Follow My Work</h2>
+                    <div class="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+                        <!-- YouTube Link -->
+                        <a href="https://www.youtube.com/@unnamedthings07" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="flex w-full items-center justify-center gap-3 rounded-lg bg-red-700 px-6 py-3 font-semibold text-white transition hover:bg-red-800 sm:w-auto">
+                            <!-- YouTube Icon -->
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21.582,6.186c-0.23-0.858-0.908-1.536-1.766-1.766C18.26,4,12,4,12,4S5.74,4,4.184,4.42 C3.326,4.65,2.648,5.328,2.418,6.186C2,7.74,2,12,2,12s0,4.26,0.418,5.814c0.23,0.858,0.908,1.536,1.766,1.766 C5.74,20,12,20,12,20s6.26,0,7.816-0.42c0.858-0.23,1.536-0.908,1.766-1.766C22,16.26,22,12,22,12S22,7.74,21.582,6.186z M9.999,15.199V8.801l5.199,3.199L9.999,15.199z"></path>
+                            </svg>
+                            Subscribe on YouTube
+                        </a>
+                        <!-- Instagram Link -->
+                        <a href="https://www.instagram.com/ub.things07?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="flex w-full items-center justify-center gap-3 rounded-lg bg-pink-600 px-6 py-3 font-semibold text-white transition hover:bg-pink-700 sm:w-auto">
+                            <!-- Instagram Icon -->
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.27.058 2.148.272 2.91.565.764.293 1.455.718 2.122 1.385.666.666 1.092 1.357 1.385 2.122.293.761.507 1.64.565 2.91.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.058 1.27-.272 2.148-.565 2.91-.293.764-.718 1.455-1.385 2.122-.666.666-1.357 1.092-2.122 1.385-.761.293-1.64.507-2.91.565-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.27-.058-2.148-.272-2.91-.565-.764-.293-1.455-.718-2.122-1.385-.666-.666-1.092-1.357-1.385-2.122-.293-.761-.507-1.64-.565-2.91-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.058-1.27.272 2.148.565 2.91.293.764.718 1.455 1.385-2.122.666-.666 1.357 1.092 2.122 1.385.761-.293 1.64-.507 2.91-.565C8.416 2.175 8.796 2.163 12 2.163zm0 1.626c-3.142 0-3.504.01-4.72.066-1.205.055-1.92.22-2.6.5-.68.277-1.226.648-1.77 1.194-.546.546-.917 1.09-1.195 1.77-.28.68-.445 1.395-.5 2.6-.056 1.216-.066 1.578-.066 4.72s.01 3.504.066 4.72c.055 1.205.22 1.92.5 2.6.277.68.648 1.226 1.194 1.77.546.546 1.09.917 1.77 1.195.68.28 1.395.445 2.6.5 1.216.056 1.578.066 4.72.066 3.142 0 3.504-.01 4.72-.066 1.205-.055 1.92-.22 2.6-.5.68-.277 1.226.648 1.77-1.194.546-.546.917 1.09 1.195 1.77.28.68-.445-1.395.5-2.6.056-1.216.066 1.578.066 4.72s-.01-3.504-.066-4.72c-.055-1.205-.22-1.92-.5-2.6-.277-.68-.648-1.226-1.194-1.77-.546-.546-1.09-.917-1.77-1.195-.68-.28-1.395-.445-2.6-.5-1.216-.056-1.578-.066-4.72-.066zm0 2.88c-1.803 0-3.26 1.457-3.26 3.26s1.457 3.26 3.26 3.26 3.26-1.457 3.26-3.26-1.457-3.26-3.26-3.26zm0 5.388c-1.173 0-2.128-.955-2.128-2.128s.955-2.128 2.128-2.128 2.128.955 2.128 2.128-.955 2.128-2.128 2.128zm4.965-5.875c.596 0 1.08-.484 1.08-1.08s-.484-1.08-1.08-1.08-1.08.484-1.08 1.08.484 1.08 1.08 1.08z"></path>
+                            </svg>
+                            Follow on Instagram
+                        </a>
+                    </div>
+                </section>
+
+                <p>&copy; 2025 unnamed things. All Rights Reserved.</p>
+                <p class="mt-1 text-sm">
+                    Disclaimer: The content on this site is for informational and educational purposes only. All cases are presented with respect for the victims.
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modal JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('warning-modal');
+            const contentWrapper = document.getElementById('content-wrapper');
+            const proceedButton = document.getElementById('proceed-btn');
+
+            // Prevent scrolling while modal is active
+            document.body.style.overflow = 'hidden';
+
+            // When the proceed button is clicked
+            proceedButton.addEventListener('click', () => {
+                // Hide the modal
+                modal.style.display = 'none';
+                // Remove the blur from the main content
+                contentWrapper.classList.remove('blurred');
+                // Re-enable scrolling on the main body
+                document.body.style.overflow = 'auto';
+            });
+        });
+    </script>
+
+</body>
+</html>
