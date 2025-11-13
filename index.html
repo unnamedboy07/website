@@ -189,6 +189,58 @@
             margin-bottom: 0.5rem;
         }
 
+        /* --- Section 4.5: Work in Progress (NEW) --- */
+        .working-now {
+            background-color: var(--color-black); /* Matches the section above it */
+            padding: 10px 0 80px 0; /* A little less top padding */
+        }
+        .working-now h2.align-center {
+            font-size: 3.5em;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .wip-box {
+            align-items: center;
+            background-color: var(--color-dark-1); /* #111111 */
+            border-radius: 10px;
+            padding: 2rem;
+            border: 1px solid #222;
+        }
+        .wip-box .col-image {
+            flex-basis: 40%;
+        }
+        .wip-box .col-text {
+            flex-basis: 60%;
+        }
+        .wip-box .case-thumbnail {
+            border-radius: 5px;
+            border: 1px solid #444;
+            width: 100%;
+        }
+        .wip-box .status-badge {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-red);
+            font-family: var(--font-body);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        .wip-box .case-title {
+            font-size: 2.5em;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--color-white);
+        }
+        .wip-box .case-description {
+            font-size: 1.25rem;
+            font-style: italic;
+            color: #ccc;
+            border-left: 3px solid var(--color-red);
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
         /* Section 5: CTA / Links */
         .cta {
             background-color: var(--color-dark-2);
@@ -250,6 +302,8 @@
             .cover h2 { font-size: 2rem; }
             .cover p { font-size: 1rem; }
             .focus h2 { font-size: 2.5em; }
+            .working-now h2.align-center { font-size: 2.5em; }
+            .wip-box .case-title { font-size: 2em; }
             .cta h2 { font-size: 2.2em; }
         }
 
@@ -268,7 +322,7 @@
             <div class="container">
                 <div class="columns">
                     <div class="column col-logo">
-                        <img src="https://i.ibb.co/0jxSvdfH/channels4-profile.jpg" alt="unnamed things logo" class="logo-img">
+                        <img src="channels4_profile.jpg" alt="unnamed things logo" class="logo-img">
                     </div>
                     <div class="column col-text">
                         <h2>Unearthing the <span class="text-red">Unspoken</span>.</h2>
@@ -296,7 +350,7 @@
                         <p>We revisit chilling cold cases, dissecting every detail in pursuit of answers and closure.</p>
                     </div>
                     <div class="column">
-                        <img src="https://image.pollinations.ai/prompt/Shattered%20glass%20heart%20symbol%20on%20cracked%20ground,%20glowing%20from%20within,%20dark,%20emotional,%20fragile,%20symbolic%20of%20trauma%20and%20brokenness?width=800&height=600&seed=3" alt="Shattered symbol">
+                        <img src="https.image.pollinations.ai/prompt/Shattered%20glass%20heart%20symbol%20on%20cracked%20ground,%20glowing%20from%20within,%20dark,%20emotional,%20fragile,%20symbolic%20of%20trauma%20and%20brokenness?width=800&height=600&seed=3" alt="Shattered symbol">
                         <h4>Victim-Centered Narratives</h4>
                         <p>Honoring those affected, giving voice to their experiences, and advocating for justice.</p>
                     </div>
@@ -304,6 +358,27 @@
                         <img src="https://image.pollinations.ai/prompt/Winding%20dark%20path%20through%20a%20dense,%20foggy%20forest%20at%20dusk,%20ominous%20shadows,%20sense%20of%20uncertainty%20and%20mystery,%20disturbing%20landscape?width=800&height=600&seed=4" alt="Winding dark path">
                         <h4>Criminal Psychology</h4>
                         <p>Exploring the complex motives and psychological landscapes behind heinous acts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="working-now">
+            <div class="container">
+                <h2 class="align-center">Our First Investigation</h2>
+                
+                <div class="columns wip-box">
+                    <div class="column col-image">
+                        <img src="https://i.ibb.co/KpRT9St4/dominique-1.jpg" alt="Dominique Pelicot case thumbnail" class="case-thumbnail">
+                    </div>
+                    <div class="column col-text">
+                        <h3 class="status-badge">Work in Progress</h3>
+                        
+                        <h2 class="case-title">Dominique Pelicot Case</h2>
+                        
+                        <p class="case-description">"A monster in the face of a good husband."</p>
+                        
+                        <p>I am currently deep in research for our first feature video, an in-depth look at this harrowing and complex case. Stay tuned for the full investigation.</p>
                     </div>
                 </div>
             </div>
@@ -323,4 +398,3 @@
 
 </body>
 </html>
-  
