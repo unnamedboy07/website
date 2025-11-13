@@ -189,7 +189,7 @@
             margin-bottom: 0.5rem;
         }
 
-        /* --- Section 4.5: Work in Progress (NEW) --- */
+        /* --- Section 4.5: Work in Progress --- */
         .working-now {
             background-color: var(--color-black); /* Matches the section above it */
             padding: 10px 0 80px 0; /* A little less top padding */
@@ -261,8 +261,13 @@
             gap: 1rem;
             flex-wrap: wrap; /* Allow buttons to stack on small screens */
         }
+        
+        /* --- NEW CSS FOR BUTTONS --- */
         .btn {
-            display: inline-block;
+            display: inline-flex; /* Use flex to align logo and text */
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem; /* Space between logo and text */
             padding: 15px 30px;
             font-size: 1.2em;
             font-family: var(--font-heading);
@@ -270,6 +275,11 @@
             text-transform: uppercase;
             border-radius: 5px;
             transition: all 0.3s ease;
+        }
+        .btn svg {
+            width: 1.5em; /* Scale logo with font size */
+            height: 1.5em;
+            /* SVG 'fill' is set to 'currentColor' in the HTML */
         }
         .btn-youtube {
             background-color: var(--color-red);
@@ -345,12 +355,12 @@
                 <h2 class="align-center">Our Focus</h2>
                 <div class="columns">
                     <div class="column">
-                        <img src="https://i.ibb.co/j93Lxmf5/empty-interrogation-room-single-light-source-stark-concrete-walls-isolated-chair-and-table-noir.jpg">
+                        <img src="https://i.ibb.co/j93Lxmf5/empty-interrogation-room-single-light-source-stark-concrete-walls-isolated-chair-and-table-noir.jpg" alt="Interrogation room">
                         <h4>Unsolved Enigmas</h4>
                         <p>We revisit chilling cold cases, dissecting every detail in pursuit of answers and closure.</p>
                     </div>
                     <div class="column">
-                        <img src="https://i.ibb.co/XZmryvw6/st-extra-large-507x507-pad-600x600-f8f8f8.jpg">
+                        <img src="https://i.ibb.co/XZmryvw6/st-extra-large-507x507-pad-600x600-f8f8f8.jpg" alt="Shattered symbol">
                         <h4>Victim-Centered Narratives</h4>
                         <p>Honoring those affected, giving voice to their experiences, and advocating for justice.</p>
                     </div>
@@ -389,8 +399,17 @@
                 <h2>Join Our Community. Engage With Caution.</h2>
                 <p>If you are prepared to confront uncomfortable truths and contribute to a discussion rooted in respect and awareness, connect with us.</p>
                 <div class="button-group">
-                    <a href="https://www.youtube.com/@unnamedthings07" target="_blank" rel="noopener noreferrer" class="btn btn-youtube">YouTube Channel</a>
-                    <a href="https://www.instagram.com/ub.things07?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="btn btn-instagram">Instagram</a>
+                    
+                    <a href="https://www.youtube.com/@unnamedthings07" target="_blank" rel="noopener noreferrer" class="btn btn-youtube">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83 1.48 1.73-1.73.47-.13 1.33.22 2.65.28 1.3.07 2.49.1 3.59.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"></path></svg>
+                        <span>YouTube Channel</span>
+                    </a>
+                    
+                    <a href="https://www.instagram.com/ub.things07?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="btn btn-instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8A3.6 3.6 0 0 0 20 16.4V7.6A3.6 3.6 0 0 0 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path></svg>
+                        <span>Instagram</span>
+                    </a>
+
                 </div>
             </div>
         </footer>
