@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>unnamed things - About</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Global Styles & Reset --- */
+        :root {
+            --color-red: #CD201F;
+            --color-black: #000000;
+            --color-dark-1: #111111;
+            --color-dark-2: #222222;
+            --color-white: #FFFFFF;
+            --font-heading: 'Oswald', sans-serif;
+            --font-body: 'Roboto', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-black);
+            color: var(--color-white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- Layout --- */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .align-center {
+            text-align: center;
+        }
+
+        .columns {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .column {
+            flex: 1;
+        }
+
+        /* --- Section Styles --- */
+
+        /* Section 1: Hero Warning */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+            text-align: center;
+            background-color: var(--color-black);
+        }
+        .hero h1 {
+            font-size: 4.5rem;
+            color: var(--color-red);
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+            letter-spacing: 5px;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin-top: 1rem;
+        }
+        .hero em {
+            font-size: 1rem;
+            color: #aaa;
+            margin-top: 2rem;
+        }
+
+        /* Section 2: Intro / Logo */
+        .intro {
+            background-color: var(--color-dark-1);
+            padding: 80px 0;
+        }
+        .intro .columns {
+            align-items: center;
+        }
+        .intro .col-logo {
+            flex-basis: 30%;
+        }
+        .intro .col-text {
+            flex-basis: 70%;
+        }
+        .intro .logo-img {
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 300px; /* Adjust as needed */
+            margin: 0 auto;
+        }
+        .intro h2 {
+            font-size: 4em;
+            line-height: 1.1;
+        }
+        .intro .text-red {
+            color: var(--color-red);
+        }
+        .intro p {
+            font-size: 1.1rem;
+        }
+
+        /* Section 3: Cover Image */
+        .cover {
+            position: relative;
+            padding: 100px 0;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-image: url('https://i.ibb.co/ZpWShH5m/Chat-GPT-Image-Nov-13-2025-05-29-50-AM.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax effect */
+        }
+        .cover::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1;
+        }
+        .cover * {
+            z-index: 2; /* Ensure text is above overlay */
+        }
+        .cover h2 {
+            font-size: 3rem;
+            letter-spacing: 2px;
+        }
+        .cover p {
+            font-size: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Section 4: Focus */
+        .focus {
+            background-color: var(--color-black);
+            padding: 80px 0;
+        }
+        .focus h2 {
+            font-size: 3.5em;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .focus .column img {
+            width: 100%;
+            height: 250px; /* Fixed height for uniformity */
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+        }
+        .focus .column h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Section 5: CTA / Links */
+        .cta {
+            background-color: var(--color-dark-2);
+            padding: 80px 0;
+            text-align: center;
+        }
+        .cta h2 {
+            font-size: 3em;
+        }
+        .cta p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 1rem auto 2rem auto;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap; /* Allow buttons to stack on small screens */
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-family: var(--font-heading);
+            text-decoration: none;
+            text-transform: uppercase;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .btn-youtube {
+            background-color: var(--color-red);
+            color: var(--color-white);
+        }
+        .btn-youtube:hover {
+            background-color: #ff4141;
+        }
+        .btn-instagram {
+            border: 2px solid #888;
+            color: var(--color-white);
+        }
+        .btn-instagram:hover {
+            background-color: var(--color-white);
+            color: var(--color-black);
+        }
+        
+        /* --- Responsive (Mobile) --- */
+        @media (max-width: 768px) {
+            .columns {
+                flex-direction: column;
+            }
+            .intro .col-logo {
+                margin-bottom: 2rem;
+            }
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1rem; }
+            .intro h2 { font-size: 2.5em; }
+            .cover { background-attachment: scroll; } /* Parallax doesn't work well on mobile */
+            .cover h2 { font-size: 2rem; }
+            .cover p { font-size: 1rem; }
+            .focus h2 { font-size: 2.5em; }
+            .cta h2 { font-size: 2.2em; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <h1>VIEWER DISCRETION ADVISED</h1>
+        <p>The content on this channel explores mature themes including violent crime, sexual assault, and psychological trauma.<br><br>These stories are based on real events and contain details that can be profoundly disturbing. This content is strictly intended for a mature audience (18+) only.</p>
+        <em>Proceed with caution. Scroll down to learn more about our mission.</em>
+    </header>
+
+    <main>
+        <section class="intro">
+            <div class="container">
+                <div class="columns">
+                    <div class="column col-logo">
+                        <img src="channels4_profile.jpg" alt="unnamed things logo" class="logo-img">
+                    </div>
+                    <div class="column col-text">
+                        <h2>Unearthing the <span class="text-red">Unspoken</span>.</h2>
+                        <p>At unnamed things, we delve into the darkest corners of human experience, bringing meticulously researched narratives of true crime to light. We believe that by understanding these harrowing events, we can advocate for justice, raise awareness, and prevent future tragedies.</p>
+                        <p>Our purpose is not sensationalism, but empathetic investigation. Each story is handled with profound respect for the victims and survivors, aiming to reveal truth where shadows once lay.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cover">
+            <div class="container">
+                <h2>Stories That Haunt. Truths That Matter.</h2>
+                <p>Every shadow holds a story. We aim to cast light.</p>
+            </div>
+        </section>
+
+        <section class="focus">
+            <div class="container">
+                <h2 class="align-center">Our Focus</h2>
+                <div class="columns">
+                    <div class="column">
+                        <img src="https://image.pollinations.ai/prompt/Empty%20interrogation%20room,%20single%20light%20source,%20stark%20concrete%20walls,%20isolated%20chair%20and%20table,%20noir%20film%20style,%20disturbing%20atmosphere?width=800&height=600&seed=2" alt="Interrogation room">
+                        <h4>Unsolved Enigmas</h4>
+                        <p>We revisit chilling cold cases, dissecting every detail in pursuit of answers and closure.</p>
+                    </div>
+                    <div class="column">
+                        <img src="https://image.pollinations.ai/prompt/Shattered%20glass%20heart%20symbol%20on%20cracked%20ground,%20glowing%20from%20within,%20dark,%20emotional,%20fragile,%20symbolic%20of%20trauma%20and%20brokenness?width=800&height=600&seed=3" alt="Shattered symbol">
+                        <h4>Victim-Centered Narratives</h4>
+                        <p>Honoring those affected, giving voice to their experiences, and advocating for justice.</p>
+                    </div>
+                    <div class="column">
+                        <img src="https://image.pollinations.ai/prompt/Winding%20dark%20path%20through%20a%20dense,%20foggy%20forest%20at%20dusk,%20ominous%20shadows,%20sense%20of%20uncertainty%20and%20mystery,%20disturbing%20landscape?width=800&height=600&seed=4" alt="Winding dark path">
+                        <h4>Criminal Psychology</h4>
+                        <p>Exploring the complex motives and psychological landscapes behind heinous acts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="cta">
+            <div class="container">
+                <h2>Join Our Community. Engage With Caution.</h2>
+                <p>If you are prepared to confront uncomfortable truths and contribute to a discussion rooted in respect and awareness, connect with us.</p>
+                <div class="button-group">
+                    <a href="https://www.youtube.com/@unnamedthings07" target="_blank" rel="noopener noreferrer" class="btn btn-youtube">YouTube Channel</a>
+                    <a href="https://www.instagram.com/ub.things07?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="btn btn-instagram">Instagram</a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+</body>
+</html>
+  
