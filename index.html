@@ -20,7 +20,7 @@
       margin:0;
       background:
         linear-gradient(180deg, rgba(15,17,21,0.85), rgba(15,17,21,0.85)),
-        url('https://images.unsplash.com/photo-1484069560501-87d72b0c3669?auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
+        url('https://i.ibb.co/ZpWShH5/Chat-GPT-Image-Nov-13-2025-05-29-50-AM.png') center/cover no-repeat;
       color:#e9eef2;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
@@ -135,12 +135,13 @@
     }
     .upcoming h3{margin-top:0;font-size:18px;}
     .thumb-preview{
-      display:flex;align-items:center;gap:14px;margin-top:10px;
+      display:flex;align-items:center;gap:14px;margin-top:10px;flex-wrap:wrap;
     }
     .thumb-preview img{
-      width:150px;height:85px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,0.05);
+      width:100%;max-width:400px;height:auto;border-radius:12px;border:1px solid rgba(255,255,255,0.08);
+      object-fit:cover;display:block;
     }
-    .thumb-preview .desc{font-size:14px;color:var(--muted);}
+    .thumb-preview .desc{font-size:15px;color:var(--muted);margin-top:10px;line-height:1.4;}
 
     footer{
       margin-top:28px;
@@ -195,9 +196,9 @@
 
         <section class="upcoming">
           <h3>Currently in Production</h3>
-          <div class="thumb-preview">
-            <img src="https://ibb.co/5xnD60rX" alt="Dominique Pelicot Case thumbnail" />
-            <div class="desc">
+          <div class="thumb-preview" style="display:flex;align-items:flex-start;gap:18px;flex-wrap:nowrap;">
+            <img src="https://i.ibb.co/KpRT9St4/dominique-1.jpg" alt="Dominique Pelicot Case thumbnail" style="width:180px;height:110px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.08);flex-shrink:0;" />
+            <div class="desc" style="font-size:15px;color:var(--muted);line-height:1.4;max-width:400px;">
               <strong>Title:</strong> Dominique Pelicot Case<br>
               <em>The ruthless monster in the mask of a good husband.</em>
             </div>
@@ -222,7 +223,7 @@
             </a>
 
             <a href="https://www.youtube.com/@unnamedthings07" target="_blank" rel="noopener noreferrer">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" class="social-icon" style="height:24px;width:34px;object-fit:contain;" alt="YouTube logo" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" class="social-icon" style="height:26px;width:36px;object-fit:contain;" alt="YouTube logo" />
               YouTube
             </a>
           </div>
