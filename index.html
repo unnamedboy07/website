@@ -229,6 +229,28 @@
             margin-bottom: 0.5rem;
         }
 
+        /* --- NEW VIDEO CONTAINER STYLES --- */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            width: 100%;
+            max-width: 900px; /* Max width for the video, looks better */
+            margin: 3rem auto 0 auto; /* Centered, with 3rem top margin */
+            border: 1px solid var(--color-dark-2);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        /* --- END NEW VIDEO STYLES --- */
+
         /* --- Section 4.5: Work in Progress --- */
         .working-now {
             /* OLD: background-color: var(--color-black); */
@@ -429,6 +451,19 @@
                         <p>Exploring the complex motives and psychological landscapes behind heinous acts.</p>
                     </div>
                 </div>
+
+                <!-- --- NEW YOUTUBE VIDEO SECTION --- -->
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/yLqCu0uxsL8?si=z9m_CikRBPSR7Kde" 
+                        title="YouTube video player - Our Focus" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <!-- --- END NEW YOUTUBE VIDEO SECTION --- -->
+
             </div>
         </section>
 
