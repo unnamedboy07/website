@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unnamed Things - Not for Ordinary People</title>
+    <title>unnamed things - About</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -88,6 +88,7 @@
             text-align: center;
             /* OLD: background-color: var(--color-black); */
             background-color: rgba(0, 0, 0, 0.85); /* NEW: Semi-transparent */
+            position: relative; /* Added for the arrow positioning */
         }
         .hero h1 {
             font-size: 4.5rem;
@@ -106,11 +107,46 @@
             margin-top: 2rem;
         }
 
+        /* --- NEW SCROLL ARROW STYLES --- */
+        .scroll-arrow {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--color-white);
+            text-decoration: none;
+            font-size: 2rem; /* Base size for the icon */
+            animation: bounce 2s ease-in-out infinite;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        .scroll-arrow:hover {
+            opacity: 1;
+        }
+        .scroll-arrow svg {
+            width: 1.5em;
+            height: 1.5em;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translate(-50%, 0);
+            }
+            40% {
+                transform: translate(-50%, -20px);
+            }
+            60% {
+                transform: translate(-50%, -10px);
+            }
+        }
+        /* --- END NEW SCROLL ARROW STYLES --- */
+
         /* Section 2: Intro / Logo */
         .intro {
             /* OLD: background-color: var(--color-dark-1); */
             background-color: rgba(17, 17, 17, 0.9); /* NEW: Semi-transparent */
-            padding: 80px 0;
+            /* Increased bottom padding from 80px to 250px to push next section down */
+            padding: 80px 0 250px 0;
         }
         .intro .columns {
             align-items: center;
@@ -317,6 +353,11 @@
             }
             .hero h1 { font-size: 2.5rem; }
             .hero p { font-size: 1rem; }
+            /* Make arrow smaller on mobile */
+            .scroll-arrow {
+                font-size: 1.5rem;
+                bottom: 1rem;
+            }
             .intro h2 { font-size: 2.5em; }
             .cover { background-attachment: scroll; } /* Parallax doesn't work well on mobile */
             .cover h2 { font-size: 2rem; }
@@ -333,12 +374,20 @@
 
     <header class="hero">
         <h1>VIEWER DISCRETION ADVISED</h1>
-        <p>The content on this channel explores mature themes including violent crime, sexual assault, and psychological trauma.<br><br>These stories are based on real events and contain details that can be profoundly disturbing. This content is strictly intended for a mature audience only.</p>
+        <p>The content on this channel explores mature themes including violent crime, sexual assault, and psychological trauma.<br><br>These stories are based on real events and contain details that can be profoundly disturbing. This content is strictly intended for a mature audience (18+) only.</p>
         <em>Proceed with caution. Scroll down to learn more about our mission.</em>
+
+        <!-- NEW SCROLL ARROW -->
+        <a href="#intro" class="scroll-arrow" aria-label="Scroll down to content">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd" />
+            </svg>
+        </a>
     </header>
 
     <main>
-        <section class="intro">
+        <!-- ADDED ID HERE -->
+        <section class="intro" id="intro">
             <div class="container">
                 <div class="columns">
                     <div class="column col-logo">
@@ -424,6 +473,40 @@
             </div>
         </footer>
     </main>
+
+    <!-- NEW JAVASCRIPT for scrolling -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const scrollArrow = document.querySelector('.scroll-arrow');
+            const introSection = document.getElementById('intro');
+
+            if (scrollArrow && introSection) {
+                
+                // Main function to scroll
+                const scrollToIntro = () => {
+                    introSection.scrollIntoView({ behavior: 'smooth' });
+                    // Remove the 'Enter' key listener after scroll
+                    document.removeEventListener('keydown', handleEnterKey);
+                };
+
+                // 1. Click Event for the arrow
+                scrollArrow.addEventListener('click', (e) => {
+                    e.preventDefault(); // Stop the default jump
+                    scrollToIntro();
+                });
+
+                // 2. 'Enter' Key Event
+                const handleEnterKey = (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault(); // Stop any default 'Enter' behavior
+                        scrollToIntro();
+                    }
+                };
+                
+                document.addEventListener('keydown', handleEnterKey);
+            }
+        });
+    </script>
 
 </body>
 </html>
