@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- This page is the 'Videos' page -->
-    <title>Unnamed Things - Videos</title> 
+    <!-- This page is the 'Videos' page --><title>Unnamed Things - Videos</title> 
     <link rel="icon" type="image/jpeg" href="https://i.ibb.co/0jxSvdfH/channels4-profile.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,6 +31,7 @@
 
         html {
             scroll-behavior: smooth;
+            height: 100%; /* Make html take full height */
         }
 
         body {
@@ -44,6 +44,18 @@
             color: var(--color-white);
             line-height: 1.6;
             padding-top: var(--navbar-height); /* Add padding to body to offset fixed navbar */
+            
+            /* ADDED: Flex layout for vertical centering */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Full viewport height */
+        }
+
+        /* ADDED: Main content wrapper */
+        main {
+            flex-grow: 1; /* Allows this element to grow and fill space */
+            display: flex;
+            flex-direction: column;
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -162,43 +174,50 @@
         /* --- END NAVBAR STYLES --- */
 
         /* --- 'Coming Soon' Section --- */
-        /* This replaces the main content */
         .coming-soon {
             background-color: rgba(0, 0, 0, 0.85);
             padding: 80px 0;
             text-align: center;
-            /* Set a minimum height to fill the viewport */
-            min-height: calc(100vh - var(--navbar-height) - 248px); /* 248px is footer height */
+            
+            /* MODIFIED: Use flex-grow to fill space */
+            flex-grow: 1; 
+            
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
         }
+        /* MODIFIED: Changed font-family, added text-transform and letter-spacing */
         .coming-soon h2 {
+            font-family: 'Special Elite', cursive; /* CHANGED font */
             font-size: 3.5em;
-            color: var(--color-white);
+            color: var(--color-red); 
             margin-bottom: 1rem;
+            /* MODIFIED: Lowered neon intensity */
+            text-shadow: 0 0 5px rgba(255, 65, 65, 0.6), 
+                         0 0 10px rgba(205, 32, 31, 0.5);
+            text-transform: uppercase; /* ADDED for "case file" feel */
+            letter-spacing: 2px; /* ADDED for "case file" feel */
         }
         .coming-soon p {
             font-size: 1.5rem;
             color: #ccc;
             max-width: 600px;
             margin-bottom: 2rem;
+            line-height: 1.7; /* Added for better readability of <br> */
         }
-        .coming-soon .placeholder-img {
-            width: 100%;
-            max-width: 400px;
-            opacity: 0.2;
-            margin-bottom: 2rem;
-        }
+        
         /* --- END 'Coming Soon' Section --- */
 
 
         /* --- Section 5: CTA / Links (Footer) --- */
         .cta {
-            background-color: rgba(34, 34, 34, 0.9);
+            /* MODIFIED: Matched background to .coming-soon for consistency */
+            background-color: rgba(0, 0, 0, 0.85);
             padding: 80px 0;
             text-align: center;
+            /* ADDED: Prevent footer from shrinking */
+            flex-shrink: 0;
         }
         .cta h2 {
             font-size: 3em;
@@ -256,7 +275,7 @@
             }
             /* --- MOBILE NAVBAR STYLES --- */
             .nav-toggle {
-                display: block; /* Show toggle on mobile */
+                display: block; /* Show toggle on desktop */
             }
             .nav-links {
                 display: none; /* Hide links by default */
@@ -285,19 +304,25 @@
             }
             /* --- END MOBILE NAVBAR STYLES --- */
 
-            .coming-soon h2 { font-size: 2.5em; }
+            .coming-soon h2 { font-size: 2.5em; } /* Adjusted for new font */
             .coming-soon p { font-size: 1.1rem; }
             .cta h2 { font-size: 2.2em; }
+        }
+
+        /* Added specific mobile adjustment for new h2 font */
+        @media (max-width: 480px) {
+             .coming-soon h2 {
+                font-size: 2em; /* Even smaller on tiny screens */
+                letter-spacing: 1px;
+             }
         }
 
     </style>
 </head>
 <body>
 
-    <!-- --- FIXED NAVBAR --- -->
-    <nav class="navbar">
-        <!-- Logo now links to your main URL -->
-        <a href="https://www.unnamedthings07.qzz.io" class="navbar-brand"> 
+    <!-- --- FIXED NAVBAR --- --><nav class="navbar">
+        <!-- Logo now links to your main URL --><a href="https://www.unnamedthings07.qzz.io" class="navbar-brand"> 
             <img src="https://i.ibb.co/0jxSvdfH/channels4-profile.jpg" alt="Unnamed Things Logo" class="navbar-logo">
             <span class="navbar-brand-text">
                 <span style="color: var(--color-red);">U</span>nnamed <span style="color: var(--color-red);">T</span>hings
@@ -307,38 +332,29 @@
             <span class="hamburger"></span>
         </button>
         <ul class="nav-links">
-            <!-- 'Home' link removed -->
-            <!-- MODIFIED: Added class="active" -->
-            <li><a href="#" class="active"><span style="color: var(--color-red);">V</span>ideos</a></li>
-            <!-- 'Articles' link updated -->
-            <li><a href="https://www.unnamedthings07.qzz.io/article-page.html"><span style="color: var(--color-red);">A</span>rticles</a></li>
+            <!-- 'Home' link removed --><!-- MODIFIED: Added class="active" --><li><a href="#" class="active"><span style="color: var(--color-red);">V</span>ideos</a></li>
+            <!-- 'Articles' link updated --><li><a href="https://www.unnamedthings07.qzz.io/article-page.html"><span style="color: var(--color-red);">A</span>rticles</a></li>
             <li><a href="#contact"><span style="color: var(--color-red);">C</span>ontact <span style="color: var(--color-red);">M</span>e</a></li>
         </ul>
     </nav>
-    <!-- --- END FIXED NAVBAR --- -->
-
-    <!-- --- 'In Production' Section --- -->
-    <section class="coming-soon">
-        <div class="container">
-            <!-- Placeholder image for visual style -->
-            <img src="https://i.ibb.co/wYx3jFk/file-4-2.png" alt="Placeholder" class="placeholder-img">
-            <h2>Our First Video</h2>
-            <p>We are currently deep in research and production for our first in-depth investigation. Stay tuned, the full video is coming soon.</p>
-        </div>
-    </section>
-    <!-- --- END 'In Production' Section --- -->
+    <!-- --- END FIXED NAVBAR --- --><!-- ADDED: Main wrapper for flex layout --><main>
+        <!-- --- 'In Production' Section --- --><section class="coming-soon">
+            <div class="container">
+                <!-- MODIFIED: Text content updated --><h2>First Video In Production</h2>
+                <p>Meticulous research takes time. Our first full investigation is being built.<br>Check back soon.</p>
+            </div>
+        </section>
+        <!-- --- END 'In Production' Section --- --></main>
 
 
-    <!-- Added id="contact" for nav link -->
-    <footer class="cta" id="contact">
+    <!-- Added id="contact" for nav link --><footer class="cta" id="contact">
         <div class="container">
             <h2>Join Our Community. Engage With Caution.</h2>
             <p>If you are prepared to confront uncomfortable truths and contribute to a discussion rooted in respect and awareness, connect with us.</p>
-            <!-- Typo 'classs' is intentionally left here as per 'undo' request -->
-            <div classs="button-group">
+            <!-- FIXED: Corrected 'classs' to 'class' --><div class="button-group">
                 
                 <a href="https://www.youtube.com/@unnamedthings07" target="_blank" rel="noopener noreferrer" class="btn btn-youtube">
-                    <svg xmlns="http://www.w.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83 1.48 1.73-1.73.47-.13 1.33.22 2.65.28 1.3.07 2.49.1 3.59.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"></path></svg>
+                    <svg xmlns="http://www.w3.org.2000/svg" viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0 2.19-.16 3.8.44-4.83.25-.9.83 1.48 1.73-1.73.47-.13 1.33.22 2.65.28 1.3.07 2.49.1 3.59.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"></path></svg>
                     <span>YouTube Channel</span>
                 </a>
                 
@@ -351,8 +367,7 @@
         </div>
     </footer>
 
-    <!-- --- JAVASCRIPT --- -->
-    <script>
+    <!-- --- JAVASCRIPT --- --><script>
         // --- Mobile Navbar Toggle ---
         const navToggle = document.querySelector('.nav-toggle');
         const navLinks = document.querySelector('.nav-links');
@@ -376,8 +391,9 @@
                     // If it's an external link, the page will navigate away,
                     // so we don't strictly need to close it, but we can.
                     // For the "Videos" link (href="#"), it will also close.
+                    // FIXED: Corrected 'Cremove' to 'remove'
                     if(link.getAttribute('href') === '#') {
-                        navToggle.classList.Cremove('open');
+                        navToggle.classList.remove('open');
                         navLinks.classList.remove('open');
                     }
                 });
@@ -385,7 +401,5 @@
         }
 
     </script>
-    <!-- --- END JAVASCRIPT --- -->
-
-</body>
+    <!-- --- END JAVASCRIPT --- --></body>
 </html>
