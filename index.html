@@ -447,10 +447,9 @@
                 flex-direction: column;
             }
             body {
-                /* --- UPDATED FOR MOBILE --- */
-                background-image: url('https://i.ibb.co/ycdpCW5m/Chat-GPT-Image-Nov-15-2025-06-10-46-PM.png');
+                /* --- NEW MOBILE BACKGROUND --- */
+                background-image: url('https://images.unsplash.com/photo-1549608276-3b2272641492?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80');
                 background-attachment: scroll; /* Fixed background is bad on mobile */
-                /* --- ADDED SIZE AND POSITION FOR MOBILE --- */
                 background-size: cover;
                 background-position: center center;
             }
@@ -704,8 +703,21 @@
             // Close menu when a link is clicked
             navLinksList.forEach(link => {
                 link.addEventListener('click', () => {
-                    navToggle.classList.remove('open');
-                    navLinks.classList.remove('open');
+                    // Check if the link is an external one
+                    const href = link.getAttribute('href');
+                    if (href && !href.startsWith('#')) {
+                        // If it's external, just let the browser navigate
+                        // and close the menu
+                        navToggle.classList.remove('open');
+                        navLinks.classList.remove('open');
+                    }
+                    // If it's an internal anchor link (like #contact)
+                    // the default smooth scroll will happen
+                    // and we still close the menu
+                    else {
+                        navToggle.classList.remove('open');
+                        navLinks.classList.remove('open');
+                    }
                 });
             });
         }
