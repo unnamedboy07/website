@@ -25,12 +25,9 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
-            /* UPDATED: Flex properties to create a "sticky footer" */
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Ensures body is at least full screen height */
-            /* --- */
-
+            min-height: 100vh;
             font-family: var(--font-body);
             background-image: url('https://i.ibb.co/Z1M7M8m6/file-00000000ffe8720795dd0af80e4fa438.png');
             background-size: cover;
@@ -54,11 +51,7 @@
         .align-center { text-align: center; }
         .columns { display: flex; gap: 2rem; }
         .column { flex: 1; }
-
-        /* NEW: This makes the main content area expand, pushing the footer down */
-        main {
-            flex-grow: 1;
-        }
+        main { flex-grow: 1; }
 
         /* --- NAVBAR STYLES --- */
         .navbar {
@@ -83,6 +76,12 @@
             color: var(--color-white);
             font-family: var(--font-heading);
             font-size: 1.25rem;
+            transition: color 0.3s ease; /* Added transition */
+        }
+        /* Added hover/focus state for the brand */
+        .navbar-brand:hover,
+        .navbar-brand:focus {
+            color: var(--color-red);
         }
         .navbar-brand-text {
             font-family: 'Special Elite', cursive;
@@ -156,20 +155,20 @@
             text-align: center;
             margin-bottom: 3rem;
         }
-        /* Style for the special article page heading */
+
+        /* UPDATED: Simplified this style */
         .article-heading-special {
-            font-family: 'Special Elite', cursive;
-            font-size: 4.5rem; /* Larger to match the image */
-            color: var(--color-red);
-            text-shadow: 0 0 15px rgba(255, 0, 0, 0.7); /* Glow effect */
-            letter-spacing: 5px; /* Wider spacing */
-            text-transform: uppercase; /* All caps */
+            font-family: 'Special Elite', cursive; /* Set font */
+            font-size: 3.5em; /* Match other h2 headings */
+            color: var(--color-red); /* Set color */
+            letter-spacing: 1.5px; /* Match nav links */
+            /* Removed text-shadow, text-transform, and custom font-size */
             line-height: 1.2;
             margin-bottom: 3rem;
         }
         @media (max-width: 768px) {
             .article-heading-special {
-                font-size: 2.5rem; /* Adjust for mobile */
+                font-size: 2.5em; /* Match other h2 headings on mobile */
             }
         }
 
@@ -236,12 +235,11 @@
             .columns { flex-direction: column; }
             body { 
                 background-attachment: scroll; 
-                min-height: unset; /* Remove min-height for mobile */
+                min-height: unset;
             }
             main {
-                flex-grow: 0; /* Remove flex-grow for mobile */
+                flex-grow: 0;
             }
-
             .nav-toggle { display: block; }
             .nav-links {
                 display: none;
@@ -282,19 +280,21 @@
             <span class="hamburger"></span>
         </button>
         <ul class="nav-links">
-            <li><a href="video-page.html"><span style="color: var(--color-red);">V</span>ideos</a></li>
+            <!-- UPDATED video link -->
+            <li><a href="https://www.unnamedthings07.qzz.io/videos/video-page.html"><span style="color: var(--color-red);">V</span>ideos</a></li>
             
             <li><a href="article-page.html" class="active-link"><span style="color: var(--color-red);">A</span>rticles</a></li>
             
-            <li><a href="index.html#contact"><span style="color: var(--color-red);">C</span>ontact <span style="color: var(--color-red);">M</span>e</a></li>
+            <!-- UPDATED contact link to point to footer on this page -->
+            <li><a href="#contact"><span style="color: var(--color-red);">C</span>ontact <span style="color: var(--color-red);">M</span>e</a></li>
         </ul>
     </nav>
 
-    <!-- The <main> tag will now grow to fill empty space -->
     <main>
         <section class="focus" id="article-content">
             <div class="container">
                 
+                <!-- This now uses the simplified style -->
                 <h2 class="align-center article-heading-special">Deep Dives & Case Files</h2>
                 
                 <p style="font-size: 1.25rem; text-align: center; max-width: 800px; margin: 1rem auto 2rem auto;">
@@ -326,7 +326,6 @@
         </section>
     </main>
 
-    <!-- This footer will now be "stuck" to the bottom of the viewport -->
     <footer class="cta" id="contact">
         <div class="container">
             <h2>Join Our Community. Engage With Caution.</h2>
@@ -348,7 +347,6 @@
     </footer>
 
     <script>
-        // No changes needed to JS, but here it is for completeness
         const contentSection = document.getElementById('article-content');
 
         const scrollToContent = () => {
