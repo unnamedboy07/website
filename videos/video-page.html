@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- This page is the 'Videos' page -->
+    <title>Unnamed Things - Videos</title> 
+    <link rel="icon" type="image/jpeg" href="https://i.ibb.co/0jxSvdfH/channels4-profile.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Global Styles & Reset --- */
+        :root {
+            --color-red: #CD201F;
+            --color-black: #000000;
+            --color-dark-1: #111111;
+            --color-dark-2: #222222;
+            --color-white: #FFFFFF;
+            --font-heading: 'Oswald', sans-serif;
+            --font-body: 'Roboto', sans-serif;
+            --navbar-height: 60px; /* Define navbar height for offset */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            height: 100%; /* Make html take full height */
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-image: url('https://i.ibb.co/Z1M7M8m6/file-00000000ffe8720795dd0af80e4fa438.png');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: var(--color-white);
+            line-height: 1.6;
+            padding-top: var(--navbar-height); /* Add padding to body to offset fixed navbar */
+            
+            /* ADDED: Flex layout for vertical centering */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Full viewport height */
+        }
+
+        /* ADDED: Main content wrapper */
+        main {
+            flex-grow: 1; /* Allows this element to grow and fill space */
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- Layout --- */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .align-center {
+            text-align: center;
+        }
+        
+        /* --- NAVBAR STYLES --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.85); 
+            border-bottom: none; 
+            padding: 0 2rem;
+            height: var(--navbar-height);
+            position: fixed; /* Fixes navbar to the top */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--color-white);
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+        }
+        .navbar-brand-text {
+            font-family: 'Special Elite', cursive;
+            font-size: 1.4rem; /* Slightly larger */
+            letter-spacing: 1.5px; /* A bit more space */
+            line-height: 1; /* Keep it tight */
+            transition: color 0.3s ease; /* Added for hover */
+        }
+        /* ADDED: Hover effect for brand text */
+        .navbar-brand:hover .navbar-brand-text {
+            color: var(--color-red);
+        }
+        /* Keep U and T red on hover */
+        .navbar-brand:hover .navbar-brand-text span {
+            color: var(--color-red) !important;
+        }
+
+        .navbar-logo {
+            height: 35px; /* Control logo size */
+            width: auto;
+            border-radius: 50%;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        .nav-links li a {
+            color: var(--color-white);
+            text-decoration: none;
+            font-family: 'Special Elite', cursive; /* CHANGED */
+            text-transform: none; /* CHANGED */
+            letter-spacing: 1.5px; /* MATCHED BRAND */
+            font-size: 1.4rem; /* MATCHED BRAND */
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        /* MODIFIED: Added .active class selector */
+        .nav-links li a:hover,
+        .nav-links li a:focus,
+        .nav-links li a.active {
+            color: var(--color-red);
+        }
+        .nav-toggle {
+            display: none; /* Hide toggle on desktop */
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .nav-toggle .hamburger {
+            width: 25px;
+            height: 2px;
+            background-color: var(--color-white);
+            display: block;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .nav-toggle .hamburger::before,
+        .nav-toggle .hamburger::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-white);
+            transition: all 0.3s ease;
+        }
+        .nav-toggle .hamburger::before {
+            top: -8px;
+        }
+        .nav-toggle .hamburger::after {
+            bottom: -8px;
+        }
+        /* --- END NAVBAR STYLES --- */
+
+        /* --- 'Coming Soon' Section --- */
+        .coming-soon {
+            background-color: rgba(0, 0, 0, 0.85);
+            padding: 80px 0;
+            text-align: center;
+            
+            /* MODIFIED: Use flex-grow to fill space */
+            flex-grow: 1; 
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        /* MODIFIED: Changed font-family, added text-transform and letter-spacing */
+        .coming-soon h2 {
+            font-family: 'Special Elite', cursive; /* CHANGED font */
+            font-size: 3.5em;
+            color: var(--color-red); 
+            margin-bottom: 1.5rem; /* Increased margin-bottom */
+            /* MODIFIED: Lowered neon intensity */
+            text-shadow: 0 0 5px rgba(255, 65, 65, 0.6), 
+                         0 0 10px rgba(205, 32, 31, 0.5);
+            text-transform: uppercase; /* ADDED for "case file" feel */
+            letter-spacing: 2px; /* ADDED for "case file" feel */
+        }
+        /* * MODIFIED: Made text bigger, changed font to Oswald, 
+         * and set to uppercase for a better stylistic match.
+         */
+        .coming-soon p {
+            font-family: var(--font-heading); /* CHANGED to Oswald */
+            font-size: 1.75rem; /* CHANGED from 1.5rem */
+            color: #ccc;
+            max-width: 700px; /* Widen block for new font */
+            margin-bottom: 2rem;
+            line-height: 1.6; /* Adjusted line-height */
+            margin-left: auto;
+            margin-right: auto;
+            text-transform: uppercase; /* ADDED */
+            letter-spacing: 1px; /* ADDED */
+        }
+        
+        /* --- END 'Coming Soon' Section --- */
+
+
+        /* --- Section 5: CTA / Links (Footer) --- */
+        .cta {
+            /* MODIFIED: Matched background to .coming-soon for consistency */
+            background-color: rgba(0, 0, 0, 0.85);
+            padding: 80px 0;
+            text-align: center;
+            /* ADDED: Prevent footer from shrinking */
+            flex-shrink: 0;
+        }
+        .cta h2 {
+            font-size: 3em;
+        }
+        .cta p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 1rem auto 2rem auto;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap; /* Allow buttons to stack on small screens */
+        }
+        
+        /* --- CSS FOR BUTTONS --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-family: var(--font-heading);
+            text-decoration: none;
+            text-transform: uppercase;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .btn svg {
+            width: 1.5em;
+            height: 1.5em;
+        }
+        .btn-youtube {
+            background-color: var(--color-red);
+            color: var(--color-white);
+        }
+        .btn-youtube:hover {
+            background-color: #ff4141;
+        }
+        .btn-instagram {
+            border: 2px solid #888;
+            color: var(--color-white);
+        }
+        .btn-instagram:hover {
+            background-color: var(--color-white);
+            color: var(--color-black);
+        }
+        
+        /* --- Responsive (Mobile) --- */
+        @media (max-width: 768px) {
+            body {
+                background-attachment: scroll; /* Fixed background is bad on mobile */
+            }
+            /* --- MOBILE NAVBAR STYLES --- */
+            .nav-toggle {
+                display: block; /* Show toggle on desktop */
+            }
+            .nav-links {
+                display: none; /* Hide links by default */
+                position: absolute;
+                top: var(--navbar-height);
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background-color: rgba(0, 0, 0, 0.95);
+                border-top: 1px solid var(--color-dark-2);
+                padding: 1rem;
+                text-align: center;
+                gap: 1rem;
+            }
+            .nav-links.open {
+                display: flex; /* Show links when 'open' class is added */
+            }
+            .nav-toggle.open .hamburger {
+                background-color: transparent; /* Hide middle bar */
+            }
+            .nav-toggle.open .hamburger::before {
+                transform: rotate(45deg) translate(5px, 7px);
+            }
+            .nav-toggle.open .hamburger::after {
+                transform: rotate(-45deg) translate(5px, -7px);
+            }
+            /* --- END MOBILE NAVBAR STYLES --- */
+
+            .coming-soon h2 { font-size: 2.5em; } /* Adjusted for new font */
+            /* MODIFIED: Adjusted for new font style */
+            .coming-soon p { font-size: 1.25rem; }
+            .cta h2 { font-size: 2.2em; }
+        }
+
+        /* Added specific mobile adjustment for new h2 font */
+        @media (max-width: 480px) {
+             .coming-soon h2 {
+                font-size: 2em; /* Even smaller on tiny screens */
+                letter-spacing: 1px;
+             }
+             /* MODIFIED: Adjusted for new font style */
+             .coming-soon p {
+                font-size: 1.1rem;
+             }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- --- FIXED NAVBAR --- -->
+    <nav class="navbar">
+        <!-- Logo now links to your main URL -->
+        <a href="https://www.unnamedthings07.qzz.io" class="navbar-brand"> 
+            <img src="https://i.ibb.co/0jxSvdfH/channels4-profile.jpg" alt="Unnamed Things Logo" class="navbar-logo">
+            <span class="navbar-brand-text">
+                <span style="color: var(--color-red);">U</span>nnamed <span style="color: var(--color-red);">T</span>hings
+            </span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span class="hamburger"></span>
+        </button>
+        <ul class="nav-links">
+            <!-- 'Home' link removed -->
+            <!-- MODIFIED: Added class="active" -->
+            <li><a href="#" class="active"><span style="color: var(--color-red);">V</span>ideos</a></li>
+            <!-- 'Articles' link updated -->
+            <li><a href="https://www.unnamedthings07.qzz.io/article-page.html"><span style="color: var(--color-red);">A</span>rticles</a></li>
+            <li><a href="#contact"><span style="color: var(--color-red);">C</span>ontact <span style="color: var(--color-red);">M</span>e</a></li>
+        </ul>
+    </nav>
+    <!-- --- END FIXED NAVBAR --- -->
+
+    <!-- ADDED: Main wrapper for flex layout -->
+    <main>
+        <!-- --- 'In Production' Section --- -->
+        <section class="coming-soon">
+            <div class="container">
+                <!-- MODIFIED: Text content updated -->
+                <h2>First Video In Production</h2>
+                <p>Meticulous research takes time. Our first full investigation is being built.<br>Check back soon.</p>
+            </div>
+        </section>
+        <!-- --- END 'In Production' Section --- -->
+    </main>
+
+
+    <!-- Added id="contact" for nav link -->
+    <footer class="cta" id="contact">
+        <div class="container">
+            <h2>Join Our Community. Engage With Caution.</h2>
+            <p>If you are prepared to confront uncomfortable truths and contribute to a discussion rooted in respect and awareness, connect with us.</p>
+            <!-- FIXED: Corrected 'classs' to 'class' -->
+            <div class="button-group">
+                
+                <a href="https://www.youtube.com/@unnamedthings07" target="_blank" rel="noopener noreferrer" class="btn btn-youtube">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0 2.19-.16 3.8.44-4.83.25-.9.83 1.48 1.73-1.73.47-.13 1.33.22 2.65.28 1.3.07 2.49.1 3.59.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"></path></svg>
+                    <span>YouTube Channel</span>
+                </a>
+                
+                <a href="https://www.instagram.com/ub.things07?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="btn btn-instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8A3.6 3.6 0 0 0 20 16.4V7.6A3.6 3.6 0 0 0 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path></svg>
+                    <span>Instagram</span>
+                </a>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- --- JAVASCRIPT --- -->
+    <script>
+        // --- Mobile Navbar Toggle ---
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const navLinksList = document.querySelectorAll('.nav-links li a');
+
+        if (navToggle && navLinks) {
+            // Toggle menu on hamburger click
+            navToggle.addEventListener('click', () => {
+                navToggle.classList.toggle('open');
+                navLinks.classList.toggle('open');
+            });
+
+            // Close menu when a link is clicked
+            navLinksList.forEach(link => {
+                link.addEventListener('click', () => {
+                    // Only close if the link is an anchor link
+                    if (link.getAttribute('href').startsWith('#')) {
+                        navToggle.classList.remove('open');
+                        navLinks.classList.remove('open');
+                    }
+                    // For the "Videos" link (href="#"), it will also close.
+                    if(link.getAttribute('href') === '#') {
+                        navToggle.classList.remove('open');
+                        navLinks.classList.remove('open');
+                    }
+                });
+            });
+        }
+
+    </script>
+    <!-- --- END JAVASCRIPT --- -->
+
+</body>
+</html>
