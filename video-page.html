@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- This page is the 'Videos' page --><title>Unnamed Things - Videos</title> 
+    
+    <!-- This page is the 'Videos' page -->
+    <title>Unnamed Things - Videos</title> 
     <link rel="icon" type="image/jpeg" href="https://i.ibb.co/0jxSvdfH/channels4-profile.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -199,12 +201,15 @@
             text-transform: uppercase; /* ADDED for "case file" feel */
             letter-spacing: 2px; /* ADDED for "case file" feel */
         }
+        /* MODIFIED: Added margin-left and margin-right to center the block */
         .coming-soon p {
             font-size: 1.5rem;
             color: #ccc;
             max-width: 600px;
             margin-bottom: 2rem;
             line-height: 1.7; /* Added for better readability of <br> */
+            margin-left: auto; /* ADDED */
+            margin-right: auto; /* ADDED */
         }
         
         /* --- END 'Coming Soon' Section --- */
@@ -321,8 +326,10 @@
 </head>
 <body>
 
-    <!-- --- FIXED NAVBAR --- --><nav class="navbar">
-        <!-- Logo now links to your main URL --><a href="https://www.unnamedthings07.qzz.io" class="navbar-brand"> 
+    <!-- --- FIXED NAVBAR --- -->
+    <nav class="navbar">
+        <!-- Logo now links to your main URL -->
+        <a href="https://www.unnamedthings07.qzz.io" class="navbar-brand"> 
             <img src="https://i.ibb.co/0jxSvdfH/channels4-profile.jpg" alt="Unnamed Things Logo" class="navbar-logo">
             <span class="navbar-brand-text">
                 <span style="color: var(--color-red);">U</span>nnamed <span style="color: var(--color-red);">T</span>hings
@@ -332,29 +339,40 @@
             <span class="hamburger"></span>
         </button>
         <ul class="nav-links">
-            <!-- 'Home' link removed --><!-- MODIFIED: Added class="active" --><li><a href="#" class="active"><span style="color: var(--color-red);">V</span>ideos</a></li>
-            <!-- 'Articles' link updated --><li><a href="https://www.unnamedthings07.qzz.io/article-page.html"><span style="color: var(--color-red);">A</span>rticles</a></li>
+            <!-- 'Home' link removed -->
+            <!-- MODIFIED: Added class="active" -->
+            <li><a href="#" class="active"><span style="color: var(--color-red);">V</span>ideos</a></li>
+            <!-- 'Articles' link updated -->
+            <li><a href="https://www.unnamedthings07.qzz.io/article-page.html"><span style="color: var(--color-red);">A</span>rticles</a></li>
             <li><a href="#contact"><span style="color: var(--color-red);">C</span>ontact <span style="color: var(--color-red);">M</span>e</a></li>
         </ul>
     </nav>
-    <!-- --- END FIXED NAVBAR --- --><!-- ADDED: Main wrapper for flex layout --><main>
-        <!-- --- 'In Production' Section --- --><section class="coming-soon">
+    <!-- --- END FIXED NAVBAR --- -->
+
+    <!-- ADDED: Main wrapper for flex layout -->
+    <main>
+        <!-- --- 'In Production' Section --- -->
+        <section class="coming-soon">
             <div class="container">
-                <!-- MODIFIED: Text content updated --><h2>First Video In Production</h2>
+                <!-- MODIFIED: Text content updated -->
+                <h2>First Video In Production</h2>
                 <p>Meticulous research takes time. Our first full investigation is being built.<br>Check back soon.</p>
             </div>
         </section>
-        <!-- --- END 'In Production' Section --- --></main>
+        <!-- --- END 'In Production' Section --- -->
+    </main>
 
 
-    <!-- Added id="contact" for nav link --><footer class="cta" id="contact">
+    <!-- Added id="contact" for nav link -->
+    <footer class="cta" id="contact">
         <div class="container">
             <h2>Join Our Community. Engage With Caution.</h2>
             <p>If you are prepared to confront uncomfortable truths and contribute to a discussion rooted in respect and awareness, connect with us.</p>
-            <!-- FIXED: Corrected 'classs' to 'class' --><div class="button-group">
+            <!-- FIXED: Corrected 'classs' to 'class' -->
+            <div class="button-group">
                 
                 <a href="https://www.youtube.com/@unnamedthings07" target="_blank" rel="noopener noreferrer" class="btn btn-youtube">
-                    <svg xmlns="http://www.w3.org.2000/svg" viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0 2.19-.16 3.8.44-4.83.25-.9.83 1.48 1.73-1.73.47-.13 1.33.22 2.65.28 1.3.07 2.49.1 3.59.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0 2.19-.16 3.8.44-4.83.25-.9.83 1.48 1.73-1.73.47-.13 1.33.22 2.65.28 1.3.07 2.49.1 3.59.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"></path></svg>
                     <span>YouTube Channel</span>
                 </a>
                 
@@ -367,7 +385,8 @@
         </div>
     </footer>
 
-    <!-- --- JAVASCRIPT --- --><script>
+    <!-- --- JAVASCRIPT --- -->
+    <script>
         // --- Mobile Navbar Toggle ---
         const navToggle = document.querySelector('.nav-toggle');
         const navLinks = document.querySelector('.nav-links');
@@ -401,5 +420,7 @@
         }
 
     </script>
-    <!-- --- END JAVASCRIPT --- --></body>
+    <!-- --- END JAVASCRIPT --- -->
+
+</body>
 </html>
