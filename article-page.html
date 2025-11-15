@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- UPDATED TITLE FOR THIS PAGE -->
+    <title>Unnamed Things - Articles</title>
+    <link rel="icon" type="image/jpeg" href="https://i.ibb.co/0jxSvdfH/channels4-profile.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+    
+    <!-- All styles are copied from your homepage -->
+    <style>
+        /* --- Global Styles & Reset --- */
+        :root {
+            --color-red: #CD201F;
+            --color-black: #000000;
+            --color-dark-1: #111111;
+            --color-dark-2: #222222;
+            --color-white: #FFFFFF;
+            --font-heading: 'Oswald', sans-serif;
+            --font-body: 'Roboto', sans-serif;
+            --navbar-height: 60px; /* Define navbar height for offset */
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background-image: url('https://i.ibb.co/Z1M7M8m6/file-00000000ffe8720795dd0af80e4fa438.png');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: var(--color-white);
+            line-height: 1.6;
+            padding-top: var(--navbar-height); /* Add padding to body to offset fixed navbar */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        p { margin-bottom: 1.5rem; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* --- Layout --- */
+        .container { width: 90%; max-width: 1100px; margin: 0 auto; }
+        .align-center { text-align: center; }
+        .columns { display: flex; gap: 2rem; }
+        .column { flex: 1; }
+
+        /* --- NAVBAR STYLES --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.85); 
+            border-bottom: none; 
+            padding: 0 2rem;
+            height: var(--navbar-height);
+            position: fixed; /* Fixes navbar to the top */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--color-white);
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+        }
+        .navbar-brand-text {
+            font-family: 'Special Elite', cursive;
+            font-size: 1.4rem; /* Slightly larger */
+            letter-spacing: 1.5px; /* A bit more space */
+            line-height: 1; /* Keep it tight */
+        }
+        .navbar-logo {
+            height: 35px; /* Control logo size */
+            width: auto;
+            border-radius: 50%;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        .nav-links li a {
+            color: var(--color-white);
+            text-decoration: none;
+            font-family: 'Special Elite', cursive; /* CHANGED */
+            text-transform: none; /* CHANGED */
+            letter-spacing: 1.5px; /* MATCHED BRAND */
+            font-size: 1.4rem; /* MATCHED BRAND */
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        .nav-links li a:hover,
+        .nav-links li a:focus {
+            color: var(--color-red);
+        }
+        /* Style for the "active" page link */
+        .nav-links li a.active-link {
+            color: var(--color-red);
+            pointer-events: none; /* Optional: makes it not clickable */
+        }
+        .nav-toggle {
+            display: none; /* Hide toggle on desktop */
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .nav-toggle .hamburger {
+            width: 25px;
+            height: 2px;
+            background-color: var(--color-white);
+            display: block;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .nav-toggle .hamburger::before,
+        .nav-toggle .hamburger::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-white);
+            transition: all 0.3s ease;
+        }
+        .nav-toggle .hamburger::before { top: -8px; }
+        .nav-toggle .hamburger::after { bottom: -8px; }
+
+        /* --- Section Styles --- */
+        /* Hero section (Warning) */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* On this page, let's make the hero a bit smaller */
+            min-height: 60vh; 
+            padding: 2rem;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.85);
+            position: relative;
+        }
+        .hero h1 {
+            font-size: 4.5rem;
+            color: var(--color-red);
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+            letter-spacing: 5px;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin-top: 1rem;
+        }
+        .hero em {
+            font-size: 1rem;
+            color: #aaa;
+            margin-top: 2rem;
+        }
+
+        /* --- SCROLL ARROW --- */
+        .scroll-arrow {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .scroll-arrow svg {
+            width: 100%;
+            height: 100%;
+            fill: rgba(255, 255, 255, 0.5);
+            animation: bounce 2s infinite ease-in-out;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        /* --- Re-using .focus styles for article content --- */
+        .focus {
+            background-color: rgba(0, 0, 0, 0.85);
+            padding: 80px 0;
+            /* Make this section fill at least the remaining viewport */
+            min-height: 40vh;
+        }
+        .focus h2 {
+            font-size: 3.5em;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .focus .column img {
+            width: 100%;
+            height: 250px; /* Fixed height for uniformity */
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+        }
+        .focus .column h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* --- Footer Styles --- */
+        .cta {
+            background-color: rgba(34, 34, 34, 0.9);
+            padding: 80px 0;
+            text-align: center;
+        }
+        .cta h2 { font-size: 3em; }
+        .cta p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 1rem auto 2rem auto;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap; /* Allow buttons to stack on small screens */
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-family: var(--font-heading);
+            text-decoration: none;
+            text-transform: uppercase;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .btn svg { width: 1.5em; height: 1.5em; }
+        .btn-youtube {
+            background-color: var(--color-red);
+            color: var(--color-white);
+        }
+        .btn-youtube:hover { background-color: #ff4141; }
+        .btn-instagram {
+            border: 2px solid #888;
+            color: var(--color-white);
+        }
+        .btn-instagram:hover {
+            background-color: var(--color-white);
+            color: var(--color-black);
+        }
+        
+        /* --- Responsive (Mobile) --- */
+        @media (max-width: 768px) {
+            .columns { flex-direction: column; }
+            body { background-attachment: scroll; }
+            .nav-toggle { display: block; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: var(--navbar-height);
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background-color: rgba(0, 0, 0, 0.95);
+                border-top: 1px solid var(--color-dark-2);
+                padding: 1rem;
+                text-align: center;
+                gap: 1rem;
+            }
+            .nav-links.open { display: flex; }
+            .nav-toggle.open .hamburger { background-color: transparent; }
+            .nav-toggle.open .hamburger::before { transform: rotate(45deg) translate(5px, 7px); }
+            .nav-toggle.open .hamburger::after { transform: rotate(-45deg) translate(5px, -7px); }
+            
+            .hero { min-height: 80vh; } /* Give more space on mobile */
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1rem; }
+            
+            .focus { padding: 50px 0; }
+            .focus h2 { font-size: 2.5em; }
+            
+            .cta { padding: 50px 0; }
+            .cta h2 { font-size: 2.2em; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- --- FIXED NAVBAR --- -->
+    <nav class="navbar">
+        <!-- UPDATED: Points to homepage (assuming 'index.html') -->
+        <!-- You can change "index.html" to "#" if this page and the homepage are the same file, -->
+        <!-- but for a separate file, "index.html" or your homepage name is correct. -->
+        <a href="index.html" class="navbar-brand"> 
+            <img src="https://i.ibb.co/0jxSvdfH/channels4-profile.jpg" alt="Unnamed Things Logo" class="navbar-logo">
+            <span class="navbar-brand-text">
+                <span style="color: var(--color-red);">U</span>nnamed <span style="color: var(--color-red);">T</span>hings
+            </span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span class="hamburger"></span>
+        </button>
+        <ul class="nav-links">
+            <!-- NEW: Added Home link -->
+            <li><a href="index.html"><span style="color: var(--color-red);">H</span>ome</a></li>
+
+            <!-- Video link is absolute, so it's fine -->
+            <li><a href="video-page.html"><span style="color: var(--color-red);">V</span>ideos</a></li>
+            
+            <!-- UPDATED: This is now the "active" page -->
+            <li><a href="article-page.html" class="active-link"><span style="color: var(--color-red);">A</span>rticles</a></li>
+            
+            <!-- UPDATED: Points to contact section on homepage -->
+            <li><a href="index.html#contact"><span style="color: var(--color-red);">C</span>ontact <span style="color: var(--color-red);">M</span>e</a></li>
+        </ul>
+    </nav>
+    <!-- --- END FIXED NAVBAR --- -->
+
+    <main>
+        <!-- --- START OF NEW ARTICLE CONTENT --- -->
+        <!-- We re-use the "focus" class for a consistent background and padding -->
+        <section class="focus" id="article-content">
+            <div class="container">
+                <h2 class="align-center">Deep Dives & Case Files</h2>
+                
+                <p style="font-size: 1.25rem; text-align: center; max-width: 800px; margin: 1rem auto 2rem auto;">
+                    This is where the investigation goes deeper. The videos provide the narrative, but here we will dissect the details, analyze the evidence, and explore the 'whys' that haunt us.
+                </p>
+                <p style="font-size: 1.25rem; text-align: center; max-width: 800px; margin: 1rem auto 4rem auto;">
+                    This section is currently under construction. I am building a library of in-depth articles that will complement our video investigations. Thank you for your patience.
+                </p>
+
+                <!-- Re-using the 3-column layout to show what's coming -->
+                <div class="columns">
+                    <div class="column">
+                        <img src="https://i.ibb.co/j93Lxmf5/empty-interrogation-room-single-light-source-stark-concrete-walls-isolated-chair-and-table-noir.jpg" alt="Dark interrogation room">
+                        <h4>In-Depth Case Files</h4>
+                        <p>Detailed timelines, evidence breakdowns, and full written narratives of the cases we cover, providing a permanent resource for you to reference.</p>
+                    </div>
+                    <div class="column">
+                        <img src="https://i.ibb.co/hFd19qZN/winding-dark-path-through-a-dense-foggy-forest-at-dusk-ominous-shadows-sense-of-uncertainty-and-m.jpg" alt="Dark foggy path">
+                        <h4>Psychological Analyses</h4>
+                        <p>Exploring the criminal psychology, victimology, and complex human factors behind the headlines. We'll go beyond the 'what' and into the 'why'.</p>
+                    </div>
+                    <div class="column">
+                        <img src="https://i.ibb.co/XZmryvw6/st-extra-large-507x507-pad-600x600-f8f8f8.jpg" alt="Shattered symbol">
+                        <h4>Sources & Updates</h4>
+                        <p>A central hub for source materials, official documents, and any future updates or developments on the cases we investigate.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- --- END OF NEW ARTICLE CONTENT --- -->
+    </main>
+
+    <!-- This is the same footer from your homepage for consistency -->
+    <footer class="cta" id="contact">
+        <div class="container">
+            <h2>Join Our Community. Engage With Caution.</h2>
+            <p>If you are prepared to confront uncomfortable truths and contribute to a discussion rooted in respect and awareness, connect with us.</p>
+            <div classs="button-group">
+                
+                <a href="https://www.youtube.com/@unnamedthings07" target="_blank" rel="noopener noreferrer" class="btn btn-youtube">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83 1.48 1.73-1.73.47-.13 1.33.22 2.65.28 1.3.07 2.49.1 3.59.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"></path></svg>
+                    <span>YouTube Channel</span>
+                </a>
+                
+                <a href="https://www.instagram.com/ub.things07?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="btn btn-instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8A3.6 3.6 0 0 0 20 16.4V7.6A3.6 3.6 0 0 0 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path></svg>
+                    <span>Instagram</span>
+                </a>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- --- JAVASCRIPT --- -->
+    <script>
+        // --- Smooth Scroll for Enter Key ---
+        // UPDATED: Target the new content ID
+        const contentSection = document.getElementById('article-content');
+
+        // 1. Scroll Function
+        const scrollToContent = () => {
+            if (contentSection) {
+                contentSection.scrollIntoView({ behavior: 'smooth' });
+            }
+            // Remove the 'Enter' key listener after it's used once
+            document.removeEventListener('keydown', handleEnterKey);
+        };
+
+        // 2. 'Enter' Key Event
+        const handleEnterKey = (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault(); // Stop any default 'Enter' behavior
+                scrollToContent();
+            }
+        };
+        
+        document.addEventListener('keydown', handleEnterKey);
+
+        // 3. Arrow Click Event (handles the anchor link click)
+        // Removed 'scrollArrow' constant and 'if (scrollArrow)' block as hero is gone.
+
+        // --- Mobile Navbar Toggle ---
+        // This code is identical to your homepage and will work
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const navLinksList = document.querySelectorAll('.nav-links li a');
+
+        if (navToggle && navLinks) {
+            // Toggle menu on hamburger click
+            navToggle.addEventListener('click', () => {
+                navToggle.classList.toggle('open');
+                navLinks.classList.toggle('open');
+            });
+
+            // Close menu when a link is clicked
+            navLinksList.forEach(link => {
+                link.addEventListener('click', () => {
+                    // Don't close if it's the active link, but for mobile,
+                    // closing anyway is often fine.
+                    if (!link.classList.contains('active-link')) {
+                        navToggle.classList.remove('open');
+                        navLinks.classList.remove('open');
+                    }
+                });
+            });
+        }
+    </script>
+    <!-- --- END JAVASCRIPT --- -->
+
+</body>
+</html>
