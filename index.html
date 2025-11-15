@@ -1,12 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unnamed Things - Not for Ordinary People</title>
-    <!-- NEW FAVICON LINK -->
     <link rel="icon" type="image/jpeg" href="https://i.ibb.co/0jxSvdfH/channels4-profile.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- ADDED NEW FONT FOR NAVBAR BRAND -->
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     
     <style>
         /* --- Global Styles & Reset --- */
@@ -18,6 +21,7 @@
             --color-white: #FFFFFF;
             --font-heading: 'Oswald', sans-serif;
             --font-body: 'Roboto', sans-serif;
+            --navbar-height: 60px; /* Define navbar height for offset */
         }
 
         * {
@@ -26,17 +30,21 @@
             box-sizing: border-box;
         }
 
+        /* Added html { scroll-behavior: smooth; } for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: var(--font-body);
-            /* --- UPDATED BACKGROUND STYLES --- */
             background-image: url('https://i.ibb.co/Z1M7M8m6/file-00000000ffe8720795dd0af80e4fa438.png');
             background-size: cover;
             background-position: center center;
-            background-attachment: fixed; /* This is the magic line */
+            background-attachment: fixed;
             background-repeat: no-repeat;
-            /* --- End New Background --- */
             color: var(--color-white);
             line-height: 1.6;
+            padding-top: var(--navbar-height); /* Add padding to body to offset fixed navbar */
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -75,6 +83,95 @@
             flex: 1;
         }
 
+        /* --- NAVBAR STYLES --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* UPDATED: Background matches hero section */
+            background-color: rgba(0, 0, 0, 0.85); 
+            /* UPDATED: Removed border */
+            border-bottom: none; 
+            padding: 0 2rem;
+            height: var(--navbar-height);
+            position: fixed; /* Fixes navbar to the top */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--color-white);
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+        }
+        /* NEW: Style for the navbar brand text */
+        .navbar-brand-text {
+            font-family: 'Special Elite', cursive;
+            font-size: 1.4rem; /* Slightly larger */
+            letter-spacing: 1.5px; /* A bit more space */
+            line-height: 1; /* Keep it tight */
+        }
+        .navbar-logo {
+            height: 35px; /* Control logo size */
+            width: auto;
+            border-radius: 50%;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        .nav-links li a {
+            color: var(--color-white);
+            text-decoration: none;
+            font-family: 'Special Elite', cursive; /* CHANGED */
+            text-transform: none; /* CHANGED */
+            letter-spacing: 1.5px; /* MATCHED BRAND */
+            font-size: 1.4rem; /* MATCHED BRAND */
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        .nav-links li a:hover,
+        .nav-links li a:focus {
+            color: var(--color-red);
+        }
+        .nav-toggle {
+            display: none; /* Hide toggle on desktop */
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .nav-toggle .hamburger {
+            width: 25px;
+            height: 2px;
+            background-color: var(--color-white);
+            display: block;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .nav-toggle .hamburger::before,
+        .nav-toggle .hamburger::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-white);
+            transition: all 0.3s ease;
+        }
+        .nav-toggle .hamburger::before {
+            top: -8px;
+        }
+        .nav-toggle .hamburger::after {
+            bottom: -8px;
+        }
+        /* --- END NAVBAR STYLES --- */
+
         /* --- Section Styles --- */
 
         /* Section 1: Hero Warning */
@@ -83,12 +180,12 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            /* Adjust min-height since body has padding-top */
+            min-height: calc(100vh - var(--navbar-height)); 
             padding: 2rem;
             text-align: center;
-            /* OLD: background-color: var(--color-black); */
-            background-color: rgba(0, 0, 0, 0.85); /* NEW: Semi-transparent */
-            position: relative; /* Added for the arrow positioning */
+            background-color: rgba(0, 0, 0, 0.85);
+            position: relative; /* For the scroll arrow */
         }
         .hero h1 {
             font-size: 4.5rem;
@@ -107,46 +204,41 @@
             margin-top: 2rem;
         }
 
-        /* --- NEW SCROLL ARROW STYLES --- */
+        /* --- SCROLL ARROW --- */
         .scroll-arrow {
             position: absolute;
             bottom: 2rem;
             left: 50%;
             transform: translateX(-50%);
-            color: var(--color-white);
-            text-decoration: none;
-            font-size: 2rem; /* Base size for the icon */
-            animation: bounce 2s ease-in-out infinite;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
-        }
-        .scroll-arrow:hover {
-            opacity: 1;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            z-index: 10;
         }
         .scroll-arrow svg {
-            width: 1.5em;
-            height: 1.5em;
+            width: 100%;
+            height: 100%;
+            fill: rgba(255, 255, 255, 0.5);
+            animation: bounce 2s infinite ease-in-out;
         }
-
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
-                transform: translate(-50%, 0);
+                transform: translateY(0);
             }
             40% {
-                transform: translate(-50%, -20px);
+                transform: translateY(-15px);
             }
             60% {
-                transform: translate(-50%, -10px);
+                transform: translateY(-5px);
             }
         }
-        /* --- END NEW SCROLL ARROW STYLES --- */
+        /* --- END SCROLL ARROW --- */
+
 
         /* Section 2: Intro / Logo */
         .intro {
-            /* OLD: background-color: var(--color-dark-1); */
-            background-color: rgba(17, 17, 17, 0.9); /* NEW: Semi-transparent */
-            /* Increased bottom padding from 80px to 250px to push next section down */
-            padding: 80px 0 250px 0;
+            background-color: rgba(17, 17, 17, 0.9);
+            padding: 80px 0 450px 0; /* Added large bottom padding */
         }
         .intro .columns {
             align-items: center;
@@ -185,14 +277,9 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            /* OLD: background-image: url('...'); */
-            /* OLD: background-attachment: fixed; */
-            /* NEW: This section now just sits on the body background */
-            /* We add a light overlay to make it feel like a break */
             background-color: rgba(0, 0, 0, 0.7);
         }
         .cover::after {
-            /* OLD: This overlay is no longer needed */
             content: none;
         }
         .cover * {
@@ -209,8 +296,7 @@
 
         /* Section 4: Focus */
         .focus {
-            /* OLD: background-color: var(--color-black); */
-            background-color: rgba(0, 0, 0, 0.85); /* NEW: Semi-transparent */
+            background-color: rgba(0, 0, 0, 0.85);
             padding: 80px 0;
         }
         .focus h2 {
@@ -229,7 +315,7 @@
             margin-bottom: 0.5rem;
         }
 
-        /* --- NEW VIDEO CONTAINER STYLES --- */
+        /* --- VIDEO CONTAINER STYLES --- */
         .video-container {
             position: relative;
             padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
@@ -249,13 +335,12 @@
             width: 100%;
             height: 100%;
         }
-        /* --- END NEW VIDEO STYLES --- */
+        /* --- END VIDEO STYLES --- */
 
         /* --- Section 4.5: Work in Progress --- */
         .working-now {
-            /* OLD: background-color: var(--color-black); */
-            background-color: rgba(0, 0, 0, 0.85); /* NEW: Semi-transparent */
-            padding: 10px 0 80px 0; /* A little less top padding */
+            background-color: rgba(0, 0, 0, 0.85);
+            padding: 10px 0 80px 0;
         }
         .working-now h2.align-center {
             font-size: 3.5em;
@@ -264,8 +349,7 @@
         }
         .wip-box {
             align-items: center;
-            /* OLD: background-color: var(--color-dark-1); */
-            background-color: rgba(17, 17, 17, 0.95); /* NEW: More opaque */
+            background-color: rgba(17, 17, 17, 0.95);
             border-radius: 10px;
             padding: 2rem;
             border: 1px solid #222;
@@ -307,8 +391,7 @@
 
         /* Section 5: CTA / Links */
         .cta {
-            /* OLD: background-color: var(--color-dark-2); */
-            background-color: rgba(34, 34, 34, 0.9); /* NEW: Semi-transparent */
+            background-color: rgba(34, 34, 34, 0.9);
             padding: 80px 0;
             text-align: center;
         }
@@ -329,10 +412,10 @@
         
         /* --- CSS FOR BUTTONS --- */
         .btn {
-            display: inline-flex; /* Use flex to align logo and text */
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.75rem; /* Space between logo and text */
+            gap: 0.75rem;
             padding: 15px 30px;
             font-size: 1.2em;
             font-family: var(--font-heading);
@@ -342,9 +425,8 @@
             transition: all 0.3s ease;
         }
         .btn svg {
-            width: 1.5em; /* Scale logo with font size */
+            width: 1.5em;
             height: 1.5em;
-            /* SVG 'fill' is set to 'currentColor' in the HTML */
         }
         .btn-youtube {
             background-color: var(--color-red);
@@ -370,18 +452,44 @@
             body {
                 background-attachment: scroll; /* Fixed background is bad on mobile */
             }
+            /* --- MOBILE NAVBAR STYLES --- */
+            .nav-toggle {
+                display: block; /* Show toggle on mobile */
+            }
+            .nav-links {
+                display: none; /* Hide links by default */
+                position: absolute;
+                top: var(--navbar-height);
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background-color: rgba(0, 0, 0, 0.95);
+                border-top: 1px solid var(--color-dark-2);
+                padding: 1rem;
+                text-align: center;
+                gap: 1rem;
+            }
+            .nav-links.open {
+                display: flex; /* Show links when 'open' class is added */
+            }
+            .nav-toggle.open .hamburger {
+                background-color: transparent; /* Hide middle bar */
+            }
+            .nav-toggle.open .hamburger::before {
+                transform: rotate(45deg) translate(5px, 7px);
+            }
+            .nav-toggle.open .hamburger::after {
+                transform: rotate(-45deg) translate(5px, -7px);
+            }
+            /* --- END MOBILE NAVBAR STYLES --- */
+
             .intro .col-logo {
                 margin-bottom: 2rem;
             }
             .hero h1 { font-size: 2.5rem; }
             .hero p { font-size: 1rem; }
-            /* Make arrow smaller on mobile */
-            .scroll-arrow {
-                font-size: 1.5rem;
-                bottom: 1rem;
-            }
             .intro h2 { font-size: 2.5em; }
-            .cover { background-attachment: scroll; } /* Parallax doesn't work well on mobile */
+            .cover { background-attachment: scroll; }
             .cover h2 { font-size: 2rem; }
             .cover p { font-size: 1rem; }
             .focus h2 { font-size: 2.5em; }
@@ -394,21 +502,39 @@
 </head>
 <body>
 
-    <header class="hero">
-        <h1>VIEWER DISCRETION ADVISED</h1>
-        <p>The content on this channel explores mature themes including violent crime, sexual assault, and psychological trauma.<br><br>These stories are based on real events and contain details that can be profoundly disturbing. This content is strictly intended for a mature audience (18+) only.</p>
-        <em>Proceed with caution. Scroll down to learn more about our mission.</em>
+    <!-- --- FIXED NAVBAR --- -->
+    <nav class="navbar">
+        <a href="#hero" class="navbar-brand"> <!-- Point to top -->
+            <img src="https://i.ibb.co/0jxSvdfH/channels4-profile.jpg" alt="Unnamed Things Logo" class="navbar-logo">
+            <!-- UPDATED: Wrapped text in a new span with a class -->
+            <span class="navbar-brand-text">
+                <span style="color: var(--color-red);">U</span>nnamed <span style="color: var(--color-red);">T</span>hings
+            </span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span class="hamburger"></span>
+        </button>
+        <ul class="nav-links">
+            <!-- UPDATED: Added red first letters -->
+            <li><a href="https://unnamedthings07.qzz.io/video-page.html"><span style="color: var(--color-red);">V</span>ideos</a></li>
+            <li><a href="#articles"><span style="color: var(--color-red);">A</span>rticles</a></li>
+            <li><a href="#contact"><span style="color: var(--color-red);">C</span>ontact <span style="color: var(--color-red);">M</span>e</a></li>
+        </ul>
+    </nav>
+    <!-- --- END FIXED NAVBAR --- -->
 
-        <!-- NEW SCROLL ARROW -->
-        <a href="#intro" class="scroll-arrow" aria-label="Scroll down to content">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd" />
-            </svg>
+    <header class="hero" id="hero">
+        <h1>VIEWER DISCRETION ADVISED</h1>
+        <p>The content on this channel explores mature themes including violent crime, sexual assault, and psychological trauma.<br><br>These stories are based on real events and contain details that can be profoundly disturbing. This content is strictly intended for a mature audience only.</p>
+        <em>Proceed with caution. Scroll down to learn more about our mission.</em>
+        <!-- --- SCROLL ARROW --- -->
+        <a href="#intro" class="scroll-arrow" aria-label="Scroll down to intro">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16.59l-6.29-6.3a1 1 0 0 0-1.42 1.42l7 7a1 1 0 0 0 1.42 0l7-7a1 1 0 0 0-1.42-1.42L12 16.59z"/></svg>
         </a>
     </header>
 
     <main>
-        <!-- ADDED ID HERE -->
+        <!-- Added id="intro" for scroll target -->
         <section class="intro" id="intro">
             <div class="container">
                 <div class="columns">
@@ -431,7 +557,8 @@
             </div>
         </section>
 
-        <section class="focus">
+        <!-- Added id="videos" for nav link -->
+        <section class="focus" id="videos"> 
             <div class="container">
                 <h2 class="align-center">Our Focus</h2>
                 <div class="columns">
@@ -452,7 +579,7 @@
                     </div>
                 </div>
 
-                <!-- --- NEW YOUTUBE VIDEO SECTION --- -->
+                <!-- --- YOUTUBE VIDEO SECTION --- -->
                 <div class="video-container">
                     <iframe 
                         src="https://www.youtube.com/embed/YOUR_VIDEO_ID_HERE" 
@@ -462,12 +589,13 @@
                         allowfullscreen>
                     </iframe>
                 </div>
-                <!-- --- END NEW YOUTUBE VIDEO SECTION --- -->
+                <!-- --- END YOUTUBE VIDEO SECTION --- -->
 
             </div>
         </section>
 
-        <section class="working-now">
+        <!-- Added id="articles" for nav link -->
+        <section class="working-now" id="articles">
             <div class="container">
                 <h2 class="align-center">Our First Investigation</h2>
                 
@@ -488,7 +616,8 @@
             </div>
         </section>
 
-        <footer class="cta">
+        <!-- Added id="contact" for nav link -->
+        <footer class="cta" id="contact">
             <div class="container">
                 <h2>Join Our Community. Engage With Caution.</h2>
                 <p>If you are prepared to confront uncomfortable truths and contribute to a discussion rooted in respect and awareness, connect with us.</p>
@@ -509,39 +638,63 @@
         </footer>
     </main>
 
-    <!-- NEW JAVASCRIPT for scrolling -->
+    <!-- --- JAVASCRIPT --- -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const scrollArrow = document.querySelector('.scroll-arrow');
-            const introSection = document.getElementById('intro');
+        // --- Smooth Scroll for Arrow & Enter Key ---
+        const scrollArrow = document.querySelector('.scroll-arrow');
+        const introSection = document.getElementById('intro');
 
-            if (scrollArrow && introSection) {
-                
-                // Main function to scroll
-                const scrollToIntro = () => {
-                    introSection.scrollIntoView({ behavior: 'smooth' });
-                    // Remove the 'Enter' key listener after scroll
-                    document.removeEventListener('keydown', handleEnterKey);
-                };
-
-                // 1. Click Event for the arrow
-                scrollArrow.addEventListener('click', (e) => {
-                    e.preventDefault(); // Stop the default jump
-                    scrollToIntro();
-                });
-
-                // 2. 'Enter' Key Event
-                const handleEnterKey = (e) => {
-                    if (e.key === 'Enter') {
-                        e.preventDefault(); // Stop any default 'Enter' behavior
-                        scrollToIntro();
-                    }
-                };
-                
-                document.addEventListener('keydown', handleEnterKey);
+        // 1. Scroll Function
+        const scrollToIntro = () => {
+            if (introSection) {
+                // Use scrollIntoView for modern browsers
+                introSection.scrollIntoView({ behavior: 'smooth' });
             }
-        });
+            // Remove the 'Enter' key listener after it's used once
+            document.removeEventListener('keydown', handleEnterKey);
+        };
+
+        // 2. 'Enter' Key Event
+        const handleEnterKey = (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault(); // Stop any default 'Enter' behavior
+                scrollToIntro();
+            }
+        };
+        
+        document.addEventListener('keydown', handleEnterKey);
+
+        // 3. Arrow Click Event (handles the anchor link click)
+        if (scrollArrow) {
+            scrollArrow.addEventListener('click', (e) => {
+                e.preventDefault(); // Stop default anchor behavior
+                scrollToIntro();
+            });
+        }
+
+        // --- Mobile Navbar Toggle ---
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const navLinksList = document.querySelectorAll('.nav-links li a');
+
+        if (navToggle && navLinks) {
+            // Toggle menu on hamburger click
+            navToggle.addEventListener('click', () => {
+                navToggle.classList.toggle('open');
+                navLinks.classList.toggle('open');
+            });
+
+            // Close menu when a link is clicked
+            navLinksList.forEach(link => {
+                link.addEventListener('click', () => {
+                    navToggle.classList.remove('open');
+                    navLinks.classList.remove('open');
+                });
+            });
+        }
+
     </script>
+    <!-- --- END JAVASCRIPT --- -->
 
 </body>
 </html>
