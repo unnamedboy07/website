@@ -452,9 +452,23 @@
             body {
                 background-attachment: scroll; /* Fixed background is bad on mobile */
             }
+
             /* --- MOBILE NAVBAR STYLES --- */
+            /* OPTIMIZATION: Reduced padding on mobile */
+            .navbar {
+                padding: 0 1rem;
+            }
+            /* OPTIMIZATION: Increased tap area for hamburger */
             .nav-toggle {
                 display: block; /* Show toggle on mobile */
+                padding: 0.5rem; /* Make it easier to tap */
+                margin-right: -0.5rem; /* Offset padding */
+            }
+            /* OPTIMIZATION: Scaled down nav fonts on mobile */
+            .navbar-brand-text,
+            .nav-links li a {
+                font-size: 1.1rem;
+                letter-spacing: 1px;
             }
             .nav-links {
                 display: none; /* Hide links by default */
@@ -486,13 +500,21 @@
             .intro .col-logo {
                 margin-bottom: 2rem;
             }
-            .hero h1 { font-size: 2.5rem; }
+            /* OPTIMIZATION: Reduced letter spacing on mobile */
+            .hero h1 { 
+                font-size: 2.5rem; 
+                letter-spacing: 2px;
+            }
             .hero p { font-size: 1rem; }
             .intro h2 { font-size: 2.5em; }
             .cover { background-attachment: scroll; }
             .cover h2 { font-size: 2rem; }
             .cover p { font-size: 1rem; }
             .focus h2 { font-size: 2.5em; }
+            /* OPTIMIZATION: Let image height scale naturally */
+            .focus .column img {
+                height: auto;
+            }
             .working-now h2.align-center { font-size: 2.5em; }
             .wip-box .case-title { font-size: 2em; }
             .cta h2 { font-size: 2.2em; }
