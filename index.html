@@ -450,6 +450,9 @@
                 /* --- UPDATED FOR MOBILE --- */
                 background-image: url('https://i.ibb.co/ycdpCW5m/Chat-GPT-Image-Nov-15-2025-06-10-46-PM.png');
                 background-attachment: scroll; /* Fixed background is bad on mobile */
+                /* --- ADDED SIZE AND POSITION FOR MOBILE --- */
+                background-size: cover;
+                background-position: center center;
             }
 
             /* --- MOBILE NAVBAR STYLES --- */
@@ -700,7 +703,7 @@
 
             // Close menu when a link is clicked
             navLinksList.forEach(link => {
-                link.addEventListener('click', ()F => {
+                link.addEventListener('click', () => {
                     navToggle.classList.remove('open');
                     navLinks.classList.remove('open');
                 });
