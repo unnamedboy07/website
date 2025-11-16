@@ -222,12 +222,10 @@
         
         /* New class to make the CTA section full-height and centered */
         .contact-page {
-            /* UPDATED: Use a semi-transparent background similar to the hero */
-            background-color: rgba(17, 17, 17, 0.85); 
+            /* UPDATED: Set background to match navbar's transparency */
+            background-color: rgba(0, 0, 0, 0.85); 
             
-            /* UPDATED: Reduced blur effect further */
-            backdrop-filter: blur(2px);
-            -webkit-backdrop-filter: blur(2px);
+            /* REMOVED backdrop-filter */
             
             min-height: calc(100vh - var(--navbar-height));
             display: flex; /* Use flex to center content */
