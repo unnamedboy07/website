@@ -8,7 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <!-- ADDED NEW FONT FOR NAVBAR BRAND --><link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+    <!-- ADDED NEW FONT FOR NAVBAR BRAND -->
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     
     <style>
         /* --- Global Styles & Reset --- */
@@ -184,6 +185,8 @@
             position: relative; /* For the scroll arrow */
         }
         .hero h1 {
+            /* UPDATED FONT */
+            font-family: 'Special Elite', cursive;
             font-size: 4.5rem;
             color: var(--color-red);
             text-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
@@ -519,8 +522,10 @@
 </head>
 <body>
 
-    <!-- --- FIXED NAVBAR --- --><nav class="navbar">
-        <a href="#hero" class="navbar-brand"> <!-- Point to top --><img src="https://i.ibb.co/0jxSvdfH/channels4-profile.jpg" alt="Unnamed Things Logo" class="navbar-logo">
+    <!-- --- FIXED NAVBAR --- -->
+    <nav class="navbar">
+        <a href="#hero" class="navbar-brand"> <!-- Point to top -->
+            <img src="https://i.ibb.co/0jxSvdfH/channels4-profile.jpg" alt="Unnamed Things Logo" class="navbar-logo">
             <span class="navbar-brand-text" style="color: var(--color-red);">
                 Unnamed Things
             </span>
@@ -531,20 +536,25 @@
         <ul class="nav-links">
             <li><a href="https://www.unnamedthings07.qzz.io/videos/video-page.html"><span style="color: var(--color-red);">V</span>ideos</a></li>
             <li><a href="https://www.unnamedthings07.qzz.io/articles/articles-page.html"><span style="color: var(--color-red);">A</span>rticles</a></li>
-            <li><a href="#contact"><span style="color: var(--color-red);">C</span>ontact <span style="color: var(--color-red);">M</span>e</a></li>
+            <!-- UPDATED LINK -->
+            <li><a href="https://www.unnamedthings07.qzz.io/contact.html"><span style="color: var(--color-red);">C</span>ontact <span style="color: var(--color-red);">M</span>e</a></li>
         </ul>
     </nav>
-    <!-- --- END FIXED NAVBAR --- --><header class="hero" id="hero">
+    <!-- --- END FIXED NAVBAR --- -->
+
+    <header class="hero" id="hero">
         <h1>VIEWER DISCRETION ADVISED</h1>
         <p>The content on this channel explores mature themes including violent crime, sexual assault, and psychological trauma.<br><br>These stories are based on real events and contain details that can be profoundly disturbing. This content is strictly intended for a mature audience only.</p>
         <em>Proceed with caution. Scroll down to learn more about our mission.</em>
-        <!-- --- SCROLL ARROW --- --><a href="#intro" class="scroll-arrow" aria-label="Scroll down to intro">
+        <!-- --- SCROLL ARROW --- -->
+        <a href="#intro" class="scroll-arrow" aria-label="Scroll down to intro">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16.59l-6.29-6.3a1 1 0 0 0-1.42 1.42l7 7a1 1 0 0 0 1.42 0l7-7a1 1 0 0 0-1.42-1.42L12 16.59z"/></svg>
         </a>
     </header>
 
     <main>
-        <!-- Added id="intro" for scroll target --><section class="intro" id="intro">
+        <!-- Added id="intro" for scroll target -->
+        <section class="intro" id="intro">
             <div class="container">
                 <div class="columns">
                     <div class="column col-logo">
@@ -566,12 +576,13 @@
             </div>
         </section>
 
-        <!-- Added id="videos" for nav link --><section class="focus" id="videos"> 
+        <!-- Added id="videos" for nav link -->
+        <section class="focus" id="videos"> 
             <div class="container">
                 <h2 class="align-center">Our Focus</h2>
                 <div class="columns">
                     <div class="column">
-                        <img src="https://i.ibb.co/j93Lxmf5/empty-interrogation-room-single-light_source-stark-concrete-walls-isolated-chair-and-table-noir.jpg" alt="Interrogation room">
+                        <img src="https://i.ibb.co/j93Lxmf5/empty-interrogation-room-single-light-source-stark-concrete-walls-isolated-chair-and-table-noir.jpg" alt="Interrogation room">
                         <h4>Unsolved Enigmas</h4>
                         <p>We revisit chilling cold cases, dissecting every detail in pursuit of answers and closure.</p>
                     </div>
@@ -587,7 +598,8 @@
                     </div>
                 </div>
 
-                <!-- --- YOUTUBE VIDEO SECTION --- --><div class="video-container">
+                <!-- --- YOUTUBE VIDEO SECTION --- -->
+                <div class="video-container">
                     <iframe 
                         src="https://www.youtube.com/embed/YOUR_VIDEO_ID_HERE" 
                         title="YouTube video player - Our Focus" 
@@ -596,10 +608,13 @@
                         allowfullscreen>
                     </iframe>
                 </div>
-                <!-- --- END YOUTUBE VIDEO SECTION --- --></div>
+                <!-- --- END YOUTUBE VIDEO SECTION --- -->
+
+            </div>
         </section>
 
-        <!-- Added id="articles" for nav link --><section class="working-now" id="articles">
+        <!-- Added id="articles" for nav link -->
+        <section class="working-now" id="articles">
             <div class="container">
                 <h2 class="align-center">Our First Investigation</h2>
                 
@@ -620,20 +635,16 @@
             </div>
         </section>
 
-        <!-- Added id="contact" for nav link --><footer class="cta" id="contact">
+        <!-- UPDATED FOOTER SECTION -->
+        <footer class="cta" id="contact">
             <div class="container">
-                <h2>Join Our Community. Engage With Caution.</h2>
-                <p>If you are prepared to confront uncomfortable truths and contribute to a discussion rooted in respect and awareness, connect with us.</p>
+                <h2>Contact Me</h2>
+                <p>Have a case suggestion, a question, or a business inquiry? I'd love to hear from you. Click the button below to get in touch.</p>
                 <div classs="button-group">
                     
-                    <a href="https://www.youtube.com/@unnamedthings07" target="_blank" rel="noopener noreferrer" class="btn btn-youtube">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83 1.48 1.73-1.73.47-.13 1.33.22 2.65.28 1.3.07 2.49.1 3.59.1L12 5c4.19 0 6.8-.16 7.83.44.9.25 1.48.83 1.73 1.73z"></path></svg>
-                        <span>YouTube Channel</span>
-                    </a>
-                    
-                    <a href="https://www.instagram.com/ub.things07?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="btn btn-instagram">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8A3.6 3.6 0 0 0 20 16.4V7.6A3.6 3.6 0 0 0 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path></svg>
-                        <span>Instagram</span>
+                    <!-- NEW CONTACT BUTTON -->
+                    <a href="https://www.unnamedthings07.qzz.io/contact.html" class="btn btn-youtube"> <!-- Re-using btn-youtube for the red style -->
+                        <span>Get In Touch</span>
                     </a>
 
                 </div>
@@ -641,7 +652,8 @@
         </footer>
     </main>
 
-    <!-- --- JAVASCRIPT --- --><script>
+    <!-- --- JAVASCRIPT --- -->
+    <script>
         // --- Smooth Scroll for Arrow & Enter Key ---
         const scrollArrow = document.querySelector('.scroll-arrow');
         const introSection = document.getElementById('intro');
@@ -709,5 +721,7 @@
         }
 
     </script>
-    <!-- --- END JAVASCRIPT --- --></body>
+    <!-- --- END JAVASCRIPT --- -->
+
+</body>
 </html>
