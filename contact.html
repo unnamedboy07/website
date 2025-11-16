@@ -222,10 +222,13 @@
         
         /* New class to make the CTA section full-height and centered */
         .contact-page {
-            /* Fallback background, matches the CTA style */
-            background-color: rgba(34, 34, 34, 0.9); 
-            /* This ensures it uses the body's main background image */
-            background: none; 
+            /* UPDATED: Use a semi-transparent background similar to the hero */
+            background-color: rgba(17, 17, 17, 0.85); 
+            
+            /* UPDATED: Reduced blur effect further */
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            
             min-height: calc(100vh - var(--navbar-height));
             display: flex; /* Use flex to center content */
             flex-direction: column;
@@ -325,8 +328,8 @@
             <!-- Kept external links as they were -->
             <li><a href="https://www.unnamedthings07.qzz.io/videos/video-page.html"><span style="color: var(--color-red);">V</span>ideos</a></li>
             <li><a href="https://www.unnamedthings07.qzz.io/articles/articles-page.html"><span style="color: var(--color-red);">A</span>rticles</a></li>
-            <!-- UPDATED link to point to this new contact.html page AND HIGHLIGHT -->
-            <li><a href="contact.html" style="color: var(--color-red);"><span style="color: var(--color-red);">C</span>ontact <span style="color: var(--color-red);">M</span>e</a></li>
+            <!-- UPDATED link text to "Connect" AND HIGHLIGHT -->
+            <li><a href="contact.html" style="color: var(--color-red);"><span style="color: var(--color-red);">C</span>onnect</a></li>
         </ul>
     </nav>
     <!-- --- END FIXED NAVBAR --- -->
