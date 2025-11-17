@@ -39,7 +39,7 @@
             padding-top: var(--navbar-height);
         }
         h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-heading);
+            font-family: var(--font-heading); /* This is already Oswald */
             font-weight: 700;
             letter-spacing: 1px;
         }
@@ -76,9 +76,8 @@
             color: var(--color-white);
             font-family: var(--font-heading);
             font-size: 1.25rem;
-            transition: color 0.3s ease; /* Added transition */
+            transition: color 0.3s ease;
         }
-        /* Added hover/focus state for the brand */
         .navbar-brand:hover,
         .navbar-brand:focus {
             color: var(--color-red);
@@ -156,19 +155,17 @@
             margin-bottom: 3rem;
         }
 
-        /* UPDATED: Simplified this style */
         .article-heading-special {
-            font-family: 'Special Elite', cursive; /* Set font */
-            font-size: 3.5em; /* Match other h2 headings */
-            color: var(--color-red); /* Set color */
-            letter-spacing: 1.5px; /* Match nav links */
-            /* Removed text-shadow, text-transform, and custom font-size */
+            font-family: 'Special Elite', cursive;
+            font-size: 3.5em;
+            color: var(--color-red);
+            letter-spacing: 1.5px;
             line-height: 1.2;
             margin-bottom: 3rem;
         }
         @media (max-width: 768px) {
             .article-heading-special {
-                font-size: 2.5em; /* Match other h2 headings on mobile */
+                font-size: 2.5em;
             }
         }
 
@@ -190,7 +187,13 @@
             padding: 80px 0;
             text-align: center;
         }
-        .cta h2 { font-size: 3em; }
+        /* UPDATED: Added color and subtle glow */
+        .cta h2 { 
+            font-size: 3em; 
+            color: var(--color-red);
+            text-shadow: 0 0 8px rgba(205, 32, 31, 0.5); /* Subtle red glow */
+            /* Font is already 'Oswald' from global h2 style */
+        }
         .cta p {
             font-size: 1.25rem;
             max-width: 800px;
@@ -270,7 +273,6 @@
 <body>
 
     <nav class="navbar">
-        <!-- UPDATED this link -->
         <a href="https://www.unnamedthings07.qzz.io" class="navbar-brand"> 
             <img src="https://i.ibb.co/0jxSvdfH/channels4-profile.jpg" alt="Unnamed Things Logo" class="navbar-logo">
             <span class="navbar-brand-text">
@@ -281,12 +283,11 @@
             <span class="hamburger"></span>
         </button>
         <ul class="nav-links">
-            <!-- UPDATED video link -->
             <li><a href="https://www.unnamedthings07.qzz.io/videos/video-page.html"><span style="color: var(--color-red);">V</span>ideos</a></li>
             
             <li><a href="article-page.html" class="active-link"><span style="color: var(--color-red);">A</span>rticles</a></li>
             
-            <!-- UPDATED: Removed target="_blank" to open in same tab -->
+            <!-- Removed target="_blank" -->
             <li><a href="https://www.unnamedthings07.qzz.io/contact.html"><span style="color: var(--color-red);">C</span>onnect</a></li>
         </ul>
     </nav>
@@ -295,12 +296,11 @@
         <section class="focus" id="article-content">
             <div class="container">
                 
-                <!-- This now uses the simplified style -->
                 <h2 class="align-center article-heading-special">Deep Dives & Case Files</h2>
                 
                 <p style="font-size: 1.25rem; text-align: center; max-width: 800px; margin: 1rem auto 2rem auto;">
                     This is where the investigation goes deeper. The videos provide the narrative, but here we will dissect the details, analyze the evidence, and explore the 'whys' that haunt us.
-                </p><!-- Corrected a typo here (was </D>) -->
+                </p>
                 <p style="font-size: 1.25rem; text-align: center; max-width: 800px; margin: 1rem auto 4rem auto;">
                     This section is currently under construction. I am building a library of in-depth articles that will complement our video investigations. Thank you for your patience.
                 </p>
@@ -329,14 +329,12 @@
 
     <footer class="cta" id="contact">
         <div class="container">
+            <!-- This h2 will now be red with a subtle glow -->
             <h2>Join Our Community. Engage With Caution.</h2>
             <p>If you are prepared to confront uncomfortable truths and contribute to a discussion rooted in respect and awareness, connect with us.</p>
-            <!-- Corrected class typo and replaced buttons -->
             <div class="button-group">
                 
-                <!-- REPLACED YouTube/Instagram with a single Contact Me button -->
                 <a href="https://www.unnamedthings07.qzz.io/contact.html" class="btn btn-youtube">
-                    <!-- Added an envelope icon -->
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true">
                         <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"></path>
                     </svg>
