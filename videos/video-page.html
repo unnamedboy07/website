@@ -244,6 +244,9 @@
         }
         .cta h2 {
             font-size: 3em;
+            /* ADDED: Red color and subtle neon effect */
+            color: var(--color-red);
+            text-shadow: 0 0 5px rgba(205, 32, 31, 0.4); /* Very slight glow */
         }
         .cta p {
             font-size: 1.25rem;
@@ -395,8 +398,8 @@
             <li><a href="#" class="active"><span style="color: var(--color-red);">V</span>ideos</a></li>
             <!-- 'Articles' link updated -->
             <li><a href="https://www.unnamedthings07.qzz.io/articles/articles-page.html"><span style="color: var(--color-red);">A</span>rticles</a></li>
-            <!-- MODIFIED: 'Contact' link updated to external page, target removed -->
-            <li><a href="https://www.unnamedthings07.qzz.io/contact.html" rel="noopener noreferrer"><span style="color: var(--color-red);">C</span>onnect</a></li>
+            <!-- MODIFIED: 'Contact' link updated, rel attribute removed -->
+            <li><a href="https://www.unnamedthings07.qzz.io/contact.html"><span style="color: var(--color-red);">C</span>onnect</a></li>
         </ul>
     </nav>
     <!-- --- END FIXED NAVBAR --- -->
@@ -404,6 +407,7 @@
     <!-- ADDED: Main wrapper for flex layout -->
     <main>
         <!-- --- 'In Production' Section --- -->
+        <!-- FIXED: Corrected 'classf' to 'class' -->
         <section class="coming-soon">
             <div class="container">
                 <!-- MODIFIED: Text content updated -->
@@ -415,29 +419,30 @@
     </main>
 
 
-    <!-- Added id="contact" for nav link -->
-     <footer class="cta" id="contact">
+    <!-- MODIFIED: Replaced footer with your provided code -->
+    <footer class="cta" id="contact">
         <div class="container">
-            <!-- MODIFIED: Footer heading changed -->
-            <h2>Get In Touch</h2>
-            <!-- MODIFIED: Footer paragraph changed -->
-            <p>Have a case suggestion, feedback, or a general inquiry? Reach out.</p>
+            <h2>Join Our Community. Engage With Caution.</h2>
+            <p>If you are prepared to confront uncomfortable truths and contribute to a discussion rooted in respect and awareness, connect with us.</p>
             <!-- Corrected class typo and replaced buttons -->
             <div class="button-group">
-                
+    
                 <!-- REPLACED YouTube/Instagram with a single Contact Me button -->
-                <!-- MODIFIED: target="_blank" removed -->
-                <a href="https://www.unnamedthings07.qzz.io/contact.html" class="btn btn-youtube" rel="noopener noreferrer">
+                <a href="https://www.unnamedthings07.qzz.io/contact.html" class="btn btn-youtube">
                     <!-- Added an envelope icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true" style="width: 1.5em; height: 1.5em;">
-                        <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"></path>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" role="img"
+                        aria-hidden="true">
+                        <path
+                            d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z">
+                        </path>
                     </svg>
                     <span>Connect With Me</span>
                 </a>
-
+    
             </div>
         </div>
     </footer>
+    <!-- END MODIFICATION -->
 
     <!-- --- JAVASCRIPT --- -->
     <script>
