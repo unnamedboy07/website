@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- The title is updated for this specific article -->
+    <title>Unnamed Things - Anatomy of a Betrayal: The Pelicot Case</title>
+    <link rel="icon" type="image/jpeg" href="https://i.ibb.co/0jxSvdfH/channels4-profile.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Global Styles & Reset --- */
+        :root {
+            --color-red: #CD201F;
+            --color-black: #000000;
+            --color-dark-1: #111111;
+            --color-dark-2: #222222;
+            --color-white: #FFFFFF;
+            --font-heading: 'Oswald', sans-serif;
+            --font-body: 'Roboto', sans-serif;
+            --navbar-height: 60px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: var(--font-body);
+            background-image: url('https://i.ibb.co/Z1M7M8m6/file-00000000ffe8720795dd0af80e4fa438.png');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: var(--color-white);
+            line-height: 1.6;
+            padding-top: var(--navbar-height);
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading); /* This is already Oswald */
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        p { margin-bottom: 1.5rem; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* --- Layout --- */
+        .container { width: 90%; max-width: 1100px; margin: 0 auto; }
+        .align-center { text-align: center; }
+        .columns { display: flex; gap: 2rem; }
+        .column { flex: 1; }
+        main { flex-grow: 1; }
+
+        /* --- NAVBAR STYLES --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.85); 
+            border-bottom: none; 
+            padding: 0 2rem;
+            height: var(--navbar-height);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--color-white);
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            transition: color 0.3s ease;
+        }
+        .navbar-brand:hover,
+        .navbar-brand:focus {
+            color: var(--color-red);
+        }
+        .navbar-brand-text {
+            font-family: 'Special Elite', cursive;
+            font-size: 1.4rem;
+            letter-spacing: 1.5px;
+            line-height: 1;
+        }
+        .navbar-logo {
+            height: 35px;
+            width: auto;
+            border-radius: 50%;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        .nav-links li a {
+            color: var(--color-white);
+            text-decoration: none;
+            font-family: 'Special Elite', cursive;
+            text-transform: none;
+            letter-spacing: 1.5px;
+            font-size: 1.4rem;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+        .nav-links li a:hover,
+        .nav-links li a:focus {
+            color: var(--color-red);
+        }
+        .nav-links li a.active-link {
+            color: var(--color-red);
+            pointer-events: none;
+        }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .nav-toggle .hamburger {
+            width: 25px;
+            height: 2px;
+            background-color: var(--color-white);
+            display: block;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .nav-toggle .hamburger::before,
+        .nav-toggle .hamburger::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-white);
+            transition: all 0.3s ease;
+        }
+        .nav-toggle .hamburger::before { top: -8px; }
+        .nav-toggle .hamburger::after { bottom: -8px; }
+
+        /* --- Section Styles --- */
+        .focus {
+            background-color: rgba(0, 0, 0, 0.85);
+            padding: 80px 0;
+            min-height: 40vh;
+        }
+        .focus h2 {
+            font-size: 3.5em;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .article-heading-special {
+            font-family: 'Special Elite', cursive;
+            font-size: 3.5em;
+            color: var(--color-red);
+            letter-spacing: 1.5px;
+            line-height: 1.2;
+            margin-bottom: 3rem;
+        }
+        @media (max-width: 768px) {
+            .article-heading-special {
+                font-size: 2.5em;
+            }
+        }
+
+        /* --- NEW ARTICLE CONTENT STYLES --- */
+        .article-body {
+            max-width: 800px; /* Standard reading width */
+            margin: 2rem auto 4rem auto;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        .article-body h3 {
+            font-family: var(--font-heading);
+            color: var(--color-red);
+            font-size: 2.2em;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--color-dark-2);
+            padding-bottom: 0.5rem;
+        }
+        .article-body h4 {
+            font-family: var(--font-heading);
+            color: var(--color-white);
+            font-size: 1.6em;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .article-body ul {
+            list-style-type: none;
+            margin-left: 0;
+            padding-left: 0;
+            margin-bottom: 1.5rem;
+        }
+        .article-body li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .article-body li::before {
+            content: '■'; /* Square bullet */
+            color: var(--color-red);
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 0.8em;
+            line-height: 1.6;
+        }
+        .article-body strong {
+            color: var(--color-white);
+            font-weight: 700;
+        }
+        .article-table-wrapper {
+            overflow-x: auto; /* Makes table responsive on mobile */
+            margin: 2rem 0;
+            border: 1px solid var(--color-dark-2);
+            border-radius: 5px;
+        }
+        .article-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            white-space: nowrap; /* Prevents text wrap, works with overflow-x */
+        }
+        .article-table th, .article-table td {
+            padding: 12px 15px;
+            border: 1px solid var(--color-dark-2);
+            text-align: left;
+            vertical-align: top;
+        }
+        .article-table th {
+            background-color: var(--color-dark-1);
+            color: var(--color-red);
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            white-space: normal;
+        }
+        .article-table tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.05); /* Subtle striping */
+        }
+        .article-table td {
+            white-space: normal; /* Allow content in cells to wrap */
+        }
+
+
+        /* --- Footer Styles --- */
+        .cta {
+            background-color: rgba(34, 34, 34, 0.9);
+            padding: 80px 0;
+            text-align: center;
+        }
+        .cta h2 { 
+            font-size: 3em; 
+            color: var(--color-red);
+            text-shadow: 0 0 8px rgba(205, 32, 31, 0.5); 
+        }
+        .cta p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 1rem auto 2rem auto;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-family: var(--font-heading);
+            text-decoration: none;
+            text-transform: uppercase;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .btn svg { width: 1.5em; height: 1.5em; }
+        .btn-youtube {
+            background-color: var(--color-red);
+            color: var(--color-white);
+        }
+        .btn-youtube:hover { background-color: #ff4141; }
+        .btn-instagram {
+            border: 2px solid #888;
+            color: var(--color-white);
+        }
+        .btn-instagram:hover {
+            background-color: var(--color-white);
+            color: var(--color-black);
+        }
+        
+        /* --- Responsive (Mobile) --- */
+        @media (max-width: 768px) {
+            .columns { flex-direction: column; }
+            body { 
+                background-attachment: scroll; 
+                min-height: unset;
+            }
+            main {
+                flex-grow: 0;
+            }
+            .nav-toggle { display: block; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: var(--navbar-height);
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background-color: rgba(0, 0, 0, 0.95);
+                border-top: 1px solid var(--color-dark-2);
+                padding: 1rem;
+                text-align: center;
+                gap: 1rem;
+            }
+            .nav-links.open { display: flex; }
+            .nav-toggle.open .hamburger { background-color: transparent; }
+            .nav-toggle.open .hamburger::before { transform: rotate(45deg) translate(5px, 7px); }
+            .nav-toggle.open .hamburger::after { transform: rotate(-45deg) translate(5px, -7px); }
+            
+            .focus { padding: 50px 0; }
+            .focus h2 { font-size: 2.5em; }
+            
+            .cta { padding: 50px 0; }
+            .cta h2 { font-size: 2.2em; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- The Navbar is identical to your article-page.html -->
+    <nav class="navbar">
+        <a href="https://www.unnamedthings07.qzz.io" class="navbar-brand"> 
+            <img src="https://i.ibb.co/0jxSvdfH/channels4-profile.jpg" alt="Unnamed Things Logo" class="navbar-logo">
+            <span class="navbar-brand-text">
+                <span style="color: var(--color-red);">U</span>nnamed <span style="color: var(--color-red);">T</span>hings
+            </span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span class="hamburger"></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="https://www.unnamedthings07.qzz.io/videos/video-page.html"><span style="color: var(--color-red);">V</span>ideos</a></li>
+            
+            <!-- This remains the active link since this page is part of the 'Articles' section -->
+            <li><a href="article-page.html" class="active-link"><span style="color: var(--color-red);">A</span>rticles</a></li>
+            
+            <li><a href="https://www.unnamedthings07.qzz.io/contact.html"><span style="color: var(--color-red);">C</span>onnect</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="focus" id="article-content">
+            <div class="container">
+                
+                <!-- The main article content starts here -->
+                
+                <h2 class="align-center article-heading-special">Anatomy of a Betrayal: The Complete Report on the Pelicot Case</h2>
+                
+                <div class="article-body">
+                    <p>For nearly 50 years, Gisèle Pelicot lived a life she believed was built on love and trust. Her husband, Dominique Pelicot, was, in her words, "someone I trusted entirely". He was a doting family man, a retired electrician who organized surprise birthday parties and was seen as a "role model" by his children's friends.</p>
+                    
+                    <p>But that trust, and the life it supported, was annihilated on November 2, 2020. In a stark police interrogation room, Gisèle Pelicot was shown a video. On the screen, she saw her own unconscious body, "limp and inert," being raped by a stranger in her own bed. As she later testified, her world simply collapsed.</p>
+                    
+                    <p>What unfolded next was the revelation of one of the most extensive and horrifying cases of serial rape in modern French history—a decade-long criminal enterprise orchestrated by her husband, involving dozens of men, and meticulously documented in a digital archive of over 20,000 files. This is the complete story of the case that shattered a family and forced a nation to confront the very definition of consent.</p>
+
+                    <h3>I. The Discovery: A Supermarket Arrest</h3>
+                    <p>The decade of systematic abuse was not uncovered by a victim's complaint. It was exposed by chance, stemming from a banal act of voyeurism.</p>
+                    <p>On September 12, 2020, Dominique Pelicot, 71, was arrested at a supermarket in Carpentras, near his home in Mazan, Provence. A security guard had observed him "upskirting"—using a hidden camera in a black bag to surreptitiously film up women's skirts. When apprehended, Pelicot, who looked like a "poor innocent" man with "puppy eyes," told police he had an "urge" because his wife was away.</p>
+                    <p>This was not his first offense. He had a prior arrest for a similar incident in 2010, near the couple's former home. This time, however, investigators had a "hunch" and decided to look deeper into the pensioner's confiscated phones and computer.</p>
+                    <p>What they found was not a simple collection of voyeuristic images. It was a "library of images" , a meticulously curated digital archive of over 20,000 photos and videos. The files were obsessively cataloged in folders, including one titled "abuse" and another labeled "her rapists".</p>
+                    <p>The "abuse" folder contained videos documenting over 200 rapes of Gisèle Pelicot. The videos, filmed by her husband, showed her in a "coma-like state," "limp and inert," and snoring loudly. Investigators ultimately counted 72 distinct abusers in the recordings, though not all could be identified.</p>
+                    <p>This digital archive, created by Pelicot himself, became the "undeniable evidence" that would make the subsequent prosecution of 51 men possible.</p>
+
+                    <h3>II. The Architect: Dominique Pelicot</h3>
+                    <p>The case is defined by the chasm between Dominique Pelicot's public persona and his private reality as a systemic predator.</p>
+                    
+                    <h4>Modus Operandi: Weaponizing Trust and Medicine</h4>
+                    <p>The abuse began around 2011, after Gisèle Pelicot was prescribed Lorazepam (Temesta), an anti-anxiety medication, by her doctor. Dominique Pelicot would crush this and other sleeping tablets, mixing the powder into his wife's food and drink.</p>
+                    <p>He drugged her coffee, her mashed potatoes, and even her favorite raspberry ice cream, which he would bring to her in bed—an act she interpreted at the time as one of love and care. Once she was unconscious, he would get to work.</p>
+                    <p>He used the unmoderated French chat site "Coco" (since shut down by authorities) to find his accomplices. He frequented a specific chatroom on the site named "Against her knowledge" and sent explicit messages to other men, such as: "I’m looking for a pervert accomplice to abuse my wife who’s been put to sleep" and "You’re like me, you like rape mode".</p>
+                    <p>During the rapes, Pelicot would film, often while making degrading comments about "the slut" off-camera. He would prop notes on her inert body with messages like "Service slut" and "Whore".</p>
+
+                    <h4>Systemic Predation</h4>
+                    <p>Pelicot's predation was not confined to his wife. The police investigation revealed his crimes targeted every woman in his family.</p>
+                    <ul>
+                        <li><strong>Family Voyeurism:</strong> He was found guilty of taking indecent images of his two daughters-in-law and his adult daughter. He hid cameras to secretly film his son's wives in their bathrooms, including when one was pregnant with twins, and photographed his daughter asleep and semi-naked.</li>
+                        <li><strong>"Teaching" his Method:</strong> Pelicot was also found guilty of the rape of the wife of co-defendant Jean-Pierre Maréchal. Most disturbingly, he had taught Maréchal how to use the same drugging technique, which Maréchal then used on his own wife for five years, inviting Pelicot to participate.</li>
+                    </ul>
+                    <p>This "franchising" of his modus operandi, combined with a criminal history that included an attempted rape in 1999 and the 2010 upskirting arrest , painted a picture of a calculating, long-term predator.</p>
+
+                    <h3>III. A Decade of Drugged Abuse: Chronology (2011-2020)</h3>
+                    <p>The period of abuse documented by Pelicot's archive spanned nearly a decade, from July 2011 to October 2020.</p>
+                    <ul>
+                        <li><strong>July 23, 2011:</strong> The first documented rape involving an accomplice occurred at the Pelicots' home at the time in Villiers-sur-Marne, near Paris.</li>
+                        <li><strong>2011-2020:</strong> The abuse was not confined to one location. It took place in their primary residence in Mazan, but also in Villiers-sur-Marne, Saint-Rémy-lès-Chevreuse, and on the Île de Ré. One of the most chilling locations identified was the couple's daughter's beach house.</li>
+                        <li><strong>October 22, 2020:</strong> The last recorded act of abuse occurred. This final rape took place after Dominique Pelicot's September 12 upskirting arrest but before the November 2 discovery of the files, indicating his deep-seated compulsion.</li>
+                    </ul>
+                    <p>For Gisèle, this decade was experienced as a fog of unexplained fatigue. She had no conscious memory of the acts. "I would wake up with my pyjamas on," she testified, explaining her husband would dress her after the assaults. "The mornings I must have been more tired than usual, but I walk a lot and thought it was that".</p>
+
+                    <h3>IV. The 50 "Mr. Everymans"</h3>
+                    <p>Following the discovery of the archive, police launched a vast investigation, leading to three major waves of arrests in February, March, and September 2021. In total, 50 men were identified and brought to trial alongside Dominique Pelicot.</p>
+                    <p>They were dubbed "Monsieur Tout-le-Monde," or "Mr. Everyman," because their "ordinariness" was a central horror of the case.</p>
+                    <ul>
+                        <li><strong>Age:</strong> They ranged in age from 26 to 74.</li>
+                        <li><strong>Professions:</strong> Their occupations spanned all sectors of society: firefighters, journalists, students, prison guards, nurses, soldiers, local councillors, truck drivers, carpenters, and IT workers.</li>
+                        <li><strong>Location:</strong> Most lived within a 40-mile radius of the Pelicots' home in Mazan.</li>
+                    </ul>
+                    <p>However, the "Mr. Everyman" narrative, while sociologically shocking, was not entirely accurate. Of the 50 co-defendants, 23 had a prior criminal record for various offenses. More significantly, six had prior convictions for domestic violence, and two had prior convictions for sexual violence.</p>
+
+                    <h3>V. "Shame Must Change Sides": The Trial of Gisèle Pelicot</h3>
+                    <p>The trial began on September 2, 2024, in Avignon. From the outset, the case shifted from a story of victimization to one of extraordinary agency. Gisèle Pelicot, the woman whose identity was erased for a decade, seized control of the narrative.</p>
+                    <p>In a move that stunned the legal establishment, she waived her right to anonymity and insisted on a public trial. Her public motto, repeated by supporters, became "Shame must change sides".</p>
+                    <p>"When you’re raped there is shame," she explained, "and it’s not for us to have shame – it’s for them". She wanted to transform her personal trauma into a public lesson, stating, "I wanted all of society to be a witness". She insisted the "undeniable evidence" —the "stomach-churning" videos of her own rapes—be shown in open court.</p>
+                    <p>Her courage transformed her into a national and global feminist icon. She was greeted at the courthouse each day by crowds of supporters ("Les Amazones d'Avignon") who applauded her arrival.</p>
+                    
+                    <h4>Courtroom Testimonies</h4>
+                    <p>The trial's central conflict became the very definition of rape. The prosecution's case was built on the "abundant evidence" of the digital archive, which "undeniably" showed Gisèle Pelicot in an inert, non-consenting state.</p>
+                    <ul>
+                        <li><strong>Gisèle Pelicot's Testimony:</strong> Her testimony was defiant and powerful. She addressed her ex-husband, whom she had trusted for 50 years: "So many times, I said to myself how lucky am I to have you at my side... How could you have betrayed me to this point?".</li>
+                        <li>She confronted the defense lawyers' tactics, who attempted to discredit her by suggesting she was an "alcoholic" or an "accomplice". "I've been called...Mr Pelicot's accomplice," she told the court, shouting, "Rape is rape!".</li>
+                        <li>She also corrected dangerous societal myths. When one defendant's partner suggested Gisèle's refusal of sex (due to her own mother's illness) had led her husband to "look elsewhere," her lawyer articulated her position: "there is never an obligation to have sexual relations with your husband".</li>
+                        <li><strong>Dominique Pelicot's Testimony:</strong> Facing the irrefutable evidence he himself had created, Dominique Pelicot admitted to all charges. In his first testimony, he stated quietly and calmly, "I am a rapist, like the others in this room".</li>
+                        <li>Crucially, he directly contradicted the defense of his 50 co-defendants, telling the court: "They all knew, they cannot say the contrary". His lawyer argued for a "split personality" defense, claiming childhood trauma (witnessing his own mother's rape) created "two Dominiques".</li>
+                        <li><strong>The Co-Defendants' Defenses:</strong> With the facts of the acts largely indisputable, the 50 co-defendants presented a spectrum of contradictory defenses :</li>
+                        <li><strong>Full Admission:</strong> A small number, like Cyrille Delville and Fabien Sotto, admitted to rape and apologized in court.</li>
+                        <li><strong>The "Manipulated" Defense:</strong> The most common argument. Defendants claimed they were "duped" and "manipulated" by Dominique Pelicot into believing it was a consensual "game" or kink.</li>
+                        <li><strong>The "Husband's Consent" Defense:</strong> This legally baseless argument was made by several defendants. They claimed "they believed a husband's consent for sexual intercourse was sufficient". Defendant Adrien Longeron stated explicitly: "as long as the husband was present, there was no rape". Defendant Vincent Coullet said he believed "she agreed to it" because "the husband had given me permission".</li>
+                        <li><strong>Outright Denial:</strong> Despite the video evidence, some denied the charge. Nizar Hamida insisted, "I'm not a rapist".</li>
+                    </ul>
+
+                    <h3>VI. The Verdict: Judgment for 51 Men (December 19, 2024)</h3>
+                    <p>On December 19, 2024, after more than three months of harrowing testimony, lead judge Roger Arata read the verdicts.</p>
+                    <p><strong>All 51 defendants were found guilty.</strong></p>
+                    <ul>
+                        <li><strong>Dominique Pelicot:</strong> Found guilty on all charges, including the aggravated rapes of his wife, the rape of Mrs. Maréchal, and taking indecent images of his daughter and daughters-in-law. He was given the maximum possible sentence: 20 years in prison. He will not be eligible for parole until he has served two-thirds of his sentence.</li>
+                        <li><strong>The 50 Co-Defendants:</strong> All 50 were convicted, receiving prison sentences ranging from 3 to 15 years.</li>
+                        <li>47 men were found guilty of aggravated rape.</li>
+                        <li>2 men were found guilty of attempted rape.</li>
+                        <li>2 men were found guilty of aggravated sexual assault.</li>
+                        <li>The longest co-defendant sentence (15 years) went to Romain Vandevelde, who was HIV-positive and refused to use a condom while raping Gisèle. Jean-Pierre Maréchal, who "learned" the method from Pelicot, received 12 years for the rape of his own wife.</li>
+                    </ul>
+
+                    <h4>Schedule of Convictions: The 51 Defendants in the Pelicot Trial</h4>
+                    
+                    <div class="article-table-wrapper">
+                        <table class="article-table">
+                            <thead>
+                                <tr>
+                                    <th>Defendant</th>
+                                    <th>Age</th>
+                                    <th>Occupation</th>
+                                    <th>Conviction</th>
+                                    <th>Final Sentence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Dominique Pelicot</td>
+                                    <td>72</td>
+                                    <td>Ret. Electrician / Estate Agent</td>
+                                    <td>Aggravated Rape (Multiple), Indecent Images</td>
+                                    <td>20 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Jean-Pierre Maréchal</td>
+                                    <td>63</td>
+                                    <td>Garden Store Worker</td>
+                                    <td>Agg. Rape (on his own wife)</td>
+                                    <td>12 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Romain Vandevelde</td>
+                                    <td>63</td>
+                                    <td>Pensioner</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>15 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Charly Arbo</td>
+                                    <td>30</td>
+                                    <td>Temp Worker</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>13 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Dominique Davies</td>
+                                    <td>45</td>
+                                    <td>Truck Driver</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>13 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Jerome Vilela</td>
+                                    <td>46</td>
+                                    <td>Fmr. Firefighter / Supermarket</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>13 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Cedric Grassot</td>
+                                    <td>50</td>
+                                    <td>---</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>12 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Hassan Ouamou</td>
+                                    <td>30</td>
+                                    <td>---</td>
+                                    <td>Aggravated Rape (in absentia)</td>
+                                    <td>12 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Thierry Postat</td>
+                                    <td>61</td>
+                                    <td>---</td>
+                                    <td>Aggravated Rape, Child Abuse Imagery</td>
+                                    <td>12 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Fabien Sotto</td>
+                                    <td>39</td>
+                                    <td>Homeless</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>11 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Vincent Coullet</td>
+                                    <td>43</td>
+                                    <td>Carpenter</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>10 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Nizar Hamida</td>
+                                    <td>41</td>
+                                    <td>Delivery Driver</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>10 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Joan Kawai</td>
+                                    <td>27</td>
+                                    <td>Soldier</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>10 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Jean-Luc La</td>
+                                    <td>46</td>
+                                    <td>---</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>10 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Karim Sebaoui</td>
+                                    <td>40</td>
+                                    <td>IT Worker</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>10 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Redouane Azougagh</td>
+                                    <td>40</td>
+                                    <td>---</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>9 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Cyril Beaubis</td>
+                                    <td>47</td>
+                                    <td>Lorry Driver</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>9 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Husamettin Dogan</td>
+                                    <td>43</td>
+                                    <td>Construction Worker</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>9 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Christian Lescole</td>
+                                    <td>57</td>
+                                    <td>---</td>
+                                    <td>Aggravated Rape, Child Abuse Imagery</td>
+                                    <td>9 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Simoné Mekenes</td>
+                                    <td>43</td>
+                                    <td>Construction Worker</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>9 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Cendric Venzin</td>
+                                    <td>44</td>
+                                    <td>Restaurant Manager</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>9 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Abdelali Dallal</td>
+                                    <td>47</td>
+                                    <td>---</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>8 years (suspended)</td>
+                                </tr>
+                                <tr>
+                                    <td>Mahdi Daoudi</td>
+                                    <td>36</td>
+                                    <td>Transport Worker</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>8 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Cyrille Delville</td>
+                                    <td>54</td>
+                                    <td>Construction Worker</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>8 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Omar Douiri</td>
+                                    <td>36</td>
+                                    <td>Cleaner</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>8 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Redouan El Farihi</td>
+                                    <td>55</td>
+                                    <td>Nurse</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>8 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Nicolas Francois</td>
+                                    <td>42</td>
+                                    <td>Freelance Journalist</td>
+                                    <td>Aggravated Rape, Child Abuse Imagery</td>
+                                    <td>8 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Boris Moulin</td>
+                                    <td>37</td>
+                                    <td>Cleaner</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>8 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Patrice Nicolle</td>
+                                    <td>55</td>
+                                    <td>Electrician</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>8 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Thierry Parisis</td>
+                                    <td>54</td>
+                                    <td>Mason</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>8 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Mohamed Rafaa</td>
+                                    <td>70</td>
+                                    <td>Former DJ</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>8 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Lionel Rodriguez</td>
+                                    <td>44</td>
+                                    <td>Supermarket Worker</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>8 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Gregory Serviol</td>
+                                    <td>31</td>
+                                    <td>Plasterer</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>8 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Ahmed Tbarik</td>
+                                    <td>54</td>
+                                    <td>Plumber</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>8 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Jean Tirano</td>
+                                    <td>52</td>
+                                    <td>Roof Mechanic</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>8 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Paul Grovogui</td>
+                                    <td>31</td>
+                                    <td>---</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>8 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Ludovick Blemeur</td>
+                                    <td>39</td>
+                                    <td>Warehouse Worker</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>7 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Mathieu Dartus</td>
+                                    <td>53</td>
+                                    <td>Baker</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>7 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Quentin Hennebert</td>
+                                    <td>34</td>
+                                    <td>Former Prison Guard</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>7 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Florian Rocca</td>
+                                    <td>32</td>
+                                    <td>---</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>7 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Patrick Aron</td>
+                                    <td>60</td>
+                                    <td>Unemployed</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>6 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Cyprien Culieras</td>
+                                    <td>44</td>
+                                    <td>Forklift Operator</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>6 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Jean-Marc Leloup</td>
+                                    <td>74</td>
+                                    <td>Retired Truck Driver</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>6 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Adrien Longeron</td>
+                                    <td>34</td>
+                                    <td>---</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>6 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Andy Rodriguez</td>
+                                    <td>37</td>
+                                    <td>Unemployed</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>6 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Hugues Malago</td>
+                                    <td>39</td>
+                                    <td>Tiler</td>
+                                    <td>Attempted Rape</td>
+                                    <td>5 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Didier Sambuchi</td>
+                                    <td>67</td>
+                                    <td>Retired Truck Driver</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>5 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Jacques Cubeau</td>
+                                    <td>73</td>
+                                    <td>Retired Firefighter</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>5 years (3 suspended)</td>
+                                </tr>
+                                <tr>
+                                    <td>Philippe Leleu</td>
+                                    <td>62</td>
+                                    <td>---</td>
+                                    <td>Aggravated Rape</td>
+                                    <td>5 years (2 suspended)</td>
+                                </tr>
+                                <tr>
+                                    <td>Joseph Cocco</td>
+                                    <td>69</td>
+                                    <td>---</td>
+                                    <td>Aggravated Sexual Assault</td>
+                                    <td>3 years</td>
+                                </tr>
+                                <tr>
+                                    <td>Saifeddine Ghabi</td>
+                                    <td>36</td>
+                                    <td>Truck Driver</td>
+                                    <td>Aggravated Sexual Assault</td>
+                                    <td>3 years</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>VII. Aftermath and Legacy</h3>
+                    <p>Following the verdicts, Gisèle Pelicot read a prepared statement outside the court. She reaffirmed her decision to go public: "I wanted all of society to be a witness... I'll never regret this decision". She added, "I have confidence in our capacity... to find a better future, in which men and women alike can live harmlessly together with mutual respect".</p>
+
+                    <h4>The Lone Appeal</h4>
+                    <p>In the wake of the verdict, 17 of the convicted men filed to appeal their sentences. However, facing the public and legal consensus, 16 of them subsequently dropped their cases.</p>
+                    <p>Only one man proceeded: Husamettin Dogan, 44, the construction worker originally sentenced to nine years. His appeal began in Nîmes in October 2025. He maintained his defense that he was "deceived" by Dominique Pelicot. Gisèle Pelicot returned to court to testify against him once more.</p>
+                    <p>The appeal backfired. On October 9, 2025, the appeals court—composed of three judges and nine citizen jurors —found Dogan guilty again and increased his sentence from 9 to 10 years. The prosecutor noted that Dogan's "refusal to take responsibility" demonstrated that "shame has not yet changed sides" for him. Dominique Pelicot and the other 49 convicted men did not appeal their sentences.</p>
+
+                    <h4>The "Pelicot Effect"</h4>
+                    <p>The case has had a profound, lasting impact on French society.</p>
+                    <ul>
+                        <li><strong>Legal Debate:</strong> The trial sparked a nationwide debate, forcing a reckoning with the fact that "consent is notably absent" from the formal definition of rape in French law (which is defined as penetration by "violence, coercion, threat or surprise"). This led French President Emmanuel Macron to vow that he would inscribe "consent" into law.</li>
+                        <li><strong>Cultural Icon:</strong> Gisèle Pelicot's courage has been formally recognized. In 2024, she was named to the BBC's 100 Women list and the Financial Times' 25 most influential women of the year. On Bastille Day, July 14, 2025, she was named a knight of the Legion of Honour, France's highest order of merit.</li>
+                        <li><strong>Civil Proceedings:</strong> The final stage of legal accountability is scheduled for November 2025, when civil proceedings are due in Avignon to settle the damages owed to Gisèle Pelicot and her family, to be paid jointly by the convicted men.</li>
+                    </ul>
+                    <p>Gisèle Pelicot's legacy is the success of her stated mission. She endured the humiliation of the trial to provide "undeniable evidence," not just of a crime, but of a culture that enables it. In forcing the shame back onto the perpetrators, she fundamentally altered the terms of the debate for all victims who follow.</p>
+                </div>
+                
+                <!-- End of article content -->
+
+            </div>
+        </section>
+    </main>
+
+    <!-- The Footer is identical to your article-page.html -->
+    <footer class="cta" id="contact">
+        <div class="container">
+            <h2>Join Our Community. Engage With Caution.</h2>
+            <p>If you are prepared to confront uncomfortable truths and contribute to a discussion rooted in respect and awareness, connect with us.</p>
+            <div class="button-group">
+                
+                <a href="https://www.unnamedthings07.qzz.io/contact.html" class="btn btn-youtube">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true">
+                        <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"></path>
+                    </svg>
+                    <span>Connect With Me</span>
+                </a>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- The JavaScript is identical to your article-page.html -->
+    <script>
+        // This script is for the mobile navigation toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const navLinksList = document.querySelectorAll('.nav-links li a');
+
+        if (navToggle && navLinks) {
+            navToggle.addEventListener('click', () => {
+                navToggle.classList.toggle('open');
+                navLinks.classList.toggle('open');
+            });
+
+            navLinksList.forEach(link => {
+                link.addEventListener('click', () => {
+                    // Only close the menu if clicking a link that isn't the active one
+                    // (though in this case, it will close even on active-link click, which is fine)
+                    if (navLinks.classList.contains('open')) {
+                         navToggle.classList.remove('open');
+                         navLinks.classList.remove('open');
+                    }
+                });
+            });
+        }
+
+        // This script for scrolling on 'Enter' is from your original page.
+        // It will scroll to the top of the article content.
+        const contentSection = document.getElementById('article-content');
+        const scrollToContent = () => {
+            if (contentSection) {
+                contentSection.scrollIntoView({ behavior: 'smooth' });
+            }
+            document.removeEventListener('keydown', handleEnterKey);
+        };
+        const handleEnterKey = (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                scrollToContent();
+            }
+        };
+        document.addEventListener('keydown', handleEnterKey);
+    </script>
+</body>
+</html>
