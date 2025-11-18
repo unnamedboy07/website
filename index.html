@@ -352,6 +352,13 @@
             border-radius: 10px;
             padding: 2rem;
             border: 1px solid #222;
+            transition: all 0.3s ease; /* Added transition */
+        }
+        /* Added hover effect for the link */
+        a:hover .wip-box {
+            border-color: var(--color-red);
+            background-color: rgba(30, 17, 17, 0.95);
+            box-shadow: 0 0 15px rgba(205, 32, 31, 0.3);
         }
         .wip-box .col-image {
             flex-basis: 40%;
@@ -624,20 +631,23 @@
             <div class="container">
                 <h2 class="align-center">Our First Investigation</h2>
                 
-                <div class="columns wip-box">
-                    <div class="column col-image">
-                        <img src="https://i.ibb.co/KpRT9St4/dominique-1.jpg" alt="Dominique Pelicot case thumbnail" class="case-thumbnail">
+                <!-- UPDATED: Wrapped the wip-box in an anchor tag -->
+                <a href="https://www.unnamedthings07.qzz.io/articles/dominique-pelicot.html" style="display: block; text-decoration: none; color: inherit;">
+                    <div class="columns wip-box">
+                        <div class="column col-image">
+                            <img src="https://i.ibb.co/KpRT9St4/dominique-1.jpg" alt="Dominique Pelicot case thumbnail" class="case-thumbnail">
+                        </div>
+                        <div class="column col-text">
+                            <h3 class="status-badge">Work in Progress</h3>
+                            
+                            <h2 class="case-title">Dominique Pelicot Case</h2>
+                            
+                            <p class="case-description">"A monster in the face of a good husband."</p>
+                            
+                            <p>I am currently deep in research for our first feature video, an in-depth look at this harrowing and complex case. Stay tuned for the full investigation.</p>
+                        </div>
                     </div>
-                    <div class="column col-text">
-                        <h3 class="status-badge">Work in Progress</h3>
-                        
-                        <h2 class="case-title">Dominique Pelicot Case</h2>
-                        
-                        <p class="case-description">"A monster in the face of a good husband."</p>
-                        
-                        <p>I am currently deep in research for our first feature video, an in-depth look at this harrowing and complex case. Stay tuned for the full investigation.</p>
-                    </div>
-                </div>
+                </a>
             </div>
         </section>
 
