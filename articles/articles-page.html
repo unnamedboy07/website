@@ -39,7 +39,7 @@
             padding-top: var(--navbar-height);
         }
         h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-heading); /* This is already Oswald */
+            font-family: var(--font-heading);
             font-weight: 700;
             letter-spacing: 1px;
         }
@@ -49,8 +49,6 @@
         /* --- Layout --- */
         .container { width: 90%; max-width: 1100px; margin: 0 auto; }
         .align-center { text-align: center; }
-        .columns { display: flex; gap: 2rem; }
-        .column { flex: 1; }
         main { flex-grow: 1; }
 
         /* --- NAVBAR STYLES --- */
@@ -76,8 +74,9 @@
             color: var(--color-white);
             font-family: var(--font-heading);
             font-size: 1.25rem;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease; /* Added transition */
         }
+        /* Added hover/focus state for the brand */
         .navbar-brand:hover,
         .navbar-brand:focus {
             color: var(--color-red);
@@ -155,31 +154,87 @@
             margin-bottom: 3rem;
         }
 
+        /* UPDATED: Simplified this style and ADDED neon glow */
         .article-heading-special {
-            font-family: 'Special Elite', cursive;
-            font-size: 3.5em;
-            color: var(--color-red);
-            letter-spacing: 1.5px;
+            font-family: 'Special Elite', cursive; /* Set font */
+            font-size: 3.5em; /* Match other h2 headings */
+            color: var(--color-red); /* Set color */
+            letter-spacing: 1.5px; /* Match nav links */
             line-height: 1.2;
             margin-bottom: 3rem;
+            /* ADDED NEON GLOW */
+            text-shadow: 0 0 8px rgba(205, 32, 31, 0.5);
         }
         @media (max-width: 768px) {
             .article-heading-special {
-                font-size: 2.5em;
+                font-size: 2.5em; /* Match other h2 headings on mobile */
             }
         }
 
-
-        .focus .column img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            margin-bottom: 1.5rem;
+        /* --- Article Box Styles (from your homepage) --- */
+        .wip-box {
+            display: flex; /* Replaces .columns */
+            align-items: center;
+            background-color: rgba(17, 17, 17, 0.95);
+            border-radius: 10px;
+            padding: 2rem;
+            border: 1px solid #222;
+            text-decoration: none;
+            color: var(--color-white);
+            transition: all 0.3s ease;
+            margin-top: 2rem; /* Added margin */
+            max-width: 800px; /* Makes the whole block smaller */
+            margin-left: auto; /* Centers the smaller block */
+            margin-right: auto; /* Centers the smaller block */
         }
-        .focus .column h4 {
-            font-size: 1.5rem;
+        .wip-box:hover,
+        .wip-box:focus {
+            border-color: var(--color-red);
+        }
+        .wip-box .col-image {
+            flex-basis: 30%; /* Made thumbnail smaller */
+            flex-shrink: 0;
+        }
+        .wip-box .col-text {
+            flex-basis: 70%; /* Gave text more space */
+            padding-left: 2rem; /* Added padding back */
+        }
+        .wip-box .case-thumbnail {
+            border-radius: 5px;
+            border: 1px solid #444;
+            width: 100%;
+        }
+        .wip-box .status-badge {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-red);
+            font-family: var(--font-body);
+            text-transform: uppercase;
+            letter-spacing: 1px;
             margin-bottom: 0.5rem;
         }
+        .wip-box .case-title {
+            /* REVERTED: Font size back to 2.5em */
+            font-size: 2.5em;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            /* RE-APPLIED: Color back to red */
+            color: var(--color-red);
+            /* REVERTED: Font family back to default (Oswald) */
+            font-family: var(--font-heading);
+            /* REVERTED: Removed letter-spacing */
+            letter-spacing: 1px;
+        }
+        .wip-box .case-description {
+            font-size: 1.25rem;
+            font-style: italic;
+            color: #ccc;
+            border-left: 3px solid var(--color-red);
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+        /* --- End Article Box Styles --- */
+
         
         /* --- Footer Styles --- */
         .cta {
@@ -187,12 +242,11 @@
             padding: 80px 0;
             text-align: center;
         }
-        /* UPDATED: Added color and subtle glow */
+        /* Added style for footer h2 */
         .cta h2 { 
             font-size: 3em; 
             color: var(--color-red);
-            text-shadow: 0 0 8px rgba(205, 32, 31, 0.5); /* Subtle red glow */
-            /* Font is already 'Oswald' from global h2 style */
+            text-shadow: 0 0 8px rgba(205, 32, 31, 0.5); /* Subtle glow */
         }
         .cta p {
             font-size: 1.25rem;
@@ -224,18 +278,9 @@
             color: var(--color-white);
         }
         .btn-youtube:hover { background-color: #ff4141; }
-        .btn-instagram {
-            border: 2px solid #888;
-            color: var(--color-white);
-        }
-        .btn-instagram:hover {
-            background-color: var(--color-white);
-            color: var(--color-black);
-        }
         
         /* --- Responsive (Mobile) --- */
         @media (max-width: 768px) {
-            .columns { flex-direction: column; }
             body { 
                 background-attachment: scroll; 
                 min-height: unset;
@@ -265,6 +310,21 @@
             .focus { padding: 50px 0; }
             .focus h2 { font-size: 2.5em; }
             
+            /* --- Responsive styles for article box --- */
+            .wip-box {
+                flex-direction: column;
+                max-width: 100%; /* Let it be full-width on mobile */
+            }
+            .wip-box .col-text {
+                padding-left: 0;
+                padding-right: 0; /* Reset padding for mobile */
+                padding-top: 2rem;
+            }
+            .wip-box .case-title {
+                font-size: 2em;
+            }
+            /* --- End responsive article box --- */
+
             .cta { padding: 50px 0; }
             .cta h2 { font-size: 2.2em; }
         }
@@ -273,6 +333,7 @@
 <body>
 
     <nav class="navbar">
+        <!-- UPDATED this link -->
         <a href="https://www.unnamedthings07.qzz.io" class="navbar-brand"> 
             <img src="https://i.ibb.co/0jxSvdfH/channels4-profile.jpg" alt="Unnamed Things Logo" class="navbar-logo">
             <span class="navbar-brand-text">
@@ -283,11 +344,12 @@
             <span class="hamburger"></span>
         </button>
         <ul class="nav-links">
+            <!-- UPDATED video link -->
             <li><a href="https://www.unnamedthings07.qzz.io/videos/video-page.html"><span style="color: var(--color-red);">V</span>ideos</a></li>
             
             <li><a href="article-page.html" class="active-link"><span style="color: var(--color-red);">A</span>rticles</a></li>
             
-            <!-- Removed target="_blank" -->
+            <!-- UPDATED contact link to point to new page -->
             <li><a href="https://www.unnamedthings07.qzz.io/contact.html"><span style="color: var(--color-red);">C</span>onnect</a></li>
         </ul>
     </nav>
@@ -296,32 +358,29 @@
         <section class="focus" id="article-content">
             <div class="container">
                 
+                <!-- This now uses the simplified style -->
                 <h2 class="align-center article-heading-special">Deep Dives & Case Files</h2>
                 
+                <!-- Added this intro paragraph -->
                 <p style="font-size: 1.25rem; text-align: center; max-width: 800px; margin: 1rem auto 2rem auto;">
                     This is where the investigation goes deeper. The videos provide the narrative, but here we will dissect the details, analyze the evidence, and explore the 'whys' that haunt us.
-                </p>
-                <p style="font-size: 1.25rem; text-align: center; max-width: 800px; margin: 1rem auto 4rem auto;">
-                    This section is currently under construction. I am building a library of in-depth articles that will complement our video investigations. Thank you for your patience.
-                </p>
+                </p><!-- Fixed typo D back to p -->
 
-                <div class="columns">
-                    <div class="column">
-                        <img src="https://i.ibb.co/j93Lxmf5/empty-interrogation-room-single-light-source-stark-concrete-walls-isolated-chair-and-table-noir.jpg" alt="Dark interrogation room">
-                        <h4>In-Depth Case Files</h4>
-                        <p>Detailed timelines, evidence breakdowns, and full written narratives of the cases we cover, providing a permanent resource for you to reference.</p>
+                <!-- This is the new article block -->
+                <a href="https://www.unnamedthings07.qzz.io/articles/dominique-pelicot.html" class="wip-box">
+                    <div class="col-image">
+                        <img src="https://i.ibb.co/KpRT9St4/dominique-1.jpg" alt="Dominique Pelicot case thumbnail" class="case-thumbnail">
                     </div>
-                    <div class="column">
-                        <img src="https://i.ibb.co/hFd19qZN/winding-dark-path-through-a-dense-foggy-forest-at-dusk-ominous-shadows-sense-of-uncertainty-and-m.jpg" alt="Dark foggy path">
-                        <h4>Psychological Analyses</h4>
-                        <p>Exploring the criminal psychology, victimology, and complex human factors behind the headlines. We'll go beyond the 'what' and into the 'why'.</p>
+                    <div class="col-text">
+                        <h3 class="status-badge">WORK IN PROGRESS</h3>
+                        
+                        <h2 class="case-title">Dominique Pelicot Case</h2>
+                        
+                        <p class="case-description">"A monster in the face of a good husband."</p>
+                        
+                        <p>I am currently deep in research for our first feature video, an in-depth look at this harrowing and complex case. Stay tuned for the full investigation.</p>
                     </div>
-                    <div class="column">
-                        <img src="https://i.ibb.co/XZmryvw6/st-extra-large-507x507-pad-600x600-f8f8f8.jpg" alt="Shattered symbol">
-                        <h4>Sources & Updates</h4>
-                        <p>A central hub for source materials, official documents, and any future updates or developments on the cases we investigate.</p>
-                    </div>
-                </div>
+                </a>
 
             </div>
         </section>
@@ -329,12 +388,14 @@
 
     <footer class="cta" id="contact">
         <div class="container">
-            <!-- This h2 will now be red with a subtle glow -->
             <h2>Join Our Community. Engage With Caution.</h2>
             <p>If you are prepared to confront uncomfortable truths and contribute to a discussion rooted in respect and awareness, connect with us.</p>
+            <!-- Corrected class typo and replaced buttons -->
             <div class="button-group">
                 
+                <!-- REPLACED YouTube/Instagram with a single Contact Me button -->
                 <a href="https://www.unnamedthings07.qzz.io/contact.html" class="btn btn-youtube">
+                    <!-- Added an envelope icon -->
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true">
                         <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"></path>
                     </svg>
@@ -353,7 +414,7 @@
                 contentSection.scrollIntoView({ behavior: 'smooth' });
             }
             document.removeEventListener('keydown', handleEnterKey);
-};
+        };
 
         const handleEnterKey = (e) => {
             if (e.key === 'Enter') {
