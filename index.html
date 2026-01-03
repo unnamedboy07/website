@@ -5,744 +5,960 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unnamed Things - Not for Ordinary People</title>
     <link rel="icon" type="image/jpeg" href="https://i.ibb.co/0jxSvdfH/channels4-profile.jpg">
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <!-- ADDED NEW FONT FOR NAVBAR BRAND -->
-    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&family=Special+Elite&display=swap" rel="stylesheet">
     
     <style>
-        /* --- Global Styles & Reset --- */
+        /* --- 1. Variables & Reset --- */
         :root {
+            /* Palette Update */
             --color-red: #CD201F;
-            --color-black: #000000;
-            --color-dark-1: #111111;
-            --color-dark-2: #222222;
-            --color-white: #FFFFFF;
+            --color-red-dim: #8a1515;
+            --color-red-glow: rgba(205, 32, 31, 0.6);
+            
+            --color-black: #020202;
+            --color-dark-1: #0a0a0a;
+            --color-dark-2: #141414;
+            --color-platinum: #E0E0E0;
+            --color-gray: #a0a0a0;
+            
             --font-heading: 'Oswald', sans-serif;
             --font-body: 'Roboto', sans-serif;
-            --navbar-height: 60px; /* Define navbar height for offset */
+            --font-mono: 'Special Elite', cursive;
+            
+            --navbar-height: 70px;
+            --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { 
+            scroll-behavior: smooth; 
+            overflow-x: hidden;
         }
-
-        /* Added html { scroll-behavior: smooth; } for anchor links */
-        html {
-            scroll-behavior: smooth;
-        }
-
+        
         body {
             font-family: var(--font-body);
-            /* --- DESKTOP BACKGROUND --- */
-            background-image: url('https://i.ibb.co/Z1M7M8m6/file-00000000ffe8720795dd0af80e4fa438.png');
+            background-color: var(--color-black);
+            /* Improved Background: Darker, richer blend */
+            background-image: 
+                linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)),
+                url('https://i.ibb.co/Z1M7M8m6/file-00000000ffe8720795dd0af80e4fa438.png');
             background-size: cover;
             background-position: center center;
             background-attachment: fixed;
             background-repeat: no-repeat;
-            color: var(--color-white);
+            color: var(--color-platinum);
             line-height: 1.6;
-            padding-top: var(--navbar-height); /* Add padding to body to offset fixed navbar */
+            overflow-x: hidden;
+            position: relative;
         }
 
+        /* --- Global Grain/Noise Overlay (Alive Background) --- */
+        .noise-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* --- Global CRT/Vignette Overlay --- */
+        .crt-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle, rgba(0,0,0,0) 50%, rgba(0,0,0,0.4) 100%),
+                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.05) 50%);
+            background-size: 100% 100%, 100% 4px;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Typography Defaults */
         h1, h2, h3, h4, h5, h6 {
             font-family: var(--font-heading);
             font-weight: 700;
-            letter-spacing: 1px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            color: #ffffff;
         }
 
-        p {
-            margin-bottom: 1.5rem;
+        /* Improved Text Colors */
+        p { 
+            margin-bottom: 1.5rem; 
+            color: var(--color-platinum); 
+            font-weight: 300; 
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+        }
+        
+        .text-red { color: var(--color-red); text-shadow: 0 0 12px var(--color-red-glow); }
+        .text-silver { 
+            background: linear-gradient(to bottom, #ffffff, #bbbbbb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* --- 2. Animations & Transitions --- */
+        
+        /* Reveal on Scroll Classes */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+            will-change: opacity, transform;
+        }
+        .reveal-up.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        /* --- Layout --- */
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* Redacted Text Effect */
+        .redacted-reveal {
+            position: relative;
+            display: inline-block;
+            color: transparent;
+        }
+        .redacted-reveal::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--color-red); /* Changed to RED for impact */
+            transform-origin: left;
+            transition: transform 1s var(--ease-out);
+        }
+        .redacted-reveal.active { color: var(--color-platinum); }
+        .redacted-reveal.active::after { transform: scaleX(0); }
+
+        /* Typewriter Effect */
+        .typewriter {
+            display: inline-block;
+            overflow: hidden; 
+            white-space: nowrap; 
+            margin: 0 auto; 
+            border-right: 3px solid var(--color-red); /* Red Cursor */
+            width: 0;
+        }
+        .typewriter.active {
+            animation: 
+                typing 3.5s steps(40, end) forwards,
+                blink-caret .75s step-end infinite;
+            width: 100%; 
+        }
+        /* Mobile adjustment for typewriter */
+        @media(max-width: 768px) {
+            .typewriter { white-space: normal; border-right: none; } 
+            .typewriter.active { animation: fadeIn 2s ease forwards; }
+        }
+
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--color-red); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Glitch Effect */
+        .glitch-wrapper { position: relative; display: inline-block; }
+        .glitch {
+            position: relative;
+            color: var(--color-red);
+            font-family: var(--font-mono);
+            font-size: 3.5rem;
+            line-height: 1.1;
+            text-shadow: 0 0 10px rgba(205, 32, 31, 0.6);
+        }
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--color-black); 
+        }
+        .glitch::before {
+            left: 2px;
+            text-shadow: -1px 0 #00ffff;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+        .glitch::after {
+            left: -2px;
+            text-shadow: -1px 0 #ff00ff;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(30px, 9999px, 10px, 0); }
+            5% { clip: rect(80px, 9999px, 90px, 0); }
+            100% { clip: rect(30px, 9999px, 10px, 0); }
+        }
+        @keyframes glitch-anim2 {
+            0% { clip: rect(10px, 9999px, 80px, 0); }
+            5% { clip: rect(30px, 9999px, 10px, 0); }
+            100% { clip: rect(10px, 9999px, 80px, 0); }
+        }
+
+        /* Scroll Down Arrow Animation */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0.8;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        .scroll-indicator:hover { opacity: 1; }
+        .scroll-arrow {
+            width: 20px;
+            height: 20px;
+            border-right: 3px solid var(--color-red); 
+            border-bottom: 3px solid var(--color-red);
+            transform: rotate(45deg);
+            animation: bounce 2s infinite;
+            filter: drop-shadow(0 0 5px var(--color-red));
+        }
+        .scroll-arrow:nth-child(2) { animation-delay: 0.2s; margin-top: -5px; }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) rotate(45deg); }
+            40% { transform: translateY(-10px) rotate(45deg); }
+            60% { transform: translateY(-5px) rotate(45deg); }
+        }
+
+        /* --- 3. Layout Utilities --- */
         .container {
             width: 90%;
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
-
-        .align-center {
-            text-align: center;
+        /* Cinematic Viewfinder Border - RED */
+        .viewfinder-border {
+            position: absolute;
+            pointer-events: none;
+            width: 30px; height: 30px;
+            border-color: rgba(205, 32, 31, 0.5); /* Red */
+            transition: all 0.3s ease;
+            z-index: 10;
         }
-
-        .columns {
-            display: flex;
+        .vf-tl { top: 0; left: 0; border-top: 2px solid; border-left: 2px solid; }
+        .vf-tr { top: 0; right: 0; border-top: 2px solid; border-right: 2px solid; }
+        .vf-bl { bottom: 0; left: 0; border-bottom: 2px solid; border-left: 2px solid; }
+        .vf-br { bottom: 0; right: 0; border-bottom: 2px solid; border-right: 2px solid; }
+        
+        .section-padding { padding: 120px 0; }
+        .text-center { text-align: center; }
+        
+        .grid-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            align-items: stretch;
         }
 
-        .column {
-            flex: 1;
-        }
-
-        /* --- NAVBAR STYLES --- */
+        /* --- 4. Navbar (Glassmorphism) --- */
         .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--navbar-height);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: rgba(0, 0, 0, 0.85); 
-            border-bottom: none; 
-            padding: 0 2rem;
-            height: var(--navbar-height);
-            position: fixed; /* Fixes navbar to the top */
-            top: 0;
-            left: 0;
-            width: 100%;
+            padding: 0 5%;
             z-index: 1000;
+            background: rgba(0, 0, 0, 0.4); 
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
         }
-        .navbar-brand {
+        .navbar.scrolled {
+            background: rgba(5, 5, 5, 0.95); 
+            padding: 0 4%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.7);
+            border-bottom: 1px solid var(--color-red-dim); 
+        }
+        
+        .nav-brand { display: flex; align-items: center; gap: 10px; }
+        .nav-logo {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--color-red);
+            transition: transform 0.3s ease;
+        }
+        .nav-brand:hover .nav-logo { transform: rotate(10deg); }
+        
+        .brand-text {
+            font-family: var(--font-mono);
+            font-size: 1.2rem;
+            color: var(--color-white);
+            letter-spacing: 1px;
+        }
+        
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-link {
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            color: var(--color-platinum);
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        .nav-link span { color: var(--color-red); }
+        .nav-link:hover { color: var(--color-white); }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 0%; height: 1px;
+            background: var(--color-red); transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        /* Mobile Nav Toggle */
+        .menu-toggle { display: none; cursor: pointer; background: none; border: none; z-index: 1002; }
+        .bar {
+            width: 25px; height: 2px; background: var(--color-red);
+            margin: 6px 0; transition: 0.4s;
+        }
+
+        /* --- 5. Hero Section --- */
+        .hero {
+            height: 100vh;
+            height: 100dvh;
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-            color: var(--color-white);
-            font-family: var(--font-heading);
-            font-size: 1.25rem;
-        }
-        .navbar-brand-text {
-            font-family: 'Special Elite', cursive;
-            font-size: 1.4rem; 
-            letter-spacing: 1.5px; 
-            line-height: 1; 
-        }
-        .navbar-logo {
-            height: 35px; /* Control logo size */
-            width: auto;
-            border-radius: 50%;
-        }
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 1.5rem;
-        }
-        .nav-links li a {
-            color: var(--color-white);
-            text-decoration: none;
-            font-family: 'Special Elite', cursive; 
-            text-transform: none; 
-            letter-spacing: 1.5px; 
-            font-size: 1.4rem; 
-            padding: 0.5rem 0;
-            transition: color 0.3s ease;
-        }
-        .nav-links li a:hover,
-        .nav-links li a:focus {
-            color: var(--color-red);
-        }
-        .nav-toggle {
-            display: none; /* Hide toggle on desktop */
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-        .nav-toggle .hamburger {
-            width: 25px;
-            height: 2px;
-            background-color: var(--color-white);
-            display: block;
+            justify-content: center;
             position: relative;
-            transition: all 0.3s ease;
+            /* Spotlight Effect Background */
+            background: radial-gradient(circle at center, rgba(40,10,10,0.4) 0%, rgba(0,0,0,1) 90%);
+            overflow: hidden;
         }
-        .nav-toggle .hamburger::before,
-        .nav-toggle .hamburger::after {
-            content: '';
-            position: absolute;
-            left: 0;
+        @media (max-width: 768px) {
+            .hero {
+                background-image: url('https://i.ibb.co/ycdpCW5m/Chat-GPT-Image-Nov-15-2025-06-10-46-PM.png'); 
+                background-size: cover;
+                background-position: center;
+                background-blend-mode: overlay;
+                background-color: rgba(0,0,0,0.85);
+            }
+        }
+        
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .warning-border {
+            border: 1px solid rgba(205, 32, 31, 0.4);
+            padding: 3rem 2rem;
+            position: relative;
+            background: rgba(10, 5, 5, 0.6); 
+            backdrop-filter: blur(4px);
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+        }
+        .warning-border::before, .warning-border::after {
+            content: ''; position: absolute; width: 15px; height: 15px;
+            border: 2px solid var(--color-red); transition: all 0.3s;
+        }
+        .warning-border::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+        .warning-border::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+        .warning-label {
+            display: inline-block;
+            border: 1px solid var(--color-red);
+            color: var(--color-red);
+            padding: 5px 15px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            background: rgba(205, 32, 31, 0.1);
+            text-transform: uppercase;
+        }
+        .hero-desc {
+            font-size: 1.25rem;
+            margin-top: 1.5rem;
+            color: var(--color-platinum);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            max-width: 650px;
+            margin-left: auto; margin-right: auto;
+            border-left: 2px solid var(--color-red-dim);
+            padding-left: 15px;
+        }
+        .hero-sub {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: var(--color-red); 
+            margin-top: 2rem;
+            display: block;
+        }
+
+        /* --- 6. Intro Section --- */
+        .intro {
+            background: radial-gradient(circle at 30% 50%, #111111 0%, #000000 100%);
+            border-bottom: 1px solid #222;
+            position: relative;
+        }
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .logo-display {
             width: 100%;
-            height: 2px;
-            background-color: var(--color-white);
+            border-radius: 2px;
+            box-shadow: 0 0 30px rgba(205, 32, 31, 0.15); /* Red glow */
+            /* Removed grayscale, added contrast */
+            filter: contrast(1.1) brightness(0.9);
+            transition: all 0.5s ease;
+            border: 1px solid #333;
+        }
+        .logo-display:hover { filter: contrast(1.1) brightness(1); border-color: var(--color-red); box-shadow: 0 0 40px rgba(205, 32, 31, 0.4); }
+        
+        .intro-text h2 { font-size: 3.5rem; line-height: 1; margin-bottom: 1.5rem; }
+        .intro-text p { font-size: 1.15rem; line-height: 1.8; color: #cccccc; }
+
+        /* --- 7. Divider / Quote --- */
+        .quote-divider {
+            padding: 100px 0;
+            position: relative;
+            /* UPDATED: Added a textured background instead of plain gradient */
+            background: 
+                linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+                url('https://www.transparenttextures.com/patterns/carbon-fibre.png'); 
+            background-color: #080808;
+            text-align: center;
+            /* Added red borders for matching look */
+            border-top: 1px solid var(--color-red-dim);
+            border-bottom: 1px solid var(--color-red-dim);
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.9);
+        }
+        .quote-divider h2 {
+            font-family: var(--font-mono);
+            font-size: 2.5rem;
+            color: var(--color-platinum);
+            font-weight: 400;
+            font-style: italic;
+        }
+        .quote-divider h2 span { color: var(--color-red); font-style: normal; font-weight: 700; text-shadow: 0 0 15px var(--color-red-glow); }
+
+        /* --- 8. Focus Cards --- */
+        .focus-section { 
+            /* Subtle spotlight behind cards */
+            background: radial-gradient(circle at 50% 30%, #141414 0%, #000000 70%); 
+            position: relative; 
+        }
+        .card {
+            background: linear-gradient(145deg, rgba(20,20,20,0.9), rgba(10,10,10,0.95));
+            border: 1px solid #333;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.4s var(--ease-out);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        /* Card Hover Effect */
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: var(--color-red); transform: scaleX(0); transition: transform 0.4s ease; transform-origin: left; z-index: 10;
+        }
+        .card:hover::before { transform: scaleX(1); }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+            border-color: var(--color-red-dim);
+            background: linear-gradient(145deg, rgba(30,30,30,0.95), rgba(15,15,15,1));
+        }
+        .card-img-wrapper { overflow: hidden; height: 220px; position: relative; }
+        .card-img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.6s ease;
+            /* Enhanced Color instead of grayscale */
+            filter: contrast(1.1) saturate(1.1) brightness(0.9);
+        }
+        .card:hover .card-img { transform: scale(1.05); filter: contrast(1.1) saturate(1.2) brightness(1); }
+        
+        .card-content { padding: 2rem 1.5rem; flex-grow: 1; border-top: 1px solid #222; }
+        .card-title { color: var(--color-white); font-size: 1.5rem; font-family: var(--font-heading); margin-bottom: 0.75rem; letter-spacing: 1px;}
+        .card-title span { color: var(--color-red); } 
+        
+        /* Video Container */
+        .video-wrapper {
+            margin-top: 4rem;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            border: 1px solid #333;
+        }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        /* --- 9. Work in Progress --- */
+        .wip-section { background: linear-gradient(180deg, #000 0%, #0d0d0d 100%); border-top: 1px solid #222;}
+        .file-folder {
+            background: 
+                linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.6)),
+                url('https://www.transparenttextures.com/patterns/dark-leather.png'), #1a1a1a;
+            border: 1px solid #333;
+            border-left: 5px solid var(--color-red);
+            padding: 0;
+            display: flex;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
             transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        .nav-toggle .hamburger::before {
-            top: -8px;
+        .file-folder:hover {
+            box-shadow: 0 0 40px rgba(205, 32, 31, 0.15);
+            border-color: #666;
+            border-left-color: #ff2a29;
+            transform: scale(1.01);
         }
-        .nav-toggle .hamburger::after {
-            bottom: -8px;
+        .file-stamp {
+            position: absolute;
+            top: 20px; right: 20px;
+            border: 3px solid var(--color-red);
+            color: var(--color-red);
+            padding: 8px 20px;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            text-transform: uppercase;
+            transform: rotate(-10deg);
+            opacity: 0.8;
+            font-size: 1.3rem;
+            z-index: 10;
+            mix-blend-mode: screen;
+            transition: opacity 0.3s;
+            background: rgba(0,0,0,0.6);
         }
-        /* --- END NAVBAR STYLES --- */
-
-        /* --- Section Styles --- */
-
-        /* Section 1: Hero Warning */
-        .hero {
+        .file-folder:hover .file-stamp { opacity: 1; transform: rotate(-10deg) scale(1.1); color: #fff; background: var(--color-red); border-color: transparent;}
+        
+        .file-img-col { flex-basis: 40%; position: relative; min-height: 350px; overflow: hidden; }
+        .file-img {
+            width: 100%; height: 100%; object-fit: cover;
+            /* Stylized color instead of sepia */
+            filter: contrast(1.2) brightness(0.8);
+            transition: all 0.5s ease;
+        }
+        .file-folder:hover .file-img { filter: contrast(1.2) brightness(1); transform: scale(1.03); }
+        
+        .file-content-col {
+            flex-basis: 60%;
+            padding: 3rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            min-height: calc(100vh - var(--navbar-height)); 
-            padding: 2rem;
-            text-align: center;
-            background-color: rgba(0, 0, 0, 0.85);
-            position: relative; /* For the scroll arrow */
+            /* Gradient to make text readable over leather texture */
+            background: linear-gradient(to right, #0a0a0a, rgba(20,20,20,0.9));
         }
-        .hero h1 {
-            /* UPDATED FONT */
-            font-family: 'Special Elite', cursive;
-            font-size: 4.5rem;
-            color: var(--color-red);
-            text-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
-            letter-spacing: 5px;
+        .file-label {
+            font-family: var(--font-mono);
+            color: var(--color-gray);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            border-bottom: 1px solid #333;
+            display: inline-block;
+            padding-bottom: 5px;
+            width: fit-content;
         }
-        .hero p {
-            font-size: 1.25rem;
-            max-width: 800px;
-            margin-top: 1rem;
-        }
-        .hero em {
-            font-size: 1rem;
-            color: #aaa;
-            margin-top: 2rem;
-        }
-
-        /* --- SCROLL ARROW --- */
-        .scroll-arrow {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            z-index: 10;
-        }
-        .scroll-arrow svg {
-            width: 100%;
-            height: 100%;
-            fill: rgba(255, 255, 255, 0.5);
-            animation: bounce 2s infinite ease-in-out;
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-15px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
-        }
-        /* --- END SCROLL ARROW --- */
-
-
-        /* Section 2: Intro / Logo */
-        .intro {
-            background-color: rgba(17, 17, 17, 0.9);
-            padding: 80px 0 450px 0; /* Added large bottom padding */
-        }
-        .intro .columns {
-            align-items: center;
-        }
-        .intro .col-logo {
-            flex-basis: 30%;
-        }
-        .intro .col-text {
-            flex-basis: 70%;
-        }
-        .intro .logo-img {
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            width: 100%;
-            max-width: 300px; /* Adjust as needed */
-            margin: 0 auto;
-        }
-        .intro h2 {
-            font-size: 4em;
-            line-height: 1.1;
-        }
-        .intro .text-red {
-            color: var(--color-red);
-        }
-        .intro p {
+        .quote-italic {
+            font-style: italic;
+            border-left: 3px solid var(--color-red);
+            padding-left: 20px;
+            margin: 1.5rem 0;
+            color: var(--color-platinum);
+            background: rgba(205, 32, 31, 0.05); /* Slight red tint bg */
+            padding: 15px 20px;
             font-size: 1.1rem;
         }
 
-        /* Section 3: Cover Image */
-        .cover {
-            position: relative;
-            padding: 100px 0;
-            min-height: 500px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-        .cover::after {
-            content: none;
-        }
-        .cover * {
-            z-index: 2; /* This is fine */
-        }
-        .cover h2 {
-            font-size: 3rem;
-            letter-spacing: 2px;
-        }
-        .cover p {
-            font-size: 1.5rem;
-            margin-top: 0.5rem;
-        }
-
-        /* Section 4: Focus */
-        .focus {
-            background-color: rgba(0, 0, 0, 0.85);
-            padding: 80px 0;
-        }
-        .focus h2 {
-            font-size: 3.5em;
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        .focus .column img {
-            width: 100%;
-            height: 250px; /* Fixed height for uniformity */
-            object-fit: cover;
-            margin-bottom: 1.5rem;
-        }
-        .focus .column h4 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* --- VIDEO CONTAINER STYLES --- */
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-            overflow: hidden;
-            width: 100%;
-            max-width: 900px; /* Max width for the video, looks better */
-            margin: 3rem auto 0 auto; /* Centered, with 3rem top margin */
-            border: 1px solid var(--color-dark-2);
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        /* --- END VIDEO STYLES --- */
-
-        /* --- Section 4.5: Work in Progress --- */
-        .working-now {
-            background-color: rgba(0, 0, 0, 0.85);
-            padding: 10px 0 80px 0;
-        }
-        .working-now h2.align-center {
-            font-size: 3.5em;
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        .wip-box {
-            align-items: center;
-            background-color: rgba(17, 17, 17, 0.95);
-            border-radius: 10px;
-            padding: 2rem;
-            border: 1px solid #222;
-            transition: all 0.3s ease; /* Added transition */
-        }
-        /* Added hover effect for the link */
-        a:hover .wip-box {
-            border-color: var(--color-red);
-            background-color: rgba(30, 17, 17, 0.95);
-            box-shadow: 0 0 15px rgba(205, 32, 31, 0.3);
-        }
-        .wip-box .col-image {
-            flex-basis: 40%;
-        }
-        .wip-box .col-text {
-            flex-basis: 60%;
-        }
-        .wip-box .case-thumbnail {
-            border-radius: 5px;
-            border: 1px solid #444;
-            width: 100%;
-        }
-        .wip-box .status-badge {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--color-red);
-            font-family: var(--font-body);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-        }
-        .wip-box .case-title {
-            font-size: 2.5em;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            color: var(--color-white);
-        }
-        .wip-box .case-description {
-            font-size: 1.25rem;
-            font-style: italic;
-            color: #ccc;
-            border-left: 3px solid var(--color-red);
-            padding-left: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Section 5: CTA / Links */
-        .cta {
-            background-color: rgba(34, 34, 34, 0.9);
+        /* --- 10. Footer --- */
+        .footer {
+            background: #020202;
             padding: 80px 0;
             text-align: center;
+            border-top: 1px solid #222;
         }
-        .cta h2 {
-            font-size: 3em;
-            /* UPDATED: Added Oswald font */
-            font-family: var(--font-heading); 
-            /* UPDATED: Added red color */
-            color: var(--color-red);
-            /* UPDATED: Added subtle neon glow */
-            text-shadow: 0 0 8px rgba(205, 32, 31, 0.5); 
-        }
-        .cta p {
-            font-size: 1.25rem;
-            max-width: 800px;
-            margin: 1rem auto 2rem auto;
-        }
-        .button-group {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap; /* Allow buttons to stack on small screens */
+        .footer h2 { font-size: 2.5rem; color: var(--color-white); text-shadow: none; }
+        
+        /* UPDATED: Added Warning Flash/Pulse Effect for Caution Text */
+        @keyframes warning-flash {
+            0%, 100% { opacity: 1; text-shadow: 0 0 10px var(--color-red); }
+            50% { opacity: 0.7; text-shadow: 0 0 20px var(--color-red), 0 0 40px var(--color-red); color: #ff4d4d; }
         }
         
-        /* --- CSS FOR BUTTONS --- */
+        .footer h2 span { 
+            color: var(--color-red); 
+            display: inline-block;
+            animation: warning-flash 2s infinite ease-in-out;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        
+        .social-btns {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
         .btn {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            padding: 15px 30px;
-            font-size: 1.2em;
+            gap: 10px;
+            padding: 14px 35px;
+            border-radius: 4px;
             font-family: var(--font-heading);
-            text-decoration: none;
             text-transform: uppercase;
-            border-radius: 5px;
-            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+            cursor: pointer;
         }
-        .btn svg {
-            width: 1.5em;
-            height: 1.5em;
+        .btn-red {
+            background: linear-gradient(45deg, var(--color-red-dim), var(--color-red));
+            color: white;
+            box-shadow: 0 4px 15px rgba(205, 32, 31, 0.2);
+            border: 1px solid var(--color-red);
         }
-        .btn-youtube {
-            background-color: var(--color-red);
-            color: var(--color-white);
+        .btn-red:hover {
+            background: linear-gradient(45deg, var(--color-red), #ff4d4d);
+            color: white;
+            box-shadow: 0 0 25px rgba(205, 32, 31, 0.6);
+            transform: translateY(-2px);
         }
-        .btn-youtube:hover {
-            background-color: #ff4141;
+
+        /* --- Mobile Responsive & Optimization --- */
+        @media (max-width: 992px) {
+            .glitch { font-size: 3rem; }
+            .section-padding { padding: 80px 0; }
         }
-        .btn-instagram {
-            border: 2px solid #888;
-            color: var(--color-white);
-        }
-        .btn-instagram:hover {
-            background-color: var(--color-white);
-            color: var(--color-black);
-        }
-        
-        /* --- Responsive (Mobile) --- */
+
         @media (max-width: 768px) {
-            .columns {
-                flex-direction: column;
-            }
-            body {
-                /* --- THEMATIC MOBILE BACKGROUND --- */
-                background-image: url('https://i.ibb.co/ycdpCW5m/Chat-GPT-Image-Nov-15-2025-06-10-46-PM.png');
-                background-attachment: scroll; /* Fixed background is bad on mobile */
-                background-size: cover;
-                background-position: center center;
-            }
-
-            /* --- MOBILE NAVBAR STYLES --- */
-            .navbar {
-                padding: 0 1rem;
-            }
-            .nav-toggle {
-                display: block; 
-                padding: 0.5rem; 
-                margin-right: -0.5rem; 
-            }
-            .navbar-brand-text,
-            .nav-links li a {
-                font-size: 1.1rem;
-                letter-spacing: 1px;
-            }
+            /* Typography Tweaks */
+            .glitch { font-size: 2rem; }
+            .hero-desc { font-size: 1rem; padding: 0 10px; }
+            .intro-text h2 { font-size: 2.2rem; }
+            .quote-divider h2 { font-size: 1.6rem; padding: 0 10px; }
+            .card-title { font-size: 1.3rem; }
+            
+            /* Layout Tweaks */
+            .intro-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .logo-display { max-width: 250px; margin: 0 auto; }
+            .intro-text { text-align: center; }
+            .file-folder { flex-direction: column; }
+            .file-img-col { min-height: 200px; flex-basis: auto; }
+            .file-content-col { padding: 1.5rem; }
+            .section-padding { padding: 60px 0; }
+            
+            /* Card Grid */
+            .grid-columns { grid-template-columns: 1fr; gap: 1.5rem; }
+            
+            /* Mobile Menu */
+            .menu-toggle { display: block; }
             .nav-links {
-                display: none; 
-                position: absolute;
-                top: var(--navbar-height);
-                left: 0;
-                width: 100%;
+                position: fixed;
+                top: 0; right: -100%;
+                width: 80%;
+                height: 100dvh;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(15px);
                 flex-direction: column;
-                background-color: rgba(0, 0, 0, 0.95);
-                border-top: 1px solid var(--color-dark-2);
-                padding: 1rem;
-                text-align: center;
-                gap: 1rem;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+                border-left: 1px solid #222;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.8);
             }
-            .nav-links.open {
-                display: flex; 
-            }
-            .nav-toggle.open .hamburger {
-                background-color: transparent; 
-            }
-            .nav-toggle.open .hamburger::before {
-                transform: rotate(45deg) translate(5px, 7px);
-            }
-            .nav-toggle.open .hamburger::after {
-                transform: rotate(-45deg) translate(5px, -7px);
-            }
-            /* --- END MOBILE NAVBAR STYLES --- */
-
-            .intro .col-logo {
-                margin-bottom: 2rem;
-            }
-            .hero h1 { 
-                font-size: 2.5rem; 
-                letter-spacing: 2px;
-            }
-            .hero p { font-size: 1rem; }
-            .intro h2 { font-size: 2.5em; }
-            .cover { background-attachment: scroll; }
-            .cover h2 { font-size: 2rem; }
-            .cover p { font-size: 1rem; }
-            .focus h2 { font-size: 2.5em; }
-            .focus .column img {
-                height: auto;
-            }
-            .working-now h2.align-center { font-size: 2.5em; }
-            .wip-box .case-title { font-size: 2em; }
-            .cta h2 { font-size: 2.2em; }
+            .nav-links.active { right: 0; }
+            .nav-link { font-size: 1.5rem; padding: 10px 0; }
+            
+            /* Burger Animation */
+            .menu-toggle.active .bar:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
+            .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
+            .menu-toggle.active .bar:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
+            
+            /* Adjustments for frame */
+            .container { width: 92%; }
+            .video-wrapper { margin-top: 2rem; }
         }
-
     </style>
 </head>
 <body>
 
-    <!-- --- FIXED NAVBAR --- -->
-    <nav class="navbar">
-        <a href="#hero" class="navbar-brand"> <!-- Point to top -->
-            <img src="https://i.ibb.co/0jxSvdfH/channels4-profile.jpg" alt="Unnamed Things Logo" class="navbar-logo">
-            <span class="navbar-brand-text" style="color: var(--color-red);">
-                Unnamed Things
-            </span>
+    <!-- Noise Texture Overlay (Film Grain) -->
+    <div class="noise-overlay"></div>
+    
+    <!-- CRT Scanline Overlay -->
+    <div class="crt-overlay"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <a href="#hero" class="nav-brand">
+            <img src="https://i.ibb.co/0jxSvdfH/channels4-profile.jpg" alt="Logo" class="nav-logo">
+            <span class="brand-text"><span class="text-red">U</span>nnamed <span class="text-red">T</span>hings</span>
         </a>
-        <button class="nav-toggle" aria-label="Toggle navigation">
-            <span class="hamburger"></span>
+        
+        <button class="menu-toggle" aria-label="Toggle Menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
         </button>
+
         <ul class="nav-links">
-            <li><a href="https://www.unnamedthings07.qzz.io/videos/video-page.html"><span style="color: var(--color-red);">V</span>ideos</a></li>
-            <li><a href="https://www.unnamedthings07.qzz.io/articles/articles-page.html"><span style="color: var(--color-red);">A</span>rticles</a></li>
-            <!-- UPDATED LINK: Removed target="_blank" -->
-            <li><a href="https://www.unnamedthings07.qzz.io/contact.html"><span style="color: var(--color-red);">C</span>onnect</a></li>
+            <li><a href="https://www.unnamedthings07.qzz.io/videos/video-page.html" class="nav-link"><span>V</span>ideos</a></li>
+            <li><a href="https://www.unnamedthings07.qzz.io/articles/articles-page.html" class="nav-link"><span>A</span>rticles</a></li>
+            <li><a href="https://www.unnamedthings07.qzz.io/contact.html" class="nav-link"><span>C</span>onnect</a></li>
         </ul>
     </nav>
-    <!-- --- END FIXED NAVBAR --- -->
 
-    <header class="hero" id="hero">
-        <h1>VIEWER DISCRETION ADVISED</h1>
-        <p>The content on this channel explores mature themes including violent crime, sexual assault, and psychological trauma.<br><br>These stories are based on real events and contain details that can be profoundly disturbing. This content is strictly intended for a mature audience only.</p>
-        <em>Proceed with caution. Scroll down to learn more about our mission.</em>
-        <!-- --- SCROLL ARROW --- -->
-        <a href="#intro" class="scroll-arrow" aria-label="Scroll down to intro">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16.59l-6.29-6.3a1 1 0 0 0-1.42 1.42l7 7a1 1 0 0 0 1.42 0l7-7a1 1 0 0 0-1.42-1.42L12 16.59z"/></svg>
-        </a>
+    <!-- Hero Section -->
+    <header id="hero" class="hero">
+        <!-- Viewfinder Corners for Hero -->
+        <div class="container" style="height: 100%; display: flex; align-items: center; justify-content: center;">
+            <div class="viewfinder-border vf-tl"></div>
+            <div class="viewfinder-border vf-tr"></div>
+            <div class="viewfinder-border vf-bl"></div>
+            <div class="viewfinder-border vf-br"></div>
+
+            <div class="hero-content">
+                <div class="warning-border reveal-up">
+                    <span class="warning-label">Restricted Access</span>
+                    <div class="glitch-wrapper">
+                        <h1 class="glitch" data-text="VIEWER DISCRETION ADVISED">VIEWER DISCRETION ADVISED</h1>
+                    </div>
+                    <p class="hero-desc">
+                        The content on this channel explores violent crime, sexual assault, and psychological trauma. 
+                        These stories are based on real events and contain details that can be profoundly disturbing.
+                    </p>
+                    <span class="hero-sub" style="letter-spacing: 2px;">PROCEED WITH CAUTION</span>
+                </div>
+            </div>
+
+            <a href="#intro" class="scroll-indicator" aria-label="Scroll Down">
+                <span class="scroll-arrow"></span>
+                <span class="scroll-arrow"></span>
+            </a>
+        </div>
     </header>
 
-    <main>
-        <!-- Added id="intro" for scroll target -->
-        <section class="intro" id="intro">
-            <div class="container">
-                <div class="columns">
-                    <div class="column col-logo">
-                        <img src="https://i.ibb.co/0jxSvdfH/channels4-profile.jpg" alt="unnamed things logo" class="logo-img">
-                    </div>
-                    <div class="column col-text">
-                        <h2>Unearthing the <span class="text-red">Unspoken</span>.</h2>
-                        <p>At unnamed things, we delve into the darkest corners of human experience, bringing meticulously researched narratives of true crime to light. We believe that by understanding these harrowing events, we can advocate for justice, raise awareness, and prevent future tragedies.</p>
-                        <p>Our purpose is not sensationalism, but empathetic investigation. Each story is handled with profound respect for the victims and survivors, aiming to reveal truth where shadows once lay.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="cover">
-            <div class="container">
-                <h2>Stories That Haunt. Truths That Matter.</h2>
-                <p>Every shadow holds a story. We aim to cast light.</p>
-            </div>
-        </section>
-
-        <!-- Added id="videos" for nav link -->
-        <section class="focus" id="videos"> 
-            <div class="container">
-                <h2 class="align-center">Our Focus</h2>
-                <div class="columns">
-                    <div class="column">
-                        <img src="https://i.ibb.co/j93Lxmf5/empty-interrogation-room-single-light-source-stark-concrete-walls-isolated-chair-and-table-noir.jpg" alt="Interrogation room">
-                        <h4>Unsolved Enigmas</h4>
-                        <p>We revisit chilling cold cases, dissecting every detail in pursuit of answers and closure.</p>
-                    </div>
-                    <div class="column">
-                        <img src="https://i.ibb.co/XZmryvw6/st-extra-large-507x507-pad-600x600-f8f8f8.jpg" alt="Shattered symbol">
-                        <h4>Victim-Centered Narratives</h4>
-                        <p>Honoring those affected, giving voice to their experiences, and advocating for justice.</p>
-                    </div>
-                    <div class="column">
-                        <img src="https://i.ibb.co/hFd19qZN/winding-dark-path-through-a-dense-foggy-forest-at-dusk-ominous-shadows-sense-of-uncertainty-and-m.jpg" alt="Winding dark path">
-                        <h4>Criminal Psychology</h4>
-                        <p>Exploring the complex motives and psychological landscapes behind heinous acts.</p>
-                    </div>
-                </div>
-
-                <!-- --- YOUTUBE VIDEO SECTION --- -->
-                <div class="video-container">
-                    <iframe 
-                        src="https://www.youtube.com/embed/YOUR_VIDEO_ID_HERE" 
-                        title="YouTube video player - Our Focus" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                <!-- --- END YOUTUBE VIDEO SECTION --- -->
-
-            </div>
-        </section>
-
-        <!-- Added id="articles" for nav link -->
-        <section class="working-now" id="articles">
-            <div class="container">
-                <h2 class="align-center">Our First Investigation</h2>
-                
-                <!-- UPDATED: Wrapped the wip-box in an anchor tag -->
-                <a href="https://www.unnamedthings07.qzz.io/articles/dominique-pelicot.html" style="display: block; text-decoration: none; color: inherit;">
-                    <div class="columns wip-box">
-                        <div class="column col-image">
-                            <img src="https://i.ibb.co/KpRT9St4/dominique-1.jpg" alt="Dominique Pelicot case thumbnail" class="case-thumbnail">
-                        </div>
-                        <div class="column col-text">
-                            <h3 class="status-badge">Work in Progress</h3>
-                            
-                            <h2 class="case-title">Dominique Pelicot Case</h2>
-                            
-                            <p class="case-description">"A monster in the face of a good husband."</p>
-                            
-                            <p>I am currently deep in research for our first feature video, an in-depth look at this harrowing and complex case. Stay tuned for the full investigation.</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- UPDATED FOOTER SECTION -->
-       <footer class="cta" id="contact">
+    <!-- Intro Section -->
+    <section id="intro" class="section-padding intro">
         <div class="container">
-            <h2>Join Our Community. Engage With Caution.</h2>
-            <p>If you are prepared to confront uncomfortable truths and contribute to a discussion rooted in respect and awareness, connect with us.</p>
-            <!-- Corrected class typo and replaced buttons -->
-            <div class="button-group">
-                
-                <!-- REPLACED YouTube/Instagram with a single Contact Me button -->
-                <a href="https://www.unnamedthings07.qzz.io/contact.html" class="btn btn-youtube">
-                    <!-- Added an envelope icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true">
-                        <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"></path>
-                    </svg>
-                    <span>Connect With Me</span>
-                </a>
+            <div class="intro-grid">
+                <div class="col-img reveal-up">
+                    <img src="https://i.ibb.co/0jxSvdfH/channels4-profile.jpg" alt="Unnamed Things Logo" class="logo-display">
+                </div>
+                <div class="intro-text reveal-up reveal-delay-1">
+                    <!-- Typewriter effect only active when in view (added via JS) -->
+                    <h2 class="typewriter-container">
+                        <span class="text-silver typewriter" id="typewriter-text">Unearthing the Unspoken.</span>
+                    </h2>
+                    <p style="margin-top: 1.5rem;">
+                        <span class="redacted-reveal">At Unnamed Things, we delve into the darkest corners of human experience.</span> 
+                        We do not glorify the macabre; we analyze it. Through meticulously researched narratives, we aim to understand the "why" behind the horror.
+                    </p>
+                    <p style="margin-top: 1rem;">
+                        Our purpose is <span class="text-red" style="border-bottom: 1px solid var(--color-red);">empathetic investigation</span>. We handle every story with profound respect for victims, aiming to reveal truth where shadows once lay.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Quote Divider -->
+    <section class="quote-divider">
+        <div class="container reveal-up">
+            <h2>"Every shadow holds a story. <br> We aim to <span>cast light</span>."</h2>
+        </div>
+    </section>
+
+    <!-- Focus Section -->
+    <section id="focus" class="section-padding focus-section">
+        <div class="container">
+            <!-- Viewfinder corners for this section too -->
+            <div class="viewfinder-border vf-tl" style="opacity: 0.5;"></div>
+            <div class="viewfinder-border vf-tr" style="opacity: 0.5;"></div>
+            
+            <h2 class="text-center reveal-up" style="font-size: 3rem; margin-bottom: 4rem;">Our Focus</h2>
+            <div class="grid-columns">
+                
+                <!-- Card 1 -->
+                <div class="card reveal-up reveal-delay-1">
+                    <div class="card-img-wrapper">
+                        <img src="https://i.ibb.co/j93Lxmf5/empty-interrogation-room-single-light-source-stark-concrete-walls-isolated-chair-and-table-noir.jpg" alt="Unsolved Enigmas" class="card-img">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title"><span>Unsolved</span> Enigmas</h3>
+                        <p>We revisit chilling cold cases, dissecting every detail in pursuit of answers and closure for those left behind.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card reveal-up reveal-delay-2">
+                    <div class="card-img-wrapper">
+                        <img src="https://i.ibb.co/XZmryvw6/st-extra-large-507x507-pad-600x600-f8f8f8.jpg" alt="Victim Narratives" class="card-img">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title"><span>Victim</span> Narratives</h3>
+                        <p>Honoring those affected by giving voice to their experiences, ensuring they are defined by their lives, not their deaths.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card reveal-up reveal-delay-3">
+                    <div class="card-img-wrapper">
+                        <img src="https://i.ibb.co/hFd19qZN/winding-dark-path-through-a-dense-foggy-forest-at-dusk-ominous-shadows-sense-of-uncertainty-and-m.jpg" alt="Criminal Psychology" class="card-img">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Criminal <span>Psychology</span></h3>
+                        <p>Exploring the complex motives and psychological landscapes behind heinous acts to understand the human capacity for evil.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- YouTube Video Embed -->
+            <div class="video-wrapper reveal-up">
+                <iframe 
+                    src="https://www.youtube.com/embed/YOUR_VIDEO_ID_HERE?theme=dark&color=red" 
+                    title="Channel Focus" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Work In Progress Section -->
+    <section class="section-padding wip-section">
+        <div class="container">
+            <h2 class="text-center reveal-up" style="margin-bottom: 3rem;">Current Investigation</h2>
+            
+            <a href="https://www.unnamedthings07.qzz.io/articles/dominique-pelicot.html" class="reveal-up">
+                <div class="file-folder">
+                    <div class="file-stamp">CLASSIFIED // OPEN</div>
+                    <div class="file-img-col">
+                        <img src="https://i.ibb.co/KpRT9St4/dominique-1.jpg" alt="Dominique Pelicot" class="file-img">
+                    </div>
+                    <div class="file-content-col">
+                        <span class="file-label">CASE FILE NO. 001</span>
+                        <h3 style="font-size: 2.2rem; margin-bottom: 0.5rem; color: var(--color-white); font-family: var(--font-heading);">Dominique Pelicot</h3>
+                        <p class="text-red" style="font-weight: 700; letter-spacing: 1px;">STATUS: WORK IN PROGRESS</p>
+                        
+                        <div class="quote-italic">
+                            "A monster in the face of a good husband."
+                        </div>
+                        <p style="color: #bbb;">
+                            I am currently deep in research for our first feature video, an in-depth look at this harrowing and complex case. 
+                            Click to view the preliminary evidence report.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container reveal-up">
+            <h2>Join Our Community. Engage With <span>Caution</span>.</h2>
+            <p style="max-width: 600px; margin: 20px auto; color: #888;">
+                If you are prepared to confront uncomfortable truths and contribute to a discussion rooted in respect and awareness, connect with us.
+            </p>
+            
+            <div class="social-btns">
+                <a href="https://www.unnamedthings07.qzz.io/contact.html" class="btn btn-red">
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    Connect With Me
+                </a>
             </div>
         </div>
     </footer>
-    </main>
 
-    <!-- --- JAVASCRIPT --- -->
+    <!-- Scripts -->
     <script>
-        // --- Smooth Scroll for Arrow & Enter Key ---
-        const scrollArrow = document.querySelector('.scroll-arrow');
-        const introSection = document.getElementById('intro');
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Scroll Reveal & Redacted Text
+            const reveals = document.querySelectorAll('.reveal-up, .redacted-reveal');
+            const typewriter = document.getElementById('typewriter-text');
+            let typewriterStarted = false;
 
-        // 1. Scroll Function
-        const scrollToIntro = () => {
-            if (introSection) {
-                // Use scrollIntoView for modern browsers
-                introSection.scrollIntoView({ behavior: 'smooth' });
-            }
-            // Remove the 'Enter' key listener after it's used once
-            document.removeEventListener('keydown', handleEnterKey);
-        };
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+                const elementVisible = 100;
 
-        // 2. 'Enter' Key Event
-        const handleEnterKey = (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault(); // Stop any default 'Enter' behavior
-                scrollToIntro();
-            }
-        };
-        
-        document.addEventListener('keydown', handleEnterKey);
-
-        // 3. Arrow Click Event (handles the anchor link click)
-        if (scrollArrow) {
-            scrollArrow.addEventListener('click', (e) => {
-                e.preventDefault(); // Stop default anchor behavior
-                scrollToIntro();
-            });
-        }
-
-        // --- Mobile Navbar Toggle ---
-        const navToggle = document.querySelector('.nav-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        const navLinksList = document.querySelectorAll('.nav-links li a');
-
-        if (navToggle && navLinks) {
-            // Toggle menu on hamburger click
-            navToggle.addEventListener('click', () => {
-                navToggle.classList.toggle('open');
-                navLinks.classList.toggle('open');
-            });
-
-            // Close menu when a link is clicked
-            navLinksList.forEach(link => {
-                link.addEventListener('click', () => {
-                    // Check if the link is an external one
-                    const href = link.getAttribute('href');
-                    if (href && !href.startsWith('#')) {
-                        // If it's external, just let the browser navigate
-                        // and close the menu
-                        navToggle.classList.remove('open');
-                        navLinks.classList.remove('open');
-                    }
-                    // If it's an internal anchor link (like #contact)
-                    // the default smooth scroll will happen
-                    // and we still close the menu
-                    else {
-                        navToggle.classList.remove('open');
-                        navLinks.classList.remove('open');
+                reveals.forEach((reveal) => {
+                    const elementTop = reveal.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveal.classList.add('active');
+                        
+                        // Check if this reveal contains the typewriter
+                        if (reveal.contains(typewriter) && !typewriterStarted) {
+                            typewriter.classList.add('active');
+                            typewriterStarted = true;
+                        }
                     }
                 });
+            };
+
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll(); // Trigger once on load
+
+            // 2. Navbar Glass Effect Transition
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
             });
-        }
 
+            // 3. Mobile Menu Toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            }));
+        });
     </script>
-    <!-- --- END JAVASCRIPT --- -->
-
 </body>
 </html>
