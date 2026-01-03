@@ -186,6 +186,8 @@
             display: grid;
             grid-template-columns: 1fr 300px;
             gap: 3rem;
+            position: relative; /* Ensure sidebar stickiness relative to this container */
+            align-items: start; /* Prevent sidebar from stretching */
         }
 
         /* --- Main Content (The Case File) --- */
@@ -260,8 +262,15 @@
         tr:hover { background: #151515; }
         td:first-child { color: #fff; font-weight: bold; }
 
-        /* --- Sidebar (Quick Access) --- */
-        .sidebar { position: sticky; top: 100px; height: fit-content; }
+        /* --- Sidebar (Quick Access) - STICKY FIX --- */
+        .sidebar { 
+            position: -webkit-sticky; /* For Safari */
+            position: sticky; 
+            top: 100px; /* Offset from top */
+            height: fit-content; 
+            align-self: start; /* Vital for grid layouts */
+            z-index: 100;
+        }
         .sidebar-card {
             background: rgba(20, 20, 20, 0.8);
             border: 1px solid #333;
