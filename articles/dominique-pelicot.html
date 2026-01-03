@@ -103,11 +103,11 @@
         .delay-1 { animation-delay: 0.2s; }
         .delay-2 { animation-delay: 0.4s; }
 
-        /* Glitch Title - Adapted for Article Header */
+        /* Glitch Title */
         .glitch-wrapper { position: relative; display: inline-block; margin-bottom: 1rem; }
         .glitch {
             font-family: var(--font-heading);
-            font-size: 2.5rem; /* Slightly smaller to fit long title */
+            font-size: 2.5rem;
             line-height: 1.1;
             color: #fff;
             position: relative;
@@ -117,7 +117,7 @@
             content: attr(data-text);
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: #111; /* Matches card bg */
+            background: #111;
         }
         .glitch::before {
             left: 2px;
@@ -158,7 +158,7 @@
             display: flex; justify-content: space-between; align-items: center; padding: 0 5%;
             z-index: 1000;
             background: rgba(5, 5, 5, 0.8);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         .nav-brand { display: flex; align-items: center; gap: 10px; }
@@ -186,11 +186,11 @@
             display: grid;
             grid-template-columns: 1fr 300px;
             gap: 3rem;
-            position: relative; /* Ensure sidebar stickiness relative to this container */
-            align-items: start; /* Prevent sidebar from stretching */
+            position: relative;
+            align-items: start;
         }
 
-        /* --- Main Content (The Case File) --- */
+        /* --- Main Content --- */
         .case-file-wrapper {
             background: #111;
             border: 1px solid #333;
@@ -198,7 +198,6 @@
             padding: 3rem;
             box-shadow: 0 0 50px rgba(0,0,0,0.5);
         }
-        /* Top Secret Stamp */
         .stamp-secret {
             position: absolute; top: 30px; right: 30px;
             border: 4px solid var(--color-red); color: var(--color-red);
@@ -209,17 +208,13 @@
 
         .article-header { border-bottom: 1px solid #333; padding-bottom: 2rem; margin-bottom: 2rem; }
         .case-number { font-family: var(--font-mono); color: #666; letter-spacing: 2px; display: block; margin-bottom: 0.5rem; }
-        
-        /* Article Meta */
         .article-meta { font-family: var(--font-mono); color: var(--color-red); font-size: 0.9rem; }
 
-        /* Evidence Image */
         .evidence-photo-container {
             width: 100%; margin-bottom: 2rem; position: relative;
             border: 5px solid #fff; transform: rotate(-1deg);
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
-        /* Additional Image Styling - Smaller/Inline Images */
         .inline-evidence-photo {
             width: 100%; max-width: 600px; display: block; margin: 2rem auto;
             border: 4px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.6);
@@ -228,18 +223,11 @@
         .inline-evidence-photo:hover { filter: contrast(1) grayscale(0%); }
         .rotate-left { transform: rotate(-2deg); }
         .rotate-right { transform: rotate(2deg); }
-
         .evidence-photo { width: 100%; display: block; filter: contrast(1.1) grayscale(100%); transition: filter 0.5s; }
         .evidence-photo:hover { filter: contrast(1) grayscale(0%); }
-        .paper-clip {
-            position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
-            width: 40px; height: 80px; background: #aaa; border-radius: 20px;
-            z-index: 10; clip-path: polygon(0 0, 100% 0, 100% 70%, 80% 70%, 80% 20%, 20% 20%, 20% 100%, 0 100%);
-        }
 
-        /* Body Text - Typewriter Style */
         .article-body {
-            font-family: var(--font-mono); /* Typewriter font */
+            font-family: var(--font-mono);
             font-size: 1.1rem;
             color: #ddd;
             line-height: 1.8;
@@ -247,14 +235,9 @@
         .article-body h2 { color: var(--color-red); margin-top: 3.5rem; border-left: 3px solid var(--color-red); padding-left: 1rem; font-size: 1.8rem; border-bottom: 1px solid #333; padding-bottom: 0.5rem; }
         .article-body h3 { color: #fff; margin-top: 2rem; font-size: 1.4rem; font-family: var(--font-heading); }
         .article-body p { margin-bottom: 1.5rem; text-align: justify; }
-        
-        /* Redacted Effect */
-        .redacted {
-            background: #000; color: #000; padding: 0 5px; cursor: help; transition: all 0.3s;
-        }
+        .redacted { background: #000; color: #000; padding: 0 5px; cursor: help; transition: all 0.3s; }
         .redacted:hover { background: transparent; color: var(--color-red); text-decoration: underline; }
 
-        /* Table Styles for Convictions */
         .table-responsive { overflow-x: auto; margin: 2rem 0; border: 1px solid #333; }
         table { width: 100%; border-collapse: collapse; min-width: 600px; }
         th, td { text-align: left; padding: 12px; border-bottom: 1px solid #333; font-family: var(--font-mono); font-size: 0.9rem; }
@@ -262,13 +245,13 @@
         tr:hover { background: #151515; }
         td:first-child { color: #fff; font-weight: bold; }
 
-        /* --- Sidebar (Quick Access) - STICKY FIX --- */
+        /* --- Sidebar --- */
         .sidebar { 
-            position: -webkit-sticky; /* For Safari */
+            position: -webkit-sticky; 
             position: sticky; 
-            top: 100px; /* Offset from top */
+            top: 100px; 
             height: fit-content; 
-            align-self: start; /* Vital for grid layouts */
+            align-self: start; 
             z-index: 100;
         }
         .sidebar-card {
@@ -285,11 +268,7 @@
             transition: all 0.2s;
         }
         .toc-link:hover { color: #fff; padding-left: 5px; border-left: 2px solid var(--color-red); }
-
-        .btn-back {
-            display: inline-block; margin-top: 2rem;
-            color: #666; font-family: var(--font-mono); font-size: 0.9rem;
-        }
+        .btn-back { display: inline-block; margin-top: 2rem; color: #666; font-family: var(--font-mono); font-size: 0.9rem; }
         .btn-back:hover { color: var(--color-white); }
 
         /* --- Footer --- */
@@ -314,10 +293,7 @@
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 2px solid #fff;
         }
-        .ai-fab:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 30px rgba(205, 32, 31, 0.8);
-        }
+        .ai-fab:hover { transform: scale(1.1); box-shadow: 0 0 30px rgba(205, 32, 31, 0.8); }
         .ai-fab svg { width: 30px; height: 30px; fill: #fff; }
 
         .ai-dialog {
@@ -330,7 +306,7 @@
             border: 1px solid #333;
             backdrop-filter: blur(10px);
             z-index: 1999;
-            display: none; /* Hidden by default */
+            display: none;
             flex-direction: column;
             box-shadow: 0 0 50px rgba(0,0,0,0.8);
             border-radius: 8px;
@@ -340,7 +316,6 @@
         .ai-dialog.active { display: flex; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Dialog Header */
         .dialog-header {
             background: #1a1a1a;
             padding: 10px 15px;
@@ -353,7 +328,6 @@
         .close-dialog { background: none; border: none; color: #888; cursor: pointer; font-size: 1.2rem; }
         .close-dialog:hover { color: #fff; }
 
-        /* Chat Area inside Dialog */
         .chat-area {
             flex-grow: 1;
             padding: 15px;
@@ -368,7 +342,6 @@
         .msg.ai { align-self: flex-start; background: rgba(255,255,255,0.05); color: #ddd; border-left: 2px solid var(--color-red); }
         .msg.user { align-self: flex-end; background: rgba(205, 32, 31, 0.2); color: #fff; border-right: 2px solid var(--color-red); }
 
-        /* Input Area inside Dialog */
         .chat-input-area {
             padding: 10px;
             border-top: 1px solid #333;
@@ -397,16 +370,7 @@
             font-size: 0.8rem;
         }
         .dialog-send:disabled { background: #444; }
-
-        /* Loading Dots */
-        .typing { 
-            color: var(--color-red); 
-            font-size: 0.7rem; 
-            margin-left: 10px; 
-            display: none; 
-            font-family: var(--font-mono); /* Ensure font consistency */
-            letter-spacing: 1px;
-        }
+        .typing { color: var(--color-red); font-size: 0.7rem; margin-left: 10px; display: none; font-family: var(--font-mono); letter-spacing: 1px; }
 
         /* --- Mobile Responsive --- */
         @media (max-width: 900px) {
@@ -472,7 +436,7 @@
                     </div>
 
                     <div class="article-meta">
-                        <span>FILED BY: UNNAMED THINGS</span> | <span>STATUS: CLOSED</span>
+                        <span>FILED BY: UNNAMED THINGS</span> | <span>STATUS: ONGOING</span>
                     </div>
                 </header>
 
@@ -723,7 +687,7 @@
         </div>
         <div class="chat-area" id="chatArea">
             <div class="msg ai">
-                System online. I am the Unnamed Things OpenAI Analyst. I have been fed the full case file on Dominique Pelicot. <br><br>
+                System online. I am the Unnamed Things AI Analyst. I have been fed the full case file on Dominique Pelicot. <br><br>
                 Ask me about evidence, timeline, or the verdict.
             </div>
         </div>
@@ -736,11 +700,9 @@
 
     <script>
         // --- API Configuration ---
-        // SECURITY WARNING: Storing your API key in client-side code is risky.
-        // It allows anyone to inspect your source code and use your key.
         const OPENROUTER_API_KEY = "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";
-        const YOUR_SITE_URL = "https://www.unnamedthings07.qzz.io"; // Optional: Your site URL
-        const YOUR_SITE_NAME = "Unnamed Things"; // Optional: Your site name
+        const YOUR_SITE_URL = "https://www.unnamedthings07.qzz.io"; 
+        const YOUR_SITE_NAME = "Unnamed Things"; 
 
         const SYSTEM_PROMPT = `
             You are a specialized AI Forensic Analyst for "Unnamed Things". Your persona is serious, objective, and analytical.
@@ -756,7 +718,10 @@
             - Verdict: Dec 19, 2024. All 51 defendants guilty. 
             - Sentences: Dominique (20 years). Co-defendants (3-15 years).
             
-            Answer user questions based on this data. Keep responses relatively short (under 3 sentences where possible) to fit the small chat window. Use a "terminal" style tone.
+            INSTRUCTIONS:
+            1. **PRIORITY:** Always check the "FULL REPORT DATA" above first to answer questions specifically about this case.
+            2. **EXTERNAL KNOWLEDGE (WEB SIMULATION):** If the user asks a question NOT covered by the report (e.g., definitions of terms, broader legal context in France, details about other famous cases, or general questions), YOU MUST ANSWER THEM using your broad internal knowledge. Do not say "I don't know" if it's general knowledge. Act as if you are retrieving this from a wider database.
+            3. **TONE:** Keep responses relatively short (under 4 sentences), precise, and professional. Use a "terminal" style tone (e.g., "Data retrieved:", "Analysis:", "Definition:").
         `;
 
         // --- UI Logic ---
@@ -811,12 +776,13 @@
                     method: "POST",
                     headers: {
                         "Authorization": `Bearer ${OPENROUTER_API_KEY}`,
-                        "HTTP-Referer": YOUR_SITE_URL, // Optional
-                        "X-Title": YOUR_SITE_NAME, // Optional
+                        "HTTP-Referer": YOUR_SITE_URL, 
+                        "X-Title": YOUR_SITE_NAME, 
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        "model": "openai/gpt-3.5-turbo",
+                        // Using Google Gemini Flash via OpenRouter
+                        "model": "google/gemini-2.0-flash-001", 
                         "messages": [...chatHistory, { role: "user", content: userMessage }]
                     })
                 });
