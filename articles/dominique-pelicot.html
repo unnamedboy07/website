@@ -779,7 +779,7 @@
         }
 
         // --- AI Logic ---
-        const apiKey = ""; // API Key injected by environment
+        const apiKey = "AIzaSyDABqXO-nQKuDJTLFhfXZjd0NQ1HcDTsw0"; // API Key injected by environment
         const genAI = new GoogleGenerativeAI(apiKey);
         const model = genAI.getGenerativeModel({ 
             model: "gemini-2.5-flash-preview-09-2025",
@@ -839,8 +839,8 @@
                 
                 addMsg(response, 'ai');
             } catch (err) {
-                console.error(err);
-                addMsg("Error: Connection lost.", 'ai');
+                console.error("Gemini API Error:", err);
+                addMsg("Error: Connection lost. Ensure API key is configured.", 'ai');
             } finally {
                 dialogInput.disabled = false;
                 dialogSend.disabled = false;
