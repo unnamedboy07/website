@@ -296,6 +296,118 @@
         .footer { background: #020202; padding: 60px 0; text-align: center; border-top: 1px solid #222; margin-top: auto; }
         .footer p { color: #666; font-size: 0.9rem; max-width: 500px; margin: 0 auto; }
 
+        /* --- AI Chat Floating Button & Dialog --- */
+        .ai-fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--color-red);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(205, 32, 31, 0.5);
+            cursor: pointer;
+            z-index: 2000;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid #fff;
+        }
+        .ai-fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(205, 32, 31, 0.8);
+        }
+        .ai-fab svg { width: 30px; height: 30px; fill: #fff; }
+
+        .ai-dialog {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            height: 500px;
+            background: rgba(10, 10, 10, 0.95);
+            border: 1px solid #333;
+            backdrop-filter: blur(10px);
+            z-index: 1999;
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            border-radius: 8px;
+            overflow: hidden;
+            animation: slideUp 0.3s ease-out;
+        }
+        .ai-dialog.active { display: flex; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Dialog Header */
+        .dialog-header {
+            background: #1a1a1a;
+            padding: 10px 15px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .dialog-title { font-family: var(--font-mono); color: var(--color-red); font-size: 0.9rem; font-weight: bold; }
+        .close-dialog { background: none; border: none; color: #888; cursor: pointer; font-size: 1.2rem; }
+        .close-dialog:hover { color: #fff; }
+
+        /* Chat Area inside Dialog */
+        .chat-area {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+        }
+        .msg { padding: 8px 12px; border-radius: 4px; max-width: 85%; line-height: 1.4; }
+        .msg.ai { align-self: flex-start; background: rgba(255,255,255,0.05); color: #ddd; border-left: 2px solid var(--color-red); }
+        .msg.user { align-self: flex-end; background: rgba(205, 32, 31, 0.2); color: #fff; border-right: 2px solid var(--color-red); }
+
+        /* Input Area inside Dialog */
+        .chat-input-area {
+            padding: 10px;
+            border-top: 1px solid #333;
+            display: flex;
+            gap: 5px;
+            background: #111;
+        }
+        .dialog-input {
+            flex-grow: 1;
+            background: #000;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            outline: none;
+        }
+        .dialog-input:focus { border-color: var(--color-red); }
+        .dialog-send {
+            background: var(--color-red);
+            border: none;
+            color: #fff;
+            padding: 0 12px;
+            cursor: pointer;
+            font-family: var(--font-heading);
+            font-size: 0.8rem;
+        }
+        .dialog-send:disabled { background: #444; }
+
+        /* Loading Dots */
+        .typing { 
+            color: var(--color-red); 
+            font-size: 0.7rem; 
+            margin-left: 10px; 
+            display: none; 
+            font-family: var(--font-mono); /* Ensure font consistency */
+            letter-spacing: 1px;
+        }
+
         /* --- Mobile Responsive --- */
         @media (max-width: 900px) {
             .article-container { grid-template-columns: 1fr; }
@@ -304,6 +416,8 @@
             .glitch { font-size: 1.8rem; }
         }
         @media (max-width: 768px) {
+            .ai-fab { bottom: 20px; right: 20px; width: 50px; height: 50px; }
+            .ai-dialog { bottom: 80px; right: 10px; left: 10px; width: auto; height: 60vh; }
             .menu-toggle { display: block; }
             .nav-links {
                 position: fixed; top: 0; right: -100%; width: 80%; height: 100dvh;
@@ -597,16 +711,156 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- AI Chat Elements -->
+    <div class="ai-fab" id="aiFab" title="AI Forensic Analyst">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/><path d="M12 6c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm0 4c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/></svg>
+    </div>
+
+    <div class="ai-dialog" id="aiDialog">
+        <div class="dialog-header">
+            <span class="dialog-title">OPEN AI ANALYST</span>
+            <button class="close-dialog" id="closeDialog">&times;</button>
+        </div>
+        <div class="chat-area" id="chatArea">
+            <div class="msg ai">
+                System online. I am the Unnamed Things OpenAI Analyst. I have been fed the full case file on Dominique Pelicot. <br><br>
+                Ask me about evidence, timeline, or the verdict.
+            </div>
+        </div>
+        <div class="typing" id="typingIndicator">Analyzing...</div>
+        <div class="chat-input-area">
+            <input type="text" id="dialogInput" class="dialog-input" placeholder="Ask a question..." autocomplete="off">
+            <button id="dialogSend" class="dialog-send">SEND</button>
+        </div>
+    </div>
+
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Mobile Menu
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
-            menuToggle.addEventListener('click', () => {
-                menuToggle.classList.toggle('active'); navLinks.classList.toggle('active');
-            });
+        // --- API Configuration ---
+        // SECURITY WARNING: Storing your API key in client-side code is risky.
+        // It allows anyone to inspect your source code and use your key.
+        const OPENROUTER_API_KEY = "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";
+        const YOUR_SITE_URL = "https://www.unnamedthings07.qzz.io"; // Optional: Your site URL
+        const YOUR_SITE_NAME = "Unnamed Things"; // Optional: Your site name
+
+        const SYSTEM_PROMPT = `
+            You are a specialized AI Forensic Analyst for "Unnamed Things". Your persona is serious, objective, and analytical.
+            
+            Current Case File: Dominique Pelicot (Case #001-DP-FR).
+            
+            FULL REPORT DATA:
+            - Overview: Dominique Pelicot (72) drugged his wife Gisèle for a decade (2011-2020) to facilitate her rape by over 50 strangers.
+            - Discovery: Arrested Sept 12, 2020 in Carpentras for upskirting. Police found "abuse" folder on his computer with 20,000+ files.
+            - Modus Operandi: Crushed Temesta (Lorazepam) into her food/drink. Used "Coco" chat site (chatroom: "Against her knowledge") to recruit men.
+            - The 50 Men: Aged 26-74, various professions (firefighter, journalist, nurse, etc.). Known as "Mr. Everyman".
+            - Trial: Began Sept 2, 2024 in Avignon. Gisèle waived anonymity ("Shame must change sides").
+            - Verdict: Dec 19, 2024. All 51 defendants guilty. 
+            - Sentences: Dominique (20 years). Co-defendants (3-15 years).
+            
+            Answer user questions based on this data. Keep responses relatively short (under 3 sentences where possible) to fit the small chat window. Use a "terminal" style tone.
+        `;
+
+        // --- UI Logic ---
+        const aiFab = document.getElementById('aiFab');
+        const aiDialog = document.getElementById('aiDialog');
+        const closeDialog = document.getElementById('closeDialog');
+        const dialogInput = document.getElementById('dialogInput');
+        const dialogSend = document.getElementById('dialogSend');
+        const chatArea = document.getElementById('chatArea');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        // Toggle Dialog
+        aiFab.addEventListener('click', () => {
+            if (aiDialog.classList.contains('active')) {
+                aiDialog.classList.remove('active');
+            } else {
+                aiDialog.classList.add('active');
+                dialogInput.focus();
+            }
         });
+
+        closeDialog.addEventListener('click', () => {
+            aiDialog.classList.remove('active');
+        });
+
+        // Mobile Menu Logic
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+        }
+
+        // --- AI Logic ---
+        let chatHistory = [
+            { role: "system", content: SYSTEM_PROMPT }
+        ];
+
+        function addMsg(text, type) {
+            const div = document.createElement('div');
+            div.className = `msg ${type}`;
+            div.innerHTML = text;
+            chatArea.appendChild(div);
+            chatArea.scrollTop = chatArea.scrollHeight;
+        }
+
+        async function callOpenAI(userMessage) {
+            try {
+                const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${OPENROUTER_API_KEY}`,
+                        "HTTP-Referer": YOUR_SITE_URL, // Optional
+                        "X-Title": YOUR_SITE_NAME, // Optional
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        "model": "openai/gpt-3.5-turbo",
+                        "messages": [...chatHistory, { role: "user", content: userMessage }]
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                return data.choices[0].message.content;
+
+            } catch (error) {
+                console.error("OpenAI/OpenRouter Error:", error);
+                return "Error: Unable to connect to neural link. Check API configuration or network connection.";
+            }
+        }
+
+        async function handleSend() {
+            const text = dialogInput.value.trim();
+            if (!text) return;
+
+            addMsg(text, 'user');
+            dialogInput.value = '';
+            dialogInput.disabled = true;
+            dialogSend.disabled = true;
+            typingIndicator.style.display = 'block';
+
+            const responseText = await callOpenAI(text);
+
+            addMsg(responseText, 'ai');
+            chatHistory.push({ role: "user", content: text });
+            chatHistory.push({ role: "assistant", content: responseText });
+            
+            dialogInput.disabled = false;
+            dialogSend.disabled = false;
+            typingIndicator.style.display = 'none';
+            dialogInput.focus();
+        }
+
+        dialogSend.addEventListener('click', handleSend);
+        dialogInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleSend();
+        });
+
     </script>
 </body>
 </html>
