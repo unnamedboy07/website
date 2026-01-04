@@ -54,7 +54,7 @@
             color: var(--color-platinum);
             line-height: 1.6;
             width: 100%;
-            overflow-x: hidden; /* Prevent horizontal scroll on body */
+            overflow-x: hidden; 
             position: relative;
             display: flex;
             flex-direction: column;
@@ -90,6 +90,7 @@
             margin-bottom: 1rem;
             color: var(--color-platinum);
             word-wrap: break-word; /* Ensure headers don't overflow */
+            overflow-wrap: break-word;
         }
         
         .text-red { color: var(--color-red); }
@@ -108,30 +109,31 @@
         /* Glitch Title - Adapted for Article Header */
         .glitch-wrapper { 
             position: relative; 
-            display: block; /* changed from inline-block to block */
+            display: block; 
             margin-bottom: 1rem; 
             max-width: 100%;
         }
         .glitch {
             font-family: var(--font-heading);
-            font-size: 2.5rem; /* Slightly smaller to fit long title */
+            font-size: 2.5rem; 
             line-height: 1.1;
             color: #fff;
             position: relative;
             z-index: 2;
             word-wrap: break-word;
             overflow-wrap: break-word;
+            white-space: normal; /* Ensure text wraps */
         }
-        /* Mobile Glitch adjustment */
+        
         .glitch::before, .glitch::after {
             content: attr(data-text);
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: #111; /* Matches card bg */
-            /* Hide pseudo-elements on small screens if text wraps excessively to avoid misalignment mess */
-            display: none; 
+            background: #111; 
+            display: none; /* Hide pseudo-elements on mobile default to prevent overlap issues */
         }
-        /* Only show glitch effect on larger screens where wrapping is predictable or handle differently */
+
+        /* Only show glitch effect on larger screens */
         @media (min-width: 768px) {
             .glitch::before, .glitch::after { display: block; }
             .glitch::before {
@@ -203,8 +205,8 @@
             display: grid;
             grid-template-columns: 1fr 300px;
             gap: 3rem;
-            position: relative; /* Ensure sidebar stickiness relative to this container */
-            align-items: start; /* Prevent sidebar from stretching */
+            position: relative;
+            align-items: start;
         }
 
         /* --- Main Content (The Case File) --- */
@@ -214,7 +216,8 @@
             position: relative;
             padding: 3rem;
             box-shadow: 0 0 50px rgba(0,0,0,0.5);
-            max-width: 100%; /* Ensure it doesn't overflow */
+            max-width: 100%; /* Prevent horizontal overflow */
+            overflow-wrap: break-word; /* Ensure text wraps */
         }
         /* Top Secret Stamp */
         .stamp-secret {
@@ -281,13 +284,13 @@
         tr:hover { background: #151515; }
         td:first-child { color: #fff; font-weight: bold; }
 
-        /* --- Sidebar (Quick Access) - STICKY FIX --- */
+        /* --- Sidebar --- */
         .sidebar { 
-            position: -webkit-sticky; /* For Safari */
+            position: -webkit-sticky; 
             position: sticky; 
-            top: 100px; /* Offset from top */
+            top: 100px; 
             height: fit-content; 
-            align-self: start; /* Vital for grid layouts */
+            align-self: start; 
             z-index: 100;
         }
         .sidebar-card {
@@ -304,11 +307,7 @@
             transition: all 0.2s;
         }
         .toc-link:hover { color: #fff; padding-left: 5px; border-left: 2px solid var(--color-red); }
-
-        .btn-back {
-            display: inline-block; margin-top: 2rem;
-            color: #666; font-family: var(--font-mono); font-size: 0.9rem;
-        }
+        .btn-back { display: inline-block; margin-top: 2rem; color: #666; font-family: var(--font-mono); font-size: 0.9rem; }
         .btn-back:hover { color: var(--color-white); }
 
         /* --- Footer --- */
@@ -318,24 +317,23 @@
         /* --- Mobile Responsive --- */
         @media (max-width: 900px) {
             .article-container { grid-template-columns: 1fr; }
-            .sidebar { display: none; } /* Hide sidebar on mobile for simplicity */
+            .sidebar { display: none; }
             .case-file-wrapper { padding: 1.5rem; }
             .glitch { font-size: 1.8rem; }
         }
         
         @media (max-width: 768px) {
-            .container { width: 92%; } /* Maximize width on mobile */
-            .case-file-wrapper { padding: 1rem; border-left-width: 2px; } /* Reduce padding */
+            .container { width: 92%; } 
+            .case-file-wrapper { padding: 1rem; border-left-width: 2px; } 
             .stamp-secret { font-size: 1.2rem; top: 10px; right: 10px; border-width: 2px; padding: 5px 10px; }
             
             /* Typography */
-            h1.article-title { font-size: 1.8rem; line-height: 1.2; }
+            h1.article-title { font-size: 1.8rem; line-height: 1.2; word-break: break-word; }
             .article-body { font-size: 1rem; line-height: 1.6; }
             .article-body h2 { font-size: 1.4rem; margin-top: 2rem; }
             .article-body h3 { font-size: 1.2rem; }
             
             /* Table optimization */
-            /* Removed negative margins to prevent overflow issues */
             .table-responsive { margin: 1.5rem 0; width: 100%; border: 1px solid #333; }
             
              /* Mobile Menu */
