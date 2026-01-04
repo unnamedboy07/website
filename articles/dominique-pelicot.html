@@ -38,7 +38,7 @@
         html { 
             scroll-behavior: smooth; 
             overflow-x: hidden;
-            height: 100%;
+            width: 100%;
         }
         
         body {
@@ -53,7 +53,8 @@
             background-repeat: no-repeat;
             color: var(--color-platinum);
             line-height: 1.6;
-            overflow-x: hidden;
+            width: 100%;
+            overflow-x: hidden; /* Prevent horizontal scroll on body */
             position: relative;
             display: flex;
             flex-direction: column;
@@ -88,6 +89,7 @@
             letter-spacing: 1px;
             margin-bottom: 1rem;
             color: var(--color-platinum);
+            word-wrap: break-word; /* Ensure headers don't overflow */
         }
         
         .text-red { color: var(--color-red); }
@@ -104,7 +106,12 @@
         .delay-2 { animation-delay: 0.4s; }
 
         /* Glitch Title - Adapted for Article Header */
-        .glitch-wrapper { position: relative; display: inline-block; margin-bottom: 1rem; }
+        .glitch-wrapper { 
+            position: relative; 
+            display: block; /* changed from inline-block to block */
+            margin-bottom: 1rem; 
+            max-width: 100%;
+        }
         .glitch {
             font-family: var(--font-heading);
             font-size: 2.5rem; /* Slightly smaller to fit long title */
@@ -112,25 +119,35 @@
             color: #fff;
             position: relative;
             z-index: 2;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
+        /* Mobile Glitch adjustment */
         .glitch::before, .glitch::after {
             content: attr(data-text);
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             background: #111; /* Matches card bg */
+            /* Hide pseudo-elements on small screens if text wraps excessively to avoid misalignment mess */
+            display: none; 
         }
-        .glitch::before {
-            left: 2px;
-            text-shadow: -1px 0 #00ffff;
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim 5s infinite linear alternate-reverse;
+        /* Only show glitch effect on larger screens where wrapping is predictable or handle differently */
+        @media (min-width: 768px) {
+            .glitch::before, .glitch::after { display: block; }
+            .glitch::before {
+                left: 2px;
+                text-shadow: -1px 0 #00ffff;
+                clip: rect(44px, 450px, 56px, 0);
+                animation: glitch-anim 5s infinite linear alternate-reverse;
+            }
+            .glitch::after {
+                left: -2px;
+                text-shadow: -1px 0 #ff00ff;
+                clip: rect(44px, 450px, 56px, 0);
+                animation: glitch-anim2 5s infinite linear alternate-reverse;
+            }
         }
-        .glitch::after {
-            left: -2px;
-            text-shadow: -1px 0 #ff00ff;
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim2 5s infinite linear alternate-reverse;
-        }
+
         @keyframes glitch-anim {
             0% { clip: rect(10px, 9999px, 30px, 0); }
             20% { clip: rect(30px, 9999px, 10px, 0); }
@@ -158,7 +175,7 @@
             display: flex; justify-content: space-between; align-items: center; padding: 0 5%;
             z-index: 1000;
             background: rgba(5, 5, 5, 0.8);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         .nav-brand { display: flex; align-items: center; gap: 10px; }
@@ -197,6 +214,7 @@
             position: relative;
             padding: 3rem;
             box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            max-width: 100%; /* Ensure it doesn't overflow */
         }
         /* Top Secret Stamp */
         .stamp-secret {
@@ -243,10 +261,11 @@
             font-size: 1.1rem;
             color: #ddd;
             line-height: 1.8;
+            word-wrap: break-word; /* Crucial for long text */
         }
         .article-body h2 { color: var(--color-red); margin-top: 3.5rem; border-left: 3px solid var(--color-red); padding-left: 1rem; font-size: 1.8rem; border-bottom: 1px solid #333; padding-bottom: 0.5rem; }
         .article-body h3 { color: #fff; margin-top: 2rem; font-size: 1.4rem; font-family: var(--font-heading); }
-        .article-body p { margin-bottom: 1.5rem; text-align: justify; }
+        .article-body p { margin-bottom: 1.5rem; text-align: left; /* Changed from justify for better mobile reading */ }
         
         /* Redacted Effect */
         .redacted {
@@ -255,7 +274,7 @@
         .redacted:hover { background: transparent; color: var(--color-red); text-decoration: underline; }
 
         /* Table Styles for Convictions */
-        .table-responsive { overflow-x: auto; margin: 2rem 0; border: 1px solid #333; }
+        .table-responsive { overflow-x: auto; margin: 2rem 0; border: 1px solid #333; width: 100%; display: block; }
         table { width: 100%; border-collapse: collapse; min-width: 600px; }
         th, td { text-align: left; padding: 12px; border-bottom: 1px solid #333; font-family: var(--font-mono); font-size: 0.9rem; }
         th { background: #1a1a1a; color: var(--color-red); text-transform: uppercase; font-family: var(--font-heading); letter-spacing: 1px; }
@@ -305,17 +324,19 @@
         }
         
         @media (max-width: 768px) {
-            .container { width: 95%; } /* Maximize width on mobile */
+            .container { width: 92%; } /* Maximize width on mobile */
             .case-file-wrapper { padding: 1rem; border-left-width: 2px; } /* Reduce padding */
-            .stamp-secret { font-size: 1.5rem; top: 10px; right: 10px; }
+            .stamp-secret { font-size: 1.2rem; top: 10px; right: 10px; border-width: 2px; padding: 5px 10px; }
             
             /* Typography */
-            h1.article-title { font-size: 2rem; }
+            h1.article-title { font-size: 1.8rem; line-height: 1.2; }
             .article-body { font-size: 1rem; line-height: 1.6; }
-            .article-body h2 { font-size: 1.5rem; margin-top: 2.5rem; }
+            .article-body h2 { font-size: 1.4rem; margin-top: 2rem; }
+            .article-body h3 { font-size: 1.2rem; }
             
             /* Table optimization */
-            .table-responsive { margin: 1.5rem -1rem; border-left: none; border-right: none; width: calc(100% + 2rem); }
+            /* Removed negative margins to prevent overflow issues */
+            .table-responsive { margin: 1.5rem 0; width: 100%; border: 1px solid #333; }
             
              /* Mobile Menu */
             .menu-toggle { display: block; }
