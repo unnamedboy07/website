@@ -103,11 +103,11 @@
         .delay-1 { animation-delay: 0.2s; }
         .delay-2 { animation-delay: 0.4s; }
 
-        /* Glitch Title */
+        /* Glitch Title - Adapted for Article Header */
         .glitch-wrapper { position: relative; display: inline-block; margin-bottom: 1rem; }
         .glitch {
             font-family: var(--font-heading);
-            font-size: 2.5rem;
+            font-size: 2.5rem; /* Slightly smaller to fit long title */
             line-height: 1.1;
             color: #fff;
             position: relative;
@@ -117,7 +117,7 @@
             content: attr(data-text);
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: #111;
+            background: #111; /* Matches card bg */
         }
         .glitch::before {
             left: 2px;
@@ -158,7 +158,7 @@
             display: flex; justify-content: space-between; align-items: center; padding: 0 5%;
             z-index: 1000;
             background: rgba(5, 5, 5, 0.8);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         .nav-brand { display: flex; align-items: center; gap: 10px; }
@@ -186,11 +186,11 @@
             display: grid;
             grid-template-columns: 1fr 300px;
             gap: 3rem;
-            position: relative;
-            align-items: start;
+            position: relative; /* Ensure sidebar stickiness relative to this container */
+            align-items: start; /* Prevent sidebar from stretching */
         }
 
-        /* --- Main Content --- */
+        /* --- Main Content (The Case File) --- */
         .case-file-wrapper {
             background: #111;
             border: 1px solid #333;
@@ -198,6 +198,7 @@
             padding: 3rem;
             box-shadow: 0 0 50px rgba(0,0,0,0.5);
         }
+        /* Top Secret Stamp */
         .stamp-secret {
             position: absolute; top: 30px; right: 30px;
             border: 4px solid var(--color-red); color: var(--color-red);
@@ -208,13 +209,17 @@
 
         .article-header { border-bottom: 1px solid #333; padding-bottom: 2rem; margin-bottom: 2rem; }
         .case-number { font-family: var(--font-mono); color: #666; letter-spacing: 2px; display: block; margin-bottom: 0.5rem; }
+        
+        /* Article Meta */
         .article-meta { font-family: var(--font-mono); color: var(--color-red); font-size: 0.9rem; }
 
+        /* Evidence Image */
         .evidence-photo-container {
             width: 100%; margin-bottom: 2rem; position: relative;
             border: 5px solid #fff; transform: rotate(-1deg);
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
+        /* Additional Image Styling - Smaller/Inline Images */
         .inline-evidence-photo {
             width: 100%; max-width: 600px; display: block; margin: 2rem auto;
             border: 4px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.6);
@@ -223,11 +228,18 @@
         .inline-evidence-photo:hover { filter: contrast(1) grayscale(0%); }
         .rotate-left { transform: rotate(-2deg); }
         .rotate-right { transform: rotate(2deg); }
+
         .evidence-photo { width: 100%; display: block; filter: contrast(1.1) grayscale(100%); transition: filter 0.5s; }
         .evidence-photo:hover { filter: contrast(1) grayscale(0%); }
+        .paper-clip {
+            position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+            width: 40px; height: 80px; background: #aaa; border-radius: 20px;
+            z-index: 10; clip-path: polygon(0 0, 100% 0, 100% 70%, 80% 70%, 80% 20%, 20% 20%, 20% 100%, 0 100%);
+        }
 
+        /* Body Text - Typewriter Style */
         .article-body {
-            font-family: var(--font-mono);
+            font-family: var(--font-mono); /* Typewriter font */
             font-size: 1.1rem;
             color: #ddd;
             line-height: 1.8;
@@ -235,9 +247,14 @@
         .article-body h2 { color: var(--color-red); margin-top: 3.5rem; border-left: 3px solid var(--color-red); padding-left: 1rem; font-size: 1.8rem; border-bottom: 1px solid #333; padding-bottom: 0.5rem; }
         .article-body h3 { color: #fff; margin-top: 2rem; font-size: 1.4rem; font-family: var(--font-heading); }
         .article-body p { margin-bottom: 1.5rem; text-align: justify; }
-        .redacted { background: #000; color: #000; padding: 0 5px; cursor: help; transition: all 0.3s; }
+        
+        /* Redacted Effect */
+        .redacted {
+            background: #000; color: #000; padding: 0 5px; cursor: help; transition: all 0.3s;
+        }
         .redacted:hover { background: transparent; color: var(--color-red); text-decoration: underline; }
 
+        /* Table Styles for Convictions */
         .table-responsive { overflow-x: auto; margin: 2rem 0; border: 1px solid #333; }
         table { width: 100%; border-collapse: collapse; min-width: 600px; }
         th, td { text-align: left; padding: 12px; border-bottom: 1px solid #333; font-family: var(--font-mono); font-size: 0.9rem; }
@@ -245,13 +262,13 @@
         tr:hover { background: #151515; }
         td:first-child { color: #fff; font-weight: bold; }
 
-        /* --- Sidebar --- */
+        /* --- Sidebar (Quick Access) - STICKY FIX --- */
         .sidebar { 
-            position: -webkit-sticky; 
+            position: -webkit-sticky; /* For Safari */
             position: sticky; 
-            top: 100px; 
+            top: 100px; /* Offset from top */
             height: fit-content; 
-            align-self: start; 
+            align-self: start; /* Vital for grid layouts */
             z-index: 100;
         }
         .sidebar-card {
@@ -268,120 +285,39 @@
             transition: all 0.2s;
         }
         .toc-link:hover { color: #fff; padding-left: 5px; border-left: 2px solid var(--color-red); }
-        .btn-back { display: inline-block; margin-top: 2rem; color: #666; font-family: var(--font-mono); font-size: 0.9rem; }
+
+        .btn-back {
+            display: inline-block; margin-top: 2rem;
+            color: #666; font-family: var(--font-mono); font-size: 0.9rem;
+        }
         .btn-back:hover { color: var(--color-white); }
 
         /* --- Footer --- */
         .footer { background: #020202; padding: 60px 0; text-align: center; border-top: 1px solid #222; margin-top: auto; }
         .footer p { color: #666; font-size: 0.9rem; max-width: 500px; margin: 0 auto; }
 
-        /* --- AI Chat Floating Button & Dialog --- */
-        .ai-fab {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: var(--color-red);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 0 20px rgba(205, 32, 31, 0.5);
-            cursor: pointer;
-            z-index: 2000;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 2px solid #fff;
-        }
-        .ai-fab:hover { transform: scale(1.1); box-shadow: 0 0 30px rgba(205, 32, 31, 0.8); }
-        .ai-fab svg { width: 30px; height: 30px; fill: #fff; }
-
-        .ai-dialog {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            width: 350px;
-            height: 500px;
-            background: rgba(10, 10, 10, 0.95);
-            border: 1px solid #333;
-            backdrop-filter: blur(10px);
-            z-index: 1999;
-            display: none;
-            flex-direction: column;
-            box-shadow: 0 0 50px rgba(0,0,0,0.8);
-            border-radius: 8px;
-            overflow: hidden;
-            animation: slideUp 0.3s ease-out;
-        }
-        .ai-dialog.active { display: flex; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        .dialog-header {
-            background: #1a1a1a;
-            padding: 10px 15px;
-            border-bottom: 1px solid #333;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .dialog-title { font-family: var(--font-mono); color: var(--color-red); font-size: 0.9rem; font-weight: bold; }
-        .close-dialog { background: none; border: none; color: #888; cursor: pointer; font-size: 1.2rem; }
-        .close-dialog:hover { color: #fff; }
-
-        .chat-area {
-            flex-grow: 1;
-            padding: 15px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
-        }
-        .msg { padding: 8px 12px; border-radius: 4px; max-width: 85%; line-height: 1.4; }
-        .msg.ai { align-self: flex-start; background: rgba(255,255,255,0.05); color: #ddd; border-left: 2px solid var(--color-red); }
-        .msg.user { align-self: flex-end; background: rgba(205, 32, 31, 0.2); color: #fff; border-right: 2px solid var(--color-red); }
-
-        .chat-input-area {
-            padding: 10px;
-            border-top: 1px solid #333;
-            display: flex;
-            gap: 5px;
-            background: #111;
-        }
-        .dialog-input {
-            flex-grow: 1;
-            background: #000;
-            border: 1px solid #333;
-            color: #fff;
-            padding: 8px;
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            outline: none;
-        }
-        .dialog-input:focus { border-color: var(--color-red); }
-        .dialog-send {
-            background: var(--color-red);
-            border: none;
-            color: #fff;
-            padding: 0 12px;
-            cursor: pointer;
-            font-family: var(--font-heading);
-            font-size: 0.8rem;
-        }
-        .dialog-send:disabled { background: #444; }
-        .typing { color: var(--color-red); font-size: 0.7rem; margin-left: 10px; display: none; font-family: var(--font-mono); letter-spacing: 1px; }
-
         /* --- Mobile Responsive --- */
         @media (max-width: 900px) {
             .article-container { grid-template-columns: 1fr; }
-            .sidebar { display: none; }
+            .sidebar { display: none; } /* Hide sidebar on mobile for simplicity */
             .case-file-wrapper { padding: 1.5rem; }
             .glitch { font-size: 1.8rem; }
         }
+        
         @media (max-width: 768px) {
-            .ai-fab { bottom: 20px; right: 20px; width: 50px; height: 50px; }
-            .ai-dialog { bottom: 80px; right: 10px; left: 10px; width: auto; height: 60vh; }
+            .container { width: 95%; } /* Maximize width on mobile */
+            .case-file-wrapper { padding: 1rem; border-left-width: 2px; } /* Reduce padding */
+            .stamp-secret { font-size: 1.5rem; top: 10px; right: 10px; }
+            
+            /* Typography */
+            h1.article-title { font-size: 2rem; }
+            .article-body { font-size: 1rem; line-height: 1.6; }
+            .article-body h2 { font-size: 1.5rem; margin-top: 2.5rem; }
+            
+            /* Table optimization */
+            .table-responsive { margin: 1.5rem -1rem; border-left: none; border-right: none; width: calc(100% + 2rem); }
+            
+             /* Mobile Menu */
             .menu-toggle { display: block; }
             .nav-links {
                 position: fixed; top: 0; right: -100%; width: 80%; height: 100dvh;
@@ -436,7 +372,7 @@
                     </div>
 
                     <div class="article-meta">
-                        <span>FILED BY: UNNAMED THINGS</span> | <span>STATUS: ONGOING</span>
+                        <span>FILED BY: UNNAMED THINGS</span> | <span>STATUS: CLOSED</span>
                     </div>
                 </header>
 
@@ -675,158 +611,16 @@
         </div>
     </footer>
 
-    <!-- AI Chat Elements -->
-    <div class="ai-fab" id="aiFab" title="AI Forensic Analyst">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/><path d="M12 6c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm0 4c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/></svg>
-    </div>
-
-    <div class="ai-dialog" id="aiDialog">
-        <div class="dialog-header">
-            <span class="dialog-title">OPEN AI ANALYST</span>
-            <button class="close-dialog" id="closeDialog">&times;</button>
-        </div>
-        <div class="chat-area" id="chatArea">
-            <div class="msg ai">
-                System online. I am the Unnamed Things AI Analyst. I have been fed the full case file on Dominique Pelicot. <br><br>
-                Ask me about evidence, timeline, or the verdict.
-            </div>
-        </div>
-        <div class="typing" id="typingIndicator">Analyzing...</div>
-        <div class="chat-input-area">
-            <input type="text" id="dialogInput" class="dialog-input" placeholder="Ask a question..." autocomplete="off">
-            <button id="dialogSend" class="dialog-send">SEND</button>
-        </div>
-    </div>
-
+    <!-- Scripts -->
     <script>
-        // --- API Configuration ---
-        const OPENROUTER_API_KEY = "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";
-        const YOUR_SITE_URL = "https://www.unnamedthings07.qzz.io"; 
-        const YOUR_SITE_NAME = "Unnamed Things"; 
-
-        const SYSTEM_PROMPT = `
-            You are a specialized AI Forensic Analyst for "Unnamed Things". Your persona is serious, objective, and analytical.
-            
-            Current Case File: Dominique Pelicot (Case #001-DP-FR).
-            
-            FULL REPORT DATA:
-            - Overview: Dominique Pelicot (72) drugged his wife Gisèle for a decade (2011-2020) to facilitate her rape by over 50 strangers.
-            - Discovery: Arrested Sept 12, 2020 in Carpentras for upskirting. Police found "abuse" folder on his computer with 20,000+ files.
-            - Modus Operandi: Crushed Temesta (Lorazepam) into her food/drink. Used "Coco" chat site (chatroom: "Against her knowledge") to recruit men.
-            - The 50 Men: Aged 26-74, various professions (firefighter, journalist, nurse, etc.). Known as "Mr. Everyman".
-            - Trial: Began Sept 2, 2024 in Avignon. Gisèle waived anonymity ("Shame must change sides").
-            - Verdict: Dec 19, 2024. All 51 defendants guilty. 
-            - Sentences: Dominique (20 years). Co-defendants (3-15 years).
-            
-            INSTRUCTIONS:
-            1. **PRIORITY:** Always check the "FULL REPORT DATA" above first to answer questions specifically about this case.
-            2. **EXTERNAL KNOWLEDGE (WEB SIMULATION):** If the user asks a question NOT covered by the report (e.g., definitions of terms, broader legal context in France, details about other famous cases, or general questions), YOU MUST ANSWER THEM using your broad internal knowledge. Do not say "I don't know" if it's general knowledge. Act as if you are retrieving this from a wider database.
-            3. **TONE:** Keep responses relatively short (under 4 sentences), precise, and professional. Use a "terminal" style tone (e.g., "Data retrieved:", "Analysis:", "Definition:").
-        `;
-
-        // --- UI Logic ---
-        const aiFab = document.getElementById('aiFab');
-        const aiDialog = document.getElementById('aiDialog');
-        const closeDialog = document.getElementById('closeDialog');
-        const dialogInput = document.getElementById('dialogInput');
-        const dialogSend = document.getElementById('dialogSend');
-        const chatArea = document.getElementById('chatArea');
-        const typingIndicator = document.getElementById('typingIndicator');
-
-        // Toggle Dialog
-        aiFab.addEventListener('click', () => {
-            if (aiDialog.classList.contains('active')) {
-                aiDialog.classList.remove('active');
-            } else {
-                aiDialog.classList.add('active');
-                dialogInput.focus();
-            }
-        });
-
-        closeDialog.addEventListener('click', () => {
-            aiDialog.classList.remove('active');
-        });
-
-        // Mobile Menu Logic
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        if (menuToggle) {
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
             menuToggle.addEventListener('click', () => {
-                menuToggle.classList.toggle('active');
-                navLinks.classList.toggle('active');
+                menuToggle.classList.toggle('active'); navLinks.classList.toggle('active');
             });
-        }
-
-        // --- AI Logic ---
-        let chatHistory = [
-            { role: "system", content: SYSTEM_PROMPT }
-        ];
-
-        function addMsg(text, type) {
-            const div = document.createElement('div');
-            div.className = `msg ${type}`;
-            div.innerHTML = text;
-            chatArea.appendChild(div);
-            chatArea.scrollTop = chatArea.scrollHeight;
-        }
-
-        async function callOpenAI(userMessage) {
-            try {
-                const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-                    method: "POST",
-                    headers: {
-                        "Authorization": `Bearer ${OPENROUTER_API_KEY}`,
-                        "HTTP-Referer": YOUR_SITE_URL, 
-                        "X-Title": YOUR_SITE_NAME, 
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        // Using Google Gemini Flash via OpenRouter
-                        "model": "google/gemini-2.0-flash-001", 
-                        "messages": [...chatHistory, { role: "user", content: userMessage }]
-                    })
-                });
-
-                if (!response.ok) {
-                    throw new Error(`API Error: ${response.status}`);
-                }
-
-                const data = await response.json();
-                return data.choices[0].message.content;
-
-            } catch (error) {
-                console.error("OpenAI/OpenRouter Error:", error);
-                return "Error: Unable to connect to neural link. Check API configuration or network connection.";
-            }
-        }
-
-        async function handleSend() {
-            const text = dialogInput.value.trim();
-            if (!text) return;
-
-            addMsg(text, 'user');
-            dialogInput.value = '';
-            dialogInput.disabled = true;
-            dialogSend.disabled = true;
-            typingIndicator.style.display = 'block';
-
-            const responseText = await callOpenAI(text);
-
-            addMsg(responseText, 'ai');
-            chatHistory.push({ role: "user", content: text });
-            chatHistory.push({ role: "assistant", content: responseText });
-            
-            dialogInput.disabled = false;
-            dialogSend.disabled = false;
-            typingIndicator.style.display = 'none';
-            dialogInput.focus();
-        }
-
-        dialogSend.addEventListener('click', handleSend);
-        dialogInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') handleSend();
         });
-
     </script>
 </body>
 </html>
