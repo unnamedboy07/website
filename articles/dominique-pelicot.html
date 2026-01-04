@@ -54,7 +54,7 @@
             color: var(--color-platinum);
             line-height: 1.6;
             width: 100%;
-            overflow-x: hidden; 
+            overflow-x: hidden; /* Prevent horizontal scroll on body */
             position: relative;
             display: flex;
             flex-direction: column;
@@ -109,13 +109,13 @@
         /* Glitch Title - Adapted for Article Header */
         .glitch-wrapper { 
             position: relative; 
-            display: block; 
+            display: block; /* changed from inline-block to block */
             margin-bottom: 1rem; 
             max-width: 100%;
         }
         .glitch {
             font-family: var(--font-heading);
-            font-size: 2.5rem; 
+            font-size: 2.5rem; /* Slightly smaller to fit long title */
             line-height: 1.1;
             color: #fff;
             position: relative;
@@ -129,8 +129,9 @@
             content: attr(data-text);
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: #111; 
-            display: none; /* Hide pseudo-elements on mobile default to prevent overlap issues */
+            background: #111; /* Matches card bg */
+            /* Hide pseudo-elements on mobile default to prevent overlap issues */
+            display: none; 
         }
 
         /* Only show glitch effect on larger screens */
@@ -205,8 +206,8 @@
             display: grid;
             grid-template-columns: 1fr 300px;
             gap: 3rem;
-            position: relative;
-            align-items: start;
+            position: relative; /* Ensure sidebar stickiness relative to this container */
+            align-items: start; /* Prevent sidebar from stretching */
         }
 
         /* --- Main Content (The Case File) --- */
@@ -323,8 +324,8 @@
         }
         
         @media (max-width: 768px) {
-            .container { width: 92%; } 
-            .case-file-wrapper { padding: 1rem; border-left-width: 2px; } 
+            .container { width: 92%; } /* Maximize width on mobile */
+            .case-file-wrapper { padding: 1rem; border-left-width: 2px; } /* Reduce padding */
             .stamp-secret { font-size: 1.2rem; top: 10px; right: 10px; border-width: 2px; padding: 5px 10px; }
             
             /* Typography */
@@ -334,6 +335,7 @@
             .article-body h3 { font-size: 1.2rem; }
             
             /* Table optimization */
+            /* Removed negative margins to prevent overflow issues */
             .table-responsive { margin: 1.5rem 0; width: 100%; border: 1px solid #333; }
             
              /* Mobile Menu */
