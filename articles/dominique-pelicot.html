@@ -352,6 +352,100 @@
             .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
             .menu-toggle.active .bar:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
         }
+        /* --- Evidence Board Styles --- */
+.evidence-board-wrapper {
+    margin: 4rem 0;
+    border: 1px solid #333;
+    background: #050505;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+}
+
+.board-header {
+    background: #111;
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--color-red-dim);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#evidence-board-container {
+    position: relative;
+    height: 500px; /* Fixed height for the window */
+    width: 100%;
+    overflow: hidden;
+    background-image: 
+        linear-gradient(rgba(205, 32, 31, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(205, 32, 31, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    cursor: crosshair;
+}
+
+/* Red Strings Layer */
+#connections-layer {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.connection-line {
+    stroke: var(--color-red);
+    stroke-width: 2;
+    stroke-dasharray: 4;
+    opacity: 0.6;
+    filter: drop-shadow(0 0 4px var(--color-red));
+    animation: pulseLine 2s infinite;
+}
+
+@keyframes pulseLine {
+    0% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0.4; }
+}
+
+/* Nodes */
+.board-node {
+    position: absolute;
+    width: 100px;
+    background: #000;
+    border: 1px solid #444;
+    padding: 5px;
+    z-index: 10;
+    cursor: grab;
+    user-select: none;
+    text-align: center;
+    transition: transform 0.1s, box-shadow 0.2s;
+}
+
+.board-node:active { cursor: grabbing; transform: scale(1.05); z-index: 100; }
+.board-node:hover { border-color: var(--color-red); box-shadow: 0 0 15px var(--color-red-glow); }
+
+.board-node img { width: 100%; height: 60px; object-fit: cover; filter: grayscale(100%); pointer-events: none; }
+.board-node span { display: block; font-family: var(--font-mono); font-size: 0.7rem; color: #fff; margin-top: 5px; background: var(--color-red-dim); }
+
+.node-icon {
+    height: 60px; display: flex; align-items: center; justify-content: center;
+    background: #111; color: #555; font-family: var(--font-heading); font-size: 1.5rem; border: 1px dashed #333;
+}
+
+/* Specific Node Styles */
+.central-node { width: 140px; border: 2px solid var(--color-red); }
+.victim-node { border-color: #fff; }
+
+.board-footer {
+    background: #111; padding: 5px 20px; font-family: var(--font-mono); font-size: 0.7rem; color: #666; text-align: right;
+    border-top: 1px solid #333;
+}
+.blink { animation: blinker 1s linear infinite; color: var(--color-red); }
+@keyframes blinker { 50% { opacity: 0; } }
+
+/* Mobile Adjustment */
+@media (max-width: 768px) {
+    #evidence-board-container { height: 350px; }
+    .board-node { transform: scale(0.8); }
+}
     </style>
 </head>
 <body>
@@ -488,6 +582,45 @@
                         However, the "Mr. Everyman" narrative, while sociologically shocking, was not entirely accurate. Of the 50 co-defendants, 23 had a prior criminal record for various offenses. More significantly, six had prior convictions for domestic violence, and two had prior convictions for sexual violence.
                     </p>
 
+                    <div class="evidence-board-wrapper reveal-up">
+    <div class="board-header">
+        <h3 class="glitch" data-text="INTERACTIVE NETWORK MAP" style="font-size: 1.5rem; margin: 0;">INTERACTIVE NETWORK MAP</h3>
+        <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--color-red);">DRAG NODES TO REARRANGE // LIVE CONNECTION FEED</span>
+    </div>
+    
+    <div id="evidence-board-container">
+        <svg id="connections-layer"></svg>
+
+        <div class="board-node central-node" id="node-dominique" data-x="300" data-y="200">
+            <img src="https://i.ibb.co/KpRT9St4/dominique-1.jpg" alt="Dominique">
+            <span>THE ARCHITECT</span>
+        </div>
+
+        <div class="board-node victim-node" id="node-gisele" data-x="100" data-y="100">
+            <img src="https://i.ibb.co/Kc5d9vMj/gisele-1.jpg" alt="Gisèle">
+            <span>THE VICTIM</span>
+        </div>
+
+        <div class="board-node tech-node" id="node-coco" data-x="500" data-y="100">
+            <div class="node-icon">?</div>
+            <span>COCO.GG</span>
+        </div>
+
+        <div class="board-node group-node" id="node-men" data-x="400" data-y="350">
+            <div class="node-icon">50</div>
+            <span>THE RECRUITS</span>
+        </div>
+
+        <div class="board-node evidence-item" id="node-drugs" data-x="150" data-y="300">
+            <div class="node-icon">Rx</div>
+            <span>TEMESTA</span>
+        </div>
+    </div>
+    <div class="board-footer">
+        STATUS: <span class="blink">MONITORING</span>
+    </div>
+</div>
+                    
                     <h2 id="trial">V. "Shame Must Change Sides": The Trial</h2>
                     <p>
                         The trial began on September 2, 2024, in Avignon. From the outset, the case shifted from a story of victimization to one of extraordinary agency. Gisèle Pelicot, the woman whose identity was erased for a decade, seized control of the narrative.
@@ -642,6 +775,126 @@
                 menuToggle.classList.toggle('active'); navLinks.classList.toggle('active');
             });
         });
+    document.addEventListener('DOMContentLoaded', () => {
+        const board = document.getElementById('evidence-board-container');
+        const nodes = document.querySelectorAll('.board-node');
+        const svg = document.getElementById('connections-layer');
+        
+        // Define connections: [StartNodeID, EndNodeID]
+        const connections = [
+            ['node-dominique', 'node-gisele'],
+            ['node-dominique', 'node-coco'],
+            ['node-dominique', 'node-men'],
+            ['node-dominique', 'node-drugs'],
+            ['node-men', 'node-coco'],
+            ['node-men', 'node-gisele']
+        ];
+
+        let activeDrag = null;
+        let offset = { x: 0, y: 0 };
+
+        // Initialize positions based on data attributes
+        nodes.forEach(node => {
+            node.style.left = node.dataset.x + 'px';
+            node.style.top = node.dataset.y + 'px';
+            
+            // Mouse Down (Start Drag)
+            node.addEventListener('mousedown', (e) => {
+                activeDrag = node;
+                offset.x = e.clientX - node.getBoundingClientRect().left;
+                offset.y = e.clientY - node.getBoundingClientRect().top;
+                node.style.zIndex = 100; // Bring to front
+            });
+            
+            // Touch Start (Mobile)
+            node.addEventListener('touchstart', (e) => {
+                activeDrag = node;
+                const touch = e.touches[0];
+                offset.x = touch.clientX - node.getBoundingClientRect().left;
+                offset.y = touch.clientY - node.getBoundingClientRect().top;
+                node.style.zIndex = 100;
+                e.preventDefault(); // Prevent scroll while dragging
+            }, {passive: false});
+        });
+
+        // Mouse Move (Drag)
+        document.addEventListener('mousemove', (e) => {
+            if (!activeDrag) return;
+            moveNode(e.clientX, e.clientY);
+        });
+
+        // Touch Move
+        document.addEventListener('touchmove', (e) => {
+            if (!activeDrag) return;
+            const touch = e.touches[0];
+            moveNode(touch.clientX, touch.clientY);
+        }, {passive: false});
+
+        function moveNode(clientX, clientY) {
+            const boardRect = board.getBoundingClientRect();
+            let newX = clientX - boardRect.left - offset.x;
+            let newY = clientY - boardRect.top - offset.y;
+
+            // Boundary checks
+            newX = Math.max(0, Math.min(newX, boardRect.width - activeDrag.offsetWidth));
+            newY = Math.max(0, Math.min(newY, boardRect.height - activeDrag.offsetHeight));
+
+            activeDrag.style.left = newX + 'px';
+            activeDrag.style.top = newY + 'px';
+            
+            drawConnections(); // Redraw lines instantly
+        }
+
+        // Mouse Up (Stop Drag)
+        document.addEventListener('mouseup', () => {
+            if (activeDrag) {
+                activeDrag.style.zIndex = 10;
+                activeDrag = null;
+            }
+        });
+        document.addEventListener('touchend', () => {
+            if (activeDrag) {
+                activeDrag.style.zIndex = 10;
+                activeDrag = null;
+            }
+        });
+
+        // Draw SVG Lines
+        function drawConnections() {
+            svg.innerHTML = ''; // Clear lines
+            const boardRect = board.getBoundingClientRect();
+
+            connections.forEach(pair => {
+                const nodeA = document.getElementById(pair[0]);
+                const nodeB = document.getElementById(pair[1]);
+
+                if (!nodeA || !nodeB) return;
+
+                const rectA = nodeA.getBoundingClientRect();
+                const rectB = nodeB.getBoundingClientRect();
+
+                // Calculate centers relative to board container
+                const x1 = (rectA.left - boardRect.left) + rectA.width / 2;
+                const y1 = (rectA.top - boardRect.top) + rectA.height / 2;
+                const x2 = (rectB.left - boardRect.left) + rectB.width / 2;
+                const y2 = (rectB.top - boardRect.top) + rectB.height / 2;
+
+                // Create Line
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', x1);
+                line.setAttribute('y1', y1);
+                line.setAttribute('x2', x2);
+                line.setAttribute('y2', y2);
+                line.classList.add('connection-line');
+                
+                svg.appendChild(line);
+            });
+        }
+
+        // Initial Draw and Resize listener
+        drawConnections();
+        window.addEventListener('resize', drawConnections);
+    });
     </script>
 </body>
 </html>
