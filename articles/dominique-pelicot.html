@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case #001: The Pelicot Affair - Unnamed Things</title>
+    <title>Case: {{TITLE}} - Unnamed Things</title>
     <link rel="icon" type="image/jpeg" href="https://i.ibb.co/0jxSvdfH/channels4-profile.jpg">
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&family=Special+Elite&display=swap" rel="stylesheet">
@@ -54,7 +53,7 @@
             color: var(--color-platinum);
             line-height: 1.6;
             width: 100%;
-            overflow-x: hidden; /* Prevent horizontal scroll on body */
+            overflow-x: hidden;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -89,7 +88,7 @@
             letter-spacing: 1px;
             margin-bottom: 1rem;
             color: var(--color-platinum);
-            word-wrap: break-word; /* Ensure headers don't overflow */
+            word-wrap: break-word;
             overflow-wrap: break-word;
         }
         
@@ -106,35 +105,33 @@
         .delay-1 { animation-delay: 0.2s; }
         .delay-2 { animation-delay: 0.4s; }
 
-        /* Glitch Title - Adapted for Article Header */
+        /* Glitch Title */
         .glitch-wrapper { 
             position: relative; 
-            display: block; /* changed from inline-block to block */
+            display: block;
             margin-bottom: 1rem; 
             max-width: 100%;
         }
         .glitch {
             font-family: var(--font-heading);
-            font-size: 2.5rem; /* Slightly smaller to fit long title */
+            font-size: 2.5rem;
             line-height: 1.1;
             color: #fff;
             position: relative;
             z-index: 2;
             word-wrap: break-word;
             overflow-wrap: break-word;
-            white-space: normal; /* Ensure text wraps */
+            white-space: normal;
         }
         
         .glitch::before, .glitch::after {
             content: attr(data-text);
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: #111; /* Matches card bg */
-            /* Hide pseudo-elements on mobile default to prevent overlap issues */
+            background: #111;
             display: none; 
         }
 
-        /* Only show glitch effect on larger screens */
         @media (min-width: 768px) {
             .glitch::before, .glitch::after { display: block; }
             .glitch::before {
@@ -206,21 +203,20 @@
             display: grid;
             grid-template-columns: 1fr 300px;
             gap: 3rem;
-            position: relative; /* Ensure sidebar stickiness relative to this container */
-            align-items: start; /* Prevent sidebar from stretching */
+            position: relative;
+            align-items: start;
         }
 
-        /* --- Main Content (The Case File) --- */
+        /* --- Main Content --- */
         .case-file-wrapper {
             background: #111;
             border: 1px solid #333;
             position: relative;
             padding: 3rem;
             box-shadow: 0 0 50px rgba(0,0,0,0.5);
-            max-width: 100%; /* Prevent horizontal overflow */
-            overflow-wrap: break-word; /* Ensure text wraps */
+            max-width: 100%;
+            overflow-wrap: break-word;
         }
-        /* Top Secret Stamp */
         .stamp-secret {
             position: absolute; top: 30px; right: 30px;
             border: 4px solid var(--color-red); color: var(--color-red);
@@ -232,16 +228,14 @@
         .article-header { border-bottom: 1px solid #333; padding-bottom: 2rem; margin-bottom: 2rem; }
         .case-number { font-family: var(--font-mono); color: #666; letter-spacing: 2px; display: block; margin-bottom: 0.5rem; }
         
-        /* Article Meta */
         .article-meta { font-family: var(--font-mono); color: var(--color-red); font-size: 0.9rem; }
 
-        /* Evidence Image */
         .evidence-photo-container {
             width: 100%; margin-bottom: 2rem; position: relative;
             border: 5px solid #fff; transform: rotate(-1deg);
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
-        /* Additional Image Styling - Smaller/Inline Images */
+        
         .inline-evidence-photo {
             width: 100%; max-width: 600px; display: block; margin: 2rem auto;
             border: 4px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.6);
@@ -253,31 +247,20 @@
 
         .evidence-photo { width: 100%; display: block; filter: contrast(1.1) grayscale(100%); transition: filter 0.5s; }
         .evidence-photo:hover { filter: contrast(1) grayscale(0%); }
-        .paper-clip {
-            position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
-            width: 40px; height: 80px; background: #aaa; border-radius: 20px;
-            z-index: 10; clip-path: polygon(0 0, 100% 0, 100% 70%, 80% 70%, 80% 20%, 20% 20%, 20% 100%, 0 100%);
-        }
 
         /* Body Text - Typewriter Style */
         .article-body {
-            font-family: var(--font-mono); /* Typewriter font */
+            font-family: var(--font-mono);
             font-size: 1.1rem;
             color: #ddd;
             line-height: 1.8;
-            word-wrap: break-word; /* Crucial for long text */
+            word-wrap: break-word;
         }
         .article-body h2 { color: var(--color-red); margin-top: 3.5rem; border-left: 3px solid var(--color-red); padding-left: 1rem; font-size: 1.8rem; border-bottom: 1px solid #333; padding-bottom: 0.5rem; }
         .article-body h3 { color: #fff; margin-top: 2rem; font-size: 1.4rem; font-family: var(--font-heading); }
-        .article-body p { margin-bottom: 1.5rem; text-align: left; /* Changed from justify for better mobile reading */ }
+        .article-body p { margin-bottom: 1.5rem; text-align: left; }
         
-        /* Redacted Effect */
-        .redacted {
-            background: #000; color: #000; padding: 0 5px; cursor: help; transition: all 0.3s;
-        }
-        .redacted:hover { background: transparent; color: var(--color-red); text-decoration: underline; }
-
-        /* Table Styles for Convictions */
+        /* Table Styles */
         .table-responsive { overflow-x: auto; margin: 2rem 0; border: 1px solid #333; width: 100%; display: block; }
         table { width: 100%; border-collapse: collapse; min-width: 600px; }
         th, td { text-align: left; padding: 12px; border-bottom: 1px solid #333; font-family: var(--font-mono); font-size: 0.9rem; }
@@ -301,14 +284,7 @@
             backdrop-filter: blur(5px);
         }
         .sidebar-title { font-family: var(--font-mono); color: var(--color-red); border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 15px; font-size: 1.1rem; }
-        .toc-list { list-style: none; }
-        .toc-item { margin-bottom: 10px; }
-        .toc-link { 
-            color: #888; font-family: var(--font-heading); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; display: block; padding: 5px 0;
-            transition: all 0.2s;
-        }
-        .toc-link:hover { color: #fff; padding-left: 5px; border-left: 2px solid var(--color-red); }
-        .btn-back { display: inline-block; margin-top: 2rem; color: #666; font-family: var(--font-mono); font-size: 0.9rem; }
+        .btn-back { display: inline-block; margin-top: 1rem; color: #666; font-family: var(--font-mono); font-size: 0.9rem; }
         .btn-back:hover { color: var(--color-white); }
 
         /* --- Footer --- */
@@ -324,21 +300,12 @@
         }
         
         @media (max-width: 768px) {
-            .container { width: 92%; } /* Maximize width on mobile */
-            .case-file-wrapper { padding: 1rem; border-left-width: 2px; } /* Reduce padding */
+            .container { width: 92%; }
+            .case-file-wrapper { padding: 1rem; border-left-width: 2px; }
             .stamp-secret { font-size: 1.2rem; top: 10px; right: 10px; border-width: 2px; padding: 5px 10px; }
-            
-            /* Typography */
-            h1.article-title { font-size: 1.8rem; line-height: 1.2; word-break: break-word; }
             .article-body { font-size: 1rem; line-height: 1.6; }
             .article-body h2 { font-size: 1.4rem; margin-top: 2rem; }
-            .article-body h3 { font-size: 1.2rem; }
             
-            /* Table optimization */
-            /* Removed negative margins to prevent overflow issues */
-            .table-responsive { margin: 1.5rem 0; width: 100%; border: 1px solid #333; }
-            
-             /* Mobile Menu */
             .menu-toggle { display: block; }
             .nav-links {
                 position: fixed; top: 0; right: -100%; width: 80%; height: 100dvh;
@@ -356,12 +323,9 @@
 </head>
 <body>
 
-    <!-- Noise Texture Overlay -->
     <div class="noise-overlay"></div>
-    <!-- CRT Overlay -->
     <div class="crt-overlay"></div>
 
-    <!-- Navbar -->
     <nav class="navbar" id="navbar">
         <a href="/" class="nav-brand">
             <img src="https://i.ibb.co/0jxSvdfH/channels4-profile.jpg" alt="Logo" class="nav-logo">
@@ -377,19 +341,17 @@
         </ul>
     </nav>
 
-    <!-- Main Content -->
     <main>
         <div class="container article-container">
             
-            <!-- Article Content (Left Col) -->
             <article class="case-file-wrapper reveal-up">
                 <div class="stamp-secret">CONFIDENTIAL</div>
                 
                 <header class="article-header">
-                    <span class="case-number">CASE FILE ID: 001-DP-FR</span>
+                    <span class="case-number">CASE FILE ID: {{CASE_ID}}</span>
                     
                     <div class="glitch-wrapper">
-                        <h1 class="glitch" data-text="Anatomy of a Betrayal: The Complete Report on the Pelicot Case">Anatomy of a Betrayal: The Complete Report on the Pelicot Case</h1>
+                        <h1 class="glitch" data-text="{{TITLE}}">{{TITLE}}</h1>
                     </div>
 
                     <div class="article-meta">
@@ -398,225 +360,20 @@
                 </header>
 
                 <div class="evidence-photo-container">
-                    <img src="https://i.ibb.co/KpRT9St4/dominique-1.jpg" alt="Dominique Pelicot Evidence Photo" class="evidence-photo">
+                    <img src="{{IMAGE}}" alt="Evidence Photo" class="evidence-photo">
                 </div>
 
                 <div class="article-body">
-                    <p>
-                        For nearly 50 years, Gisèle Pelicot lived a life she believed was built on love and trust. Her husband, Dominique Pelicot, was, in her words, "someone I trusted entirely". He was a doting family man, a retired electrician who organized surprise birthday parties and was seen as a "role model" by his children's friends.
-                    </p>
-                    <p>
-                        But that trust, and the life it supported, was annihilated on November 2, 2020. In a stark police interrogation room, Gisèle Pelicot was shown a video. On the screen, she saw her own unconscious body, "limp and inert," being raped by a stranger in her own bed. As she later testified, her world simply collapsed.
-                    </p>
-                    
-                    <img src="https://i.ibb.co/Kc5d9vMj/gisele-1.jpg" alt="Gisele Pelicot" class="inline-evidence-photo rotate-left">
-
-                    <p>
-                        What unfolded next was the revelation of one of the most extensive and horrifying cases of serial rape in modern French history—a decade-long criminal enterprise orchestrated by her husband, involving dozens of men, and meticulously documented in a digital archive of over 20,000 files. This is the complete story of the case that shattered a family and forced a nation to confront the very definition of consent.
-                    </p>
-                    
-                    <h2 id="discovery">I. The Discovery: A Supermarket Arrest</h2>
-                    <p>
-                        The decade of systematic abuse was not uncovered by a victim's complaint. It was exposed by chance, stemming from a banal act of voyeurism.
-                    </p>
-                    <p>
-                        On September 12, 2020, Dominique Pelicot, 71, was arrested at a supermarket in Carpentras, near his home in Mazan, Provence. A security guard had observed him "upskirting"—using a hidden camera in a black bag to surreptitiously film up women's skirts. When apprehended, Pelicot, who looked like a "poor innocent" man with "puppy eyes," told police he had an "urge" because his wife was away.
-                    </p>
-                    <p>
-                        This was not his first offense. He had a prior arrest for a similar incident in 2010, near the couple's former home. This time, however, investigators had a "hunch" and decided to look deeper into the pensioner's confiscated phones and computer.
-                    </p>
-                    <p>
-                        What they found was not a simple collection of voyeuristic images. It was a <span class="redacted">"library of images"</span>, a meticulously curated digital archive of over 20,000 photos and videos. The files were obsessively cataloged in folders, including one titled "abuse" and another labeled "her rapists".
-                    </p>
-                    <p>
-                        The "abuse" folder contained videos documenting over 200 rapes of Gisèle Pelicot. The videos, filmed by her husband, showed her in a "coma-like state," "limp and inert," and snoring loudly. Investigators ultimately counted 72 distinct abusers in the recordings, though not all could be identified.
-                    </p>
-
-                    <h2 id="architect">II. The Architect: Dominique Pelicot</h2>
-                    <p>
-                        The case is defined by the chasm between Dominique Pelicot's public persona and his private reality as a systemic predator.
-                    </p>
-                    
-                    <img src="https://i.ibb.co/b5njS0Cq/dominique-2.jpg" alt="Dominique Pelicot" class="inline-evidence-photo rotate-right">
-
-                    <h3>Modus Operandi: Weaponizing Trust and Medicine</h3>
-                    <p>
-                        The abuse began around 2011, after Gisèle Pelicot was prescribed Lorazepam (Temesta), an anti-anxiety medication, by her doctor. Dominique Pelicot would crush this and other <span class="redacted">sleeping tablets</span>, mixing the powder into his wife's food and drink.
-                    </p>
-                    <p>
-                        He drugged her coffee, her mashed potatoes, and even her favorite raspberry ice cream, which he would bring to her in bed—an act she interpreted at the time as one of love and care. Once she was unconscious, he would get to work.
-                    </p>
-                    <p>
-                        He used the unmoderated French chat site "Coco" (since shut down by authorities) to find his accomplices. He frequented a specific chatroom on the site named "Against her knowledge" and sent explicit messages to other men, such as: "I’m looking for a pervert accomplice to abuse my wife who’s been put to sleep" and "You’re like me, you like rape mode".
-                    </p>
-                    <p>
-                        During the rapes, Pelicot would film, often while making degrading comments about "the slut" off-camera. He would prop notes on her inert body with messages like "Service slut" and "Whore".
-                    </p>
-
-                    <h3>Systemic Predation</h3>
-                    <p>
-                        Pelicot's predation was not confined to his wife. The police investigation revealed his crimes targeted every woman in his family.
-                    </p>
-                    <p>
-                        <strong>Family Voyeurism:</strong> He was found guilty of taking indecent images of his two daughters-in-law and his adult daughter. He hid cameras to secretly film his son's wives in their bathrooms, including when one was pregnant with twins, and photographed his daughter asleep and semi-naked.
-                    </p>
-                    <p>
-                        <strong>"Teaching" his Method:</strong> Pelicot was also found guilty of the rape of the wife of co-defendant Jean-Pierre Maréchal. Most disturbingly, he had taught Maréchal how to use the same drugging technique, which Maréchal then used on his own wife for five years, inviting Pelicot to participate.
-                    </p>
-
-                    <img src="https://i.ibb.co/8LG8qG9K/dominique-pelicot-1.jpg" alt="Dominique Pelicot in Court" class="inline-evidence-photo rotate-left">
-
-                    <h2 id="chronology">III. A Decade of Drugged Abuse: Chronology</h2>
-                    <p>The period of abuse documented by Pelicot's archive spanned nearly a decade, from July 2011 to October 2020.</p>
-                    <ul>
-                        <li><strong>July 23, 2011:</strong> The first documented rape involving an accomplice occurred at the Pelicots' home at the time in Villiers-sur-Marne, near Paris.</li>
-                        <li><strong>2011-2020:</strong> The abuse was not confined to one location. It took place in their primary residence in Mazan, but also in Villiers-sur-Marne, Saint-Rémy-lès-Chevreuse, and on the Île de Ré. One of the most chilling locations identified was the couple's daughter's beach house.</li>
-                        <li><strong>October 22, 2020:</strong> The last recorded act of abuse occurred. This final rape took place after Dominique Pelicot's September 12 upskirting arrest but before the November 2 discovery of the files, indicating his deep-seated compulsion.</li>
-                    </ul>
-                    <p>
-                        For Gisèle, this decade was experienced as a fog of unexplained fatigue. She had no conscious memory of the acts. "I would wake up with my pyjamas on," she testified, explaining her husband would dress her after the assaults. "The mornings I must have been more tired than usual, but I walk a lot and thought it was that".
-                    </p>
-
-                    <h2 id="everyman">IV. The 50 "Mr. Everymans"</h2>
-                    <p>
-                        Following the discovery of the archive, police launched a vast investigation, leading to three major waves of arrests in February, March, and September 2021. In total, 50 men were identified and brought to trial alongside Dominique Pelicot. They were dubbed "Monsieur Tout-le-Monde," or "Mr. Everyman," because their "ordinariness" was a central horror of the case.
-                    </p>
-                    <p>
-                        Their ages ranged from 26 to 74. Their professions spanned all sectors of society: firefighters, journalists, students, prison guards, nurses, soldiers, local councillors, truck drivers, carpenters, and IT workers. Most lived within a 40-mile radius of the Pelicots' home in Mazan.
-                    </p>
-                    <p>
-                        However, the "Mr. Everyman" narrative, while sociologically shocking, was not entirely accurate. Of the 50 co-defendants, 23 had a prior criminal record for various offenses. More significantly, six had prior convictions for domestic violence, and two had prior convictions for sexual violence.
-                    </p>
-
-                    <h2 id="trial">V. "Shame Must Change Sides": The Trial</h2>
-                    <p>
-                        The trial began on September 2, 2024, in Avignon. From the outset, the case shifted from a story of victimization to one of extraordinary agency. Gisèle Pelicot, the woman whose identity was erased for a decade, seized control of the narrative.
-                    </p>
-                    
-                    <img src="https://i.ibb.co/4nH0Wvgh/gisele-2.jpg" alt="Gisele Pelicot Arriving at Court" class="inline-evidence-photo rotate-right">
-
-                    <p>
-                        In a move that stunned the legal establishment, she waived her right to anonymity and insisted on a public trial. Her public motto, repeated by supporters, became <span class="redacted">"Shame must change sides"</span>.
-                    </p>
-                    <p>
-                        "When you’re raped there is shame," she explained, "and it’s not for us to have shame – it’s for them". She wanted to transform her personal trauma into a public lesson, stating, "I wanted all of society to be a witness". She insisted the "undeniable evidence" —the "stomach-churning" videos of her own rapes—be shown in open court.
-                    </p>
-
-                    <img src="https://i.ibb.co/BKvFJ7yK/gisele-3.jpg" alt="Gisele Pelicot in Court" class="inline-evidence-photo rotate-left">
-
-                    <h2 id="verdict">VI. The Verdict (December 19, 2024)</h2>
-                    <p>
-                        On December 19, 2024, after more than three months of harrowing testimony, lead judge Roger Arata read the verdicts. All 51 defendants were found guilty.
-                    </p>
-                    
-                    <img src="https://i.ibb.co/Ldtb45FV/dominique-3.webp" alt="Dominique Pelicot Verdict" class="inline-evidence-photo rotate-right">
-
-                    <p>
-                        <strong>Dominique Pelicot:</strong> Found guilty on all charges, including the aggravated rapes of his wife, the rape of Mrs. Maréchal, and taking indecent images of his daughter and daughters-in-law. He was given the maximum possible sentence: 20 years in prison. He will not be eligible for parole until he has served two-thirds of his sentence.
-                    </p>
-                    <p>
-                        The 50 Co-Defendants: All 50 were convicted, receiving prison sentences ranging from 3 to 15 years.
-                    </p>
-
-                    <div class="table-responsive">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Defendant</th>
-                                    <th>Age</th>
-                                    <th>Occupation</th>
-                                    <th>Sentence</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>Dominique Pelicot</td><td>72</td><td>Ret. Electrician</td><td>20 Years</td></tr>
-                                <tr><td>Jean-Pierre Maréchal</td><td>63</td><td>Garden Store Worker</td><td>12 years</td></tr>
-                                <tr><td>Romain Vandevelde</td><td>63</td><td>Pensioner</td><td>15 years</td></tr>
-                                <tr><td>Charly Arbo</td><td>30</td><td>Temp Worker</td><td>13 years</td></tr>
-                                <tr><td>Dominique Davies</td><td>45</td><td>Truck Driver</td><td>13 years</td></tr>
-                                <tr><td>Jerome Vilela</td><td>46</td><td>Fmr. Firefighter</td><td>13 years</td></tr>
-                                <tr><td>Cedric Grassot</td><td>50</td><td>---</td><td>12 years</td></tr>
-                                <tr><td>Hassan Ouamou</td><td>30</td><td>---</td><td>12 years</td></tr>
-                                <tr><td>Thierry Postat</td><td>61</td><td>---</td><td>12 years</td></tr>
-                                <tr><td>Fabien Sotto</td><td>39</td><td>Homeless</td><td>11 years</td></tr>
-                                <tr><td>Vincent Coullet</td><td>43</td><td>Carpenter</td><td>10 years</td></tr>
-                                <tr><td>Nizar Hamida</td><td>41</td><td>Delivery Driver</td><td>10 years</td></tr>
-                                <tr><td>Joan Kawai</td><td>27</td><td>Soldier</td><td>10 years</td></tr>
-                                <tr><td>Jean-Luc La</td><td>46</td><td>---</td><td>10 years</td></tr>
-                                <tr><td>Karim Sebaoui</td><td>40</td><td>IT Worker</td><td>10 years</td></tr>
-                                <tr><td>Redouane Azougagh</td><td>40</td><td>---</td><td>9 years</td></tr>
-                                <tr><td>Cyril Beaubis</td><td>47</td><td>Lorry Driver</td><td>9 years</td></tr>
-                                <tr><td>Husamettin Dogan</td><td>43</td><td>Construction Worker</td><td>9 years</td></tr>
-                                <tr><td>Christian Lescole</td><td>57</td><td>---</td><td>9 years</td></tr>
-                                <tr><td>Simoné Mekenes</td><td>43</td><td>Construction Worker</td><td>9 years</td></tr>
-                                <tr><td>Cendric Venzin</td><td>44</td><td>Restaurant Manager</td><td>9 years</td></tr>
-                                <tr><td>Abdelali Dallal</td><td>47</td><td>---</td><td>8 years (suspended)</td></tr>
-                                <tr><td>Mahdi Daoudi</td><td>36</td><td>Transport Worker</td><td>8 years</td></tr>
-                                <tr><td>Cyrille Delville</td><td>54</td><td>Construction Worker</td><td>8 years</td></tr>
-                                <tr><td>Omar Douiri</td><td>36</td><td>Cleaner</td><td>8 years</td></tr>
-                                <tr><td>Redouan El Farihi</td><td>55</td><td>Nurse</td><td>8 years</td></tr>
-                                <tr><td>Nicolas Francois</td><td>42</td><td>Freelance Journalist</td><td>8 years</td></tr>
-                                <tr><td>Boris Moulin</td><td>37</td><td>Cleaner</td><td>8 years</td></tr>
-                                <tr><td>Patrice Nicolle</td><td>55</td><td>Electrician</td><td>8 years</td></tr>
-                                <tr><td>Thierry Parisis</td><td>54</td><td>Mason</td><td>8 years</td></tr>
-                                <tr><td>Mohamed Rafaa</td><td>70</td><td>Former DJ</td><td>8 years</td></tr>
-                                <tr><td>Lionel Rodriguez</td><td>44</td><td>Supermarket Worker</td><td>8 years</td></tr>
-                                <tr><td>Gregory Serviol</td><td>31</td><td>Plasterer</td><td>8 years</td></tr>
-                                <tr><td>Ahmed Tbarik</td><td>54</td><td>Plumber</td><td>8 years</td></tr>
-                                <tr><td>Jean Tirano</td><td>52</td><td>Roof Mechanic</td><td>8 years</td></tr>
-                                <tr><td>Paul Grovogui</td><td>31</td><td>---</td><td>8 years</td></tr>
-                                <tr><td>Ludovick Blemeur</td><td>39</td><td>Warehouse Worker</td><td>7 years</td></tr>
-                                <tr><td>Mathieu Dartus</td><td>53</td><td>Baker</td><td>7 years</td></tr>
-                                <tr><td>Quentin Hennebert</td><td>34</td><td>Former Prison Guard</td><td>7 years</td></tr>
-                                <tr><td>Florian Rocca</td><td>32</td><td>---</td><td>7 years</td></tr>
-                                <tr><td>Patrick Aron</td><td>60</td><td>Unemployed</td><td>6 years</td></tr>
-                                <tr><td>Cyprien Culieras</td><td>44</td><td>Forklift Operator</td><td>6 years</td></tr>
-                                <tr><td>Jean-Marc Leloup</td><td>74</td><td>Retired Truck Driver</td><td>6 years</td></tr>
-                                <tr><td>Adrien Longeron</td><td>34</td><td>---</td><td>6 years</td></tr>
-                                <tr><td>Andy Rodriguez</td><td>37</td><td>Unemployed</td><td>6 years</td></tr>
-                                <tr><td>Hugues Malago</td><td>39</td><td>Tiler</td><td>5 years</td></tr>
-                                <tr><td>Didier Sambuchi</td><td>67</td><td>Retired Truck Driver</td><td>5 years</td></tr>
-                                <tr><td>Jacques Cubeau</td><td>73</td><td>Retired Firefighter</td><td>5 years (3 suspended)</td></tr>
-                                <tr><td>Philippe Leleu</td><td>62</td><td>---</td><td>5 years (2 suspended)</td></tr>
-                                <tr><td>Joseph Cocco</td><td>69</td><td>---</td><td>3 years</td></tr>
-                                <tr><td>Saifeddine Ghabi</td><td>36</td><td>Truck Driver</td><td>3 years</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <h2 id="aftermath">VII. Aftermath and Legacy</h2>
-                    
-                    <img src="https://i.ibb.co/Dg4rZJYZ/gisele-4.jpg" alt="Gisele Pelicot Aftermath" class="inline-evidence-photo rotate-left">
-
-                    <p>
-                        Following the verdicts, Gisèle Pelicot read a prepared statement outside the court. She reaffirmed her decision to go public: "I wanted all of society to be a witness... I'll never regret this decision". She added, "I have confidence in our capacity... to find a better future, in which men and women alike can live harmlessly together with mutual respect".
-                    </p>
-                    <p>
-                        The case has had a profound, lasting impact on French society, sparking a nationwide debate that forced a reckoning with the fact that "consent is notably absent" from the formal definition of rape in French law. This led French President Emmanuel Macron to vow that he would inscribe "consent" into law.
-                    </p>
-                    <p>
-                        Gisèle Pelicot's legacy is the success of her stated mission. She endured the humiliation of the trial to provide "undeniable evidence," not just of a crime, but of a culture that enables it. In forcing the shame back onto the perpetrators, she fundamentally altered the terms of the debate for all victims who follow.
-                    </p>
-                    
-                    <p style="margin-top: 3rem; border-top: 1px solid #333; padding-top: 1rem; font-style: italic; color: #666;">
-                        End of Full Report.
-                    </p>
+                    {{CONTENT}}
                 </div>
             </article>
 
-            <!-- Sidebar (Right Col) -->
             <aside class="sidebar reveal-up delay-1">
                 <div class="sidebar-card">
-                    <h3 class="sidebar-title">EVIDENCE INDEX</h3>
-                    <ul class="toc-list">
-                        <li class="toc-item"><a href="#discovery" class="toc-link">01. The Discovery</a></li>
-                        <li class="toc-item"><a href="#architect" class="toc-link">02. The Architect</a></li>
-                        <li class="toc-item"><a href="#chronology" class="toc-link">03. The Chronology</a></li>
-                        <li class="toc-item"><a href="#everyman" class="toc-link">04. The 50 Men</a></li>
-                        <li class="toc-item"><a href="#trial" class="toc-link">05. The Trial</a></li>
-                        <li class="toc-item"><a href="#verdict" class="toc-link">06. The Verdict</a></li>
-                        <li class="toc-item"><a href="#aftermath" class="toc-link">07. Legacy</a></li>
-                    </ul>
+                    <h3 class="sidebar-title">NAVIGATION</h3>
+                    <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">
+                        Use the scroll bar to navigate through the case file evidence.
+                    </p>
                     <a href="/articles/articles-page" class="btn-back">&larr; Return to Archives</a>
                 </div>
             </aside>
@@ -624,7 +381,6 @@
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <p>UNNAMED THINGS // ARCHIVE TERMINAL</p>
@@ -632,7 +388,6 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Mobile Menu
